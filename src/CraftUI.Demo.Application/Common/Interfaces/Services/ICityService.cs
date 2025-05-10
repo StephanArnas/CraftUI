@@ -1,6 +1,6 @@
-using StephanArnas.Controls.Application.Cities;
+using CraftUI.Demo.Application.Cities;
 
-namespace StephanArnas.Controls.Application.Common.Interfaces.Services;
+namespace CraftUI.Demo.Application.Common.Interfaces.Services;
 
 public interface ICityService
 {

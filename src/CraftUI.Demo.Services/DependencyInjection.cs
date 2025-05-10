@@ -1,9 +1,9 @@
-﻿using StephanArnas.Controls.Application.Common.Interfaces.Services;
+﻿using CraftUI.Demo.Application.Common.Interfaces.Services;
+using CraftUI.Demo.Services.Cities;
+using CraftUI.Demo.Services.Countries;
 using Microsoft.Extensions.DependencyInjection;
-using StephanArnas.Controls.Services.Cities;
-using StephanArnas.Controls.Services.Countries;
 
-namespace StephanArnas.Controls.Services;
+namespace CraftUI.Demo.Services;
 
 public static class DependencyInjection
 {

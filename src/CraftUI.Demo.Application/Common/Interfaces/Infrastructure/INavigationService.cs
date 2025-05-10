@@ -1,4 +1,4 @@
-namespace StephanArnas.Controls.Application.Common.Interfaces.Infrastructure;
+namespace CraftUI.Demo.Application.Common.Interfaces.Infrastructure;
 
 public interface INavigationService
 {

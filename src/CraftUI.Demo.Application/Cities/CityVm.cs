@@ -1,3 +1,3 @@
-namespace StephanArnas.Controls.Application.Cities;
+namespace CraftUI.Demo.Application.Cities;
 
 public record CityVm(int Id, int CountryId, string Name);

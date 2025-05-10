@@ -1,7 +1,7 @@
-using StephanArnas.Controls.Application.Cities;
-using StephanArnas.Controls.Application.Common.Interfaces.Services;
+using CraftUI.Demo.Application.Cities;
+using CraftUI.Demo.Application.Common.Interfaces.Services;
 
-namespace StephanArnas.Controls.Services.Cities;
+namespace CraftUI.Demo.Services.Cities;
 
 public class CityService : ICityService
 {

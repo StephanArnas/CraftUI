@@ -1,8 +1,8 @@
-using StephanArnas.Controls.Application.Common.Interfaces.Infrastructure;
+using CraftUI.Demo.Application.Common.Interfaces.Infrastructure;
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
 
-namespace StephanArnas.Controls.Infrastructure.Toasts;
+namespace CraftUI.Demo.Infrastructure.Toasts;
 
 public class ToastService : IToastService
 {

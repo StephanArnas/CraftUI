@@ -1,6 +1,6 @@
-﻿using StephanArnas.Controls.Infrastructure;
+﻿using CraftUI.Demo.Infrastructure;
 using StephanArnas.Controls.Maui;
-using StephanArnas.Controls.Services;
+using CraftUI.Demo.Services;
 using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Handlers;

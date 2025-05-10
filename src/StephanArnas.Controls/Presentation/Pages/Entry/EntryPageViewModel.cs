@@ -1,4 +1,4 @@
-using StephanArnas.Controls.Application.Common.Interfaces.Infrastructure;
+using CraftUI.Demo.Application.Common.Interfaces.Infrastructure;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using FluentValidation.Results;

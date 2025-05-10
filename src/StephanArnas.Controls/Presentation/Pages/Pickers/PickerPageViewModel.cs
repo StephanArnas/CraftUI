@@ -1,6 +1,6 @@
-using StephanArnas.Controls.Application.Cities;
-using StephanArnas.Controls.Application.Common.Interfaces.Services;
-using StephanArnas.Controls.Application.Countries;
+using CraftUI.Demo.Application.Cities;
+using CraftUI.Demo.Application.Common.Interfaces.Services;
+using CraftUI.Demo.Application.Countries;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.Logging;

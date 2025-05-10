@@ -1,6 +1,6 @@
-using StephanArnas.Controls.Application.Common.Interfaces.Infrastructure;
+using CraftUI.Demo.Application.Common.Interfaces.Infrastructure;
 
-namespace StephanArnas.Controls.Infrastructure.Displays;
+namespace CraftUI.Demo.Infrastructure.Displays;
 
 public class DisplayService : IDisplayService
 {

@@ -11,7 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\StephanArnas.Controls.Application\StephanArnas.Controls.Application.csproj" />
+      <ProjectReference Include="..\CraftUI.Demo.Application\CraftUI.Demo.Application.csproj" />
     </ItemGroup>
 
 </Project>

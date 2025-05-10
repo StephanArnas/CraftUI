@@ -112,10 +112,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\StephanArnas.Controls.Application\StephanArnas.Controls.Application.csproj" />
-      <ProjectReference Include="..\StephanArnas.Controls.Infrastructure\StephanArnas.Controls.Infrastructure.csproj" />
+      <ProjectReference Include="..\CraftUI.Demo.Application\CraftUI.Demo.Application.csproj" />
+      <ProjectReference Include="..\CraftUI.Demo.Infrastructure\CraftUI.Demo.Infrastructure.csproj" />
       <ProjectReference Include="..\StephanArnas.Controls.Maui\StephanArnas.Controls.Maui.csproj" />
-      <ProjectReference Include="..\StephanArnas.Controls.Services\StephanArnas.Controls.Services.csproj" />
+      <ProjectReference Include="..\CraftUI.Demo.Services\CraftUI.Demo.Services.csproj" />
     </ItemGroup>
 
 </Project>

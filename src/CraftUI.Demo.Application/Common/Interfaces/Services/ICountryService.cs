@@ -1,6 +1,6 @@
-using StephanArnas.Controls.Application.Countries;
+using CraftUI.Demo.Application.Countries;
 
-namespace StephanArnas.Controls.Application.Common.Interfaces.Services;
+namespace CraftUI.Demo.Application.Common.Interfaces.Services;
 
 public interface ICountryService
 {

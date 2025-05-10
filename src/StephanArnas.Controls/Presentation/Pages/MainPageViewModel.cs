@@ -1,4 +1,4 @@
-using StephanArnas.Controls.Application.Common.Interfaces.Infrastructure;
+using CraftUI.Demo.Application.Common.Interfaces.Infrastructure;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.Logging;
 using StephanArnas.Controls.Presentation.Common;

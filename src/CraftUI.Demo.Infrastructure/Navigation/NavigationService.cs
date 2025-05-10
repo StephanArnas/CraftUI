@@ -1,6 +1,6 @@
-using StephanArnas.Controls.Application.Common.Interfaces.Infrastructure;
+using CraftUI.Demo.Application.Common.Interfaces.Infrastructure;
 
-namespace StephanArnas.Controls.Infrastructure.Navigation;
+namespace CraftUI.Demo.Infrastructure.Navigation;
 
 // Read more about navigation : https://learn.microsoft.com/fr-fr/dotnet/architecture/maui/navigation
 

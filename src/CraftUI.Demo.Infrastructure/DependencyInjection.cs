@@ -1,10 +1,10 @@
-using StephanArnas.Controls.Application.Common.Interfaces.Infrastructure;
+using CraftUI.Demo.Application.Common.Interfaces.Infrastructure;
+using CraftUI.Demo.Infrastructure.Displays;
+using CraftUI.Demo.Infrastructure.Navigation;
+using CraftUI.Demo.Infrastructure.Toasts;
 using Microsoft.Extensions.DependencyInjection;
-using StephanArnas.Controls.Infrastructure.Displays;
-using StephanArnas.Controls.Infrastructure.Navigation;
-using StephanArnas.Controls.Infrastructure.Toasts;
 
-namespace StephanArnas.Controls.Infrastructure;
+namespace CraftUI.Demo.Infrastructure;
 
 public static class DependencyInjection
 {

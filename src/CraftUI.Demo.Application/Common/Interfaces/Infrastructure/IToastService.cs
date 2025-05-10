@@ -1,6 +1,6 @@
 using CommunityToolkit.Maui.Core;
 
-namespace StephanArnas.Controls.Application.Common.Interfaces.Infrastructure;
+namespace CraftUI.Demo.Application.Common.Interfaces.Infrastructure;
 
 public interface IToastService
 {
