@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<base:ContentPageBase
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:CraftUI.Demo.Presentation.Common"
+    xmlns:page="clr-namespace:CraftUI.Demo.Presentation.Pages.Pickers"
+    xmlns:controls="clr-namespace:CraftUI.Library.Maui.Controls;assembly=CraftUI.Library.Maui"
+    Title="Picker with Popup Demo"
+    x:DataType="page:PickerPageViewModel"
+    x:Class="CraftUI.Demo.Presentation.Pages.Pickers.PickerPopupPage">
+
+    <Grid RowDefinitions="*,Auto" >
+        <ScrollView>
+            <VerticalStackLayout
+                Margin="16, 32"
+                Spacing="25">
+                
+                <controls:SaPickerPopup
+                    Label="Country"
+                    SelectedItem="{Binding Country}"
+                    ItemsSource="{Binding CountriesLoader.Result}" 
+                    ItemDisplay="{x:Static page:PickerPageViewModel.CountryDisplayProperty}"
+                    TapCommand="{Binding CountrySelectedCommand}"
+                    ShowLoader="{Binding CountriesLoader.ShowLoader}"
+                    ActionIconSource="chevron_bottom.svg"/>
+                
+                <controls:SaPickerPopup
+                    Label="City"
+                    SelectedItem="{Binding City}"
+                    ItemsSource="{Binding CitiesLoader.Result}"
+                    ItemDisplay="{x:Static page:PickerPageViewModel.CityDisplayProperty}"
+                    ShowLoader="{Binding CitiesLoader.ShowLoader}" />
+
+            </VerticalStackLayout>
+        </ScrollView>
+        
+        <VerticalStackLayout Grid.Row="1" Style="{StaticResource BottomElementVerticalStackLayout}">
+            <Button Command="{Binding ResetCommand}" 
+                    Style="{StaticResource FilledPrimaryButton}" 
+                    Text="Reset" />
+        </VerticalStackLayout>
+
+    </Grid>
+    
+</base:ContentPageBase>

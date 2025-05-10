@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Grid 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ccb="clr-namespace:CraftUI.Library.Maui.Controls"
+    xmlns:progressBars="clr-namespace:CraftUI.Library.Maui.Controls.ProgressBars"
+    x:Class="CraftUI.Library.Maui.Controls.SaButton"
+    x:DataType="ccb:SaButton">
+    
+    <Button
+        x:Name="Button"
+        Clicked="Button_OnClicked"/>
+    
+    <progressBars:SaProgressBar 
+        x:Name="AnimatedProgressBar"
+        IsVisible="False"
+        Margin="6, 0"
+        HeightRequest="5"
+        UseRange="True"
+        RoundCaps="True"
+        VerticalOptions="End"
+        ProgressColor="{StaticResource PrimaryDark}" />
+    
+</Grid>
