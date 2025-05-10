@@ -1,4 +1,4 @@
-namespace CraftUI.Demo.Presentation.Pages.Entry;
+namespace CraftUI.Demo.Presentation.Pages.Controls.Entry;
 
 public partial class EntryPage
 {

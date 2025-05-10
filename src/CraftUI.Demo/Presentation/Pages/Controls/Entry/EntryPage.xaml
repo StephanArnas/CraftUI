@@ -2,12 +2,12 @@
 <base:ContentPageBase
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:page="clr-namespace:CraftUI.Demo.Presentation.Pages.Entry"
     xmlns:base="clr-namespace:CraftUI.Demo.Presentation.Common"
+    xmlns:page="clr-namespace:CraftUI.Demo.Presentation.Pages.Controls.Entry"
     xmlns:controls="clr-namespace:CraftUI.Library.Maui.Controls;assembly=CraftUI.Library.Maui"
-    Title="Entry Demo"
+    x:Class="CraftUI.Demo.Presentation.Pages.Controls.Entry.EntryPage"
     x:DataType="page:EntryPageViewModel"
-    x:Class="CraftUI.Demo.Presentation.Pages.Entry.EntryPage">
+    Title="Entry Demo">
     
     <Grid RowDefinitions="*,Auto" > 
 

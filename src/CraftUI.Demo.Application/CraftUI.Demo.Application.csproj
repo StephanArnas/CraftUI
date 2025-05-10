@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="CommunityToolkit.Maui" Version="10.0.0" />
+      <PackageReference Include="CommunityToolkit.Maui" Version="11.2.0" />
     </ItemGroup>
 
 </Project>

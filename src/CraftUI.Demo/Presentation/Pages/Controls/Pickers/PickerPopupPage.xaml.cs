@@ -1,4 +1,4 @@
-namespace CraftUI.Demo.Presentation.Pages.Pickers;
+namespace CraftUI.Demo.Presentation.Pages.Controls.Pickers;
 
 public partial class PickerPopupPage
 {

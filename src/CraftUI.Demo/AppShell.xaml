@@ -3,13 +3,24 @@
     x:Class="CraftUI.Demo.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:pages="clr-namespace:CraftUI.Demo.Presentation.Pages"
     xmlns:const="clr-namespace:CraftUI.Demo.Presentation.Common"
+    xmlns:useCases="clr-namespace:CraftUI.Demo.Presentation.Pages.UseCases"
+    xmlns:controls="clr-namespace:CraftUI.Demo.Presentation.Pages.Controls"
     FlyoutBehavior="Disabled">
 
-    <ShellContent
-        Title="Stephan Arnas Controls"
-        ContentTemplate="{DataTemplate pages:MainPage}"
-        Route="{x:Static const:RouteConstants.MainPage}" />
+    <TabBar>
+        <Tab
+            Icon="demo_code.png"
+            Route="{x:Static const:RouteConstants.ControlsListPage}"
+            Title="Controls">
+            <ShellContent ContentTemplate="{DataTemplate controls:ControlsList}" />
+        </Tab>
+        <Tab
+            Icon="demo_use_cases.png"
+            Route="{x:Static const:RouteConstants.UseCasesListPage}"
+            Title="Use Cases">
+            <ShellContent ContentTemplate="{DataTemplate useCases:UseCasesList}" />
+        </Tab>
+    </TabBar>
 
 </Shell>

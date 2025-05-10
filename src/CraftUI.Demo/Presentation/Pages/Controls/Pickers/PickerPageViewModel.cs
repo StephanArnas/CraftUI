@@ -1,13 +1,13 @@
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CraftUI.Demo.Application.Cities;
 using CraftUI.Demo.Application.Common.Interfaces.Services;
 using CraftUI.Demo.Application.Countries;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+using CraftUI.Demo.Presentation.Common;
 using Microsoft.Extensions.Logging;
 using Sharpnado.TaskLoaderView;
-using CraftUI.Demo.Presentation.Common;
 
-namespace CraftUI.Demo.Presentation.Pages.Pickers;
+namespace CraftUI.Demo.Presentation.Pages.Controls.Pickers;
 
 public partial class PickerPageViewModel : ViewModelBase
 {

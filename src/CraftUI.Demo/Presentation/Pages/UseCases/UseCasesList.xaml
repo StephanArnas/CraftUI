@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:page="clr-namespace:CraftUI.Demo.Presentation.Pages.UseCases"
+    x:DataType="page:UseCasesListViewModel"
+    x:Class="CraftUI.Demo.Presentation.Pages.UseCases.UseCasesList"
+    Title="Use Cases">
+
+   <Label Text="Use Cases ..."></Label>
+
+</ContentPage>

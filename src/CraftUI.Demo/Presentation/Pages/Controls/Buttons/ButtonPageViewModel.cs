@@ -1,8 +1,8 @@
+using CraftUI.Demo.Presentation.Common;
 using Microsoft.Extensions.Logging;
 using Sharpnado.TaskLoaderView;
-using CraftUI.Demo.Presentation.Common;
 
-namespace CraftUI.Demo.Presentation.Pages.Buttons;
+namespace CraftUI.Demo.Presentation.Pages.Controls.Buttons;
 
 public class ButtonPageViewModel : ViewModelBase
 {

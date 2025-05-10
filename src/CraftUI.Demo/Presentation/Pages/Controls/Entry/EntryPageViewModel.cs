@@ -1,11 +1,11 @@
-using CraftUI.Demo.Application.Common.Interfaces.Infrastructure;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CraftUI.Demo.Application.Common.Interfaces.Infrastructure;
+using CraftUI.Demo.Presentation.Common;
 using FluentValidation.Results;
 using Microsoft.Extensions.Logging;
-using CraftUI.Demo.Presentation.Common;
 
-namespace CraftUI.Demo.Presentation.Pages.Entry;
+namespace CraftUI.Demo.Presentation.Pages.Controls.Entry;
 
 public partial class EntryPageViewModel : ViewModelBase
 {

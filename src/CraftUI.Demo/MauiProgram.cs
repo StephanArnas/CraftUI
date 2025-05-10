@@ -5,10 +5,11 @@ using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Handlers;
 using CraftUI.Demo.Presentation.Common;
-using CraftUI.Demo.Presentation.Pages;
-using CraftUI.Demo.Presentation.Pages.Buttons;
-using CraftUI.Demo.Presentation.Pages.Entry;
-using CraftUI.Demo.Presentation.Pages.Pickers;
+using CraftUI.Demo.Presentation.Pages.Controls;
+using CraftUI.Demo.Presentation.Pages.Controls.Buttons;
+using CraftUI.Demo.Presentation.Pages.Controls.Entry;
+using CraftUI.Demo.Presentation.Pages.Controls.Pickers;
+using CraftUI.Demo.Presentation.Pages.UseCases;
 
 namespace CraftUI.Demo;
 
@@ -37,12 +38,14 @@ public static class MauiProgram
         ApplyStyleCustomization();
         
         // Register your pages.
-        builder.Services.AddTransient<MainPage, MainPageViewModel>();
+        builder.Services.AddTransient<UseCasesList, UseCasesListViewModel>();
         builder.Services.AddTransientWithShellRoute<ButtonPage, ButtonPageViewModel>(RouteConstants.ButtonPage);
         builder.Services.AddTransientWithShellRoute<EntryPage, EntryPageViewModel>(RouteConstants.EntryPage);
         builder.Services.AddTransientWithShellRoute<PickerPage, PickerPageViewModel>(RouteConstants.PickerPage);
         builder.Services.AddTransientWithShellRoute<PickerPopupPage, PickerPageViewModel>(RouteConstants.PickerPopupPage);
         
+        builder.Services.AddTransient<ControlsList, ControlsListViewModel>();
+
         return builder.Build();
     }
     

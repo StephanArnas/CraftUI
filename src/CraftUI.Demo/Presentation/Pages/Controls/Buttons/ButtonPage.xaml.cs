@@ -1,4 +1,4 @@
-namespace CraftUI.Demo.Presentation.Pages.Buttons;
+namespace CraftUI.Demo.Presentation.Pages.Controls.Buttons;
 
 public partial class ButtonPage
 {

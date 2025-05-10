@@ -7,12 +7,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="CommunityToolkit.Maui" Version="10.0.0" />
-      <PackageReference Include="FluentValidation" Version="11.11.0" />
-      <PackageReference Include="Microsoft.Maui.Controls" Version="9.0.21" />
-      <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.21" />
-      <PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="3.116.1" />
-      <PackageReference Include="SkiaSharp.Views.Maui.Core" Version="3.116.1" />
+      <PackageReference Include="CommunityToolkit.Maui" Version="11.2.0" />
+      <PackageReference Include="FluentValidation" Version="12.0.0" />
+      <PackageReference Include="Microsoft.Maui.Controls" Version="9.0.60" />
+      <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.60" />
+      <PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="3.119.0" />
+      <PackageReference Include="SkiaSharp.Views.Maui.Core" Version="3.119.0" />
     </ItemGroup>
 
     <ItemGroup>

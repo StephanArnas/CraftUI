@@ -36,6 +36,10 @@
         <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
     </PropertyGroup>
 
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <MtouchLink>SdkOnly</MtouchLink>
+    </PropertyGroup>
+
     <ItemGroup>
         <!-- App Icon -->
         <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4"/>
@@ -56,10 +60,10 @@
 
     <ItemGroup>
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
-        <PackageReference Include="FluentValidation" Version="11.11.0" />
-        <PackageReference Include="Microsoft.Maui.Controls" Version="9.0.21" />
-        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
-        <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.21" />
+        <PackageReference Include="FluentValidation" Version="12.0.0" />
+        <PackageReference Include="Microsoft.Maui.Controls" Version="9.0.60" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.4" />
+        <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.60" />
         <PackageReference Include="Sharpnado.Maui.TaskLoaderView" Version="2.5.1" />
     </ItemGroup>
 
@@ -73,13 +77,13 @@
       <MauiXaml Update="Presentation\CustomControlsBasic\Labels\Base\LabelBase.xaml">
         <SubType>Designer</SubType>
       </MauiXaml>
-      <MauiXaml Update="Presentation\Pages\MainPage.xaml">
-        <SubType>Designer</SubType>
-      </MauiXaml>
       <MauiXaml Update="Presentation\Pages\Search\Cities\CitySearchPage.xaml">
         <SubType>Designer</SubType>
       </MauiXaml>
       <MauiXaml Update="Presentation\Pages\Search\Countries\CountrySearchPage.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
+      <MauiXaml Update="Presentation\Pages\UseCases\UseCasesList.xaml">
         <SubType>Designer</SubType>
       </MauiXaml>
     </ItemGroup>
@@ -97,16 +101,16 @@
         <DependentUpon>LabelBase.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Update="Presentation\Pages\MainPage.xaml.cs">
-        <DependentUpon>MainPage.xaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
       <Compile Update="Presentation\Pages\Search\Cities\CitySearchPage.xaml.cs">
         <DependentUpon>CitySearchPage.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
       <Compile Update="Presentation\Pages\Search\Countries\CountrySearchPage.xaml.cs">
         <DependentUpon>CountrySearchPage.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Presentation\Pages\UseCases\UseCasesList.xaml.cs">
+        <DependentUpon>UseCasesList.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
     </ItemGroup>
@@ -116,6 +120,13 @@
       <ProjectReference Include="..\CraftUI.Demo.Infrastructure\CraftUI.Demo.Infrastructure.csproj" />
       <ProjectReference Include="..\CraftUI.Library.Maui\CraftUI.Library.Maui.csproj" />
       <ProjectReference Include="..\CraftUI.Demo.Services\CraftUI.Demo.Services.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Presentation\Pages\Controls\Buttons\ButtonPage.xaml" />
+      <AdditionalFiles Include="Presentation\Pages\Controls\Entry\EntryPage.xaml" />
+      <AdditionalFiles Include="Presentation\Pages\Controls\Pickers\PickerPage.xaml" />
+      <AdditionalFiles Include="Presentation\Pages\Controls\Pickers\PickerPopupPage.xaml" />
     </ItemGroup>
 
 </Project>

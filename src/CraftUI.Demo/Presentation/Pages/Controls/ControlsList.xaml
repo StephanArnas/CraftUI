@@ -1,11 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage 
+<?xml version="1.0" encoding="utf-8"?>
+<base:ContentPageBase
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:page="clr-namespace:CraftUI.Demo.Presentation.Pages"
-    x:DataType="page:MainPageViewModel"
-    x:Class="CraftUI.Demo.Presentation.Pages.MainPage">
-
+    xmlns:base="clr-namespace:CraftUI.Demo.Presentation.Common"
+    xmlns:page="clr-namespace:CraftUI.Demo.Presentation.Pages.Controls" 
+    x:Class="CraftUI.Demo.Presentation.Pages.Controls.ControlsList"
+    x:DataType="page:ControlsListViewModel"
+    Title="Controls">
+    
     <ScrollView>
         <VerticalStackLayout
             Margin="32"
@@ -33,5 +35,5 @@
             
         </VerticalStackLayout>
     </ScrollView>
-
-</ContentPage>
+    
+</base:ContentPageBase>
