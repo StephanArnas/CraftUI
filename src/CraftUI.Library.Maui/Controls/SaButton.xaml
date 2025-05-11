@@ -18,7 +18,6 @@
         HeightRequest="5"
         UseRange="True"
         RoundCaps="True"
-        VerticalOptions="End"
-        ProgressColor="{StaticResource PrimaryDark}" />
+        VerticalOptions="End" />
     
 </Grid>

@@ -4,6 +4,7 @@ using CraftUI.Demo.Application.Common.Interfaces.Infrastructure;
 using CraftUI.Demo.Presentation.Common;
 using FluentValidation.Results;
 using Microsoft.Extensions.Logging;
+using Sharpnado.TaskLoaderView;
 
 namespace CraftUI.Demo.Presentation.Pages.Controls.Entry;
 
@@ -18,9 +19,14 @@ public partial class EntryPageViewModel : ViewModelBase
     
     [ObservableProperty]
     private string? _email;
+    
+    [ObservableProperty]
+    private string? _website;
 
     [ObservableProperty]
     private ValidationResult? _validationResult;
+    
+    public TaskLoaderNotifier<string> WebsiteLoader { get; }
     
     public EntryPageViewModel(
         ILogger<EntryPageViewModel> logger,
@@ -30,6 +36,8 @@ public partial class EntryPageViewModel : ViewModelBase
         _logger = logger;
         _toastService = toastService;
         _displayService = displayService;
+
+        WebsiteLoader = new TaskLoaderNotifier<string>();
 
         _logger.LogInformation("Building EntryPageViewModel");
     }
@@ -43,6 +51,11 @@ public partial class EntryPageViewModel : ViewModelBase
     {
         _logger.LogInformation("OnAppearing()");
 
+        if (WebsiteLoader.IsNotStarted)
+        {
+            WebsiteLoader.Load(_ => LoadWebsiteAsync());
+        }
+        
         base.OnAppearing();
     }
 
@@ -51,6 +64,15 @@ public partial class EntryPageViewModel : ViewModelBase
         _logger.LogInformation("OnDisappearing()");
         
         base.OnDisappearing();
+    }
+    
+    private async Task<string> LoadWebsiteAsync()
+    {
+        _logger.LogInformation("LoadAsync()");
+
+        await Task.Delay(4000);
+
+        return "https://www.stephanarnas.com/";
     }
     
     [RelayCommand]
@@ -74,5 +96,16 @@ public partial class EntryPageViewModel : ViewModelBase
         _logger.LogInformation("FullnameInfo()");
 
         await _displayService.ShowPopupAsync("Full name", "Your first name and last name are used for communication purpose.");
+    }
+    
+    [RelayCommand]
+    private async Task OpenWebsite()
+    {
+        _logger.LogInformation("OpenWebsite()");
+
+        if (WebsiteLoader.ShowResult)
+        {
+            await Launcher.OpenAsync(uri: new Uri(WebsiteLoader.Result));
+        }
     }
 }

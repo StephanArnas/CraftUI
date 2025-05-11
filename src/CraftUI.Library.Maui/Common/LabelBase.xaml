@@ -60,25 +60,30 @@
         TextColor="{DynamicResource Danger}"
         Style="{StaticResource BaseLabelLabel}"/>
     
-    <ActivityIndicator x:Name="LoaderActivityIndicator"
-                       IsVisible="False"
-                       IsRunning="True"
-                       HorizontalOptions="End"
-                       VerticalOptions="Center"
-                       WidthRequest="24"
-                       HeightRequest="24"
-                       Margin="0,0, 8, 0"
-                       Color="{AppThemeBinding 
-                            Light={StaticResource Primary}, 
-                            Dark={StaticResource PrimaryDark}}"/>
+    <ActivityIndicator 
+        x:Name="LoaderActivityIndicator"
+        IsVisible="False"
+        IsRunning="False"
+        HorizontalOptions="End"
+        VerticalOptions="Center"
+        WidthRequest="24"
+        HeightRequest="24"
+        Margin="0,0, 8, 0"
+        Color="{AppThemeBinding 
+            Light={StaticResource Primary600}, 
+            Dark={StaticResource Primary400}}"/>
     
-    <ImageButton x:Name="ActionIconButton"
-                 IsVisible="False"
-                 HorizontalOptions="End"
-                 VerticalOptions="Center"
-                 BackgroundColor="Transparent"
-                 WidthRequest="24"
-                 HeightRequest="24"
-                 Margin="0, 0, 8, 0" />
-
+    <Image
+        x:Name="ActionIconButton"
+        IsVisible="False"
+        HorizontalOptions="End"
+        VerticalOptions="Center"
+        WidthRequest="24"
+        HeightRequest="24"
+        Margin="0, 0, 8, 0">
+        <Image.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnActionIconTapped" />
+        </Image.GestureRecognizers>
+    </Image>
+    
 </Grid>

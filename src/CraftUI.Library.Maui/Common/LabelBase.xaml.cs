@@ -7,14 +7,14 @@ namespace CraftUI.Library.Maui.Common;
 
 public partial class LabelBase
 {
-    public LabelBase()
-    {
-        InitializeComponent();
-    }
-
-    public static readonly BindableProperty ViewProperty = 
-        BindableProperty.Create(nameof(View), typeof(View), typeof(LabelBase), 
-            defaultValue: null, BindingMode.OneWay, ViewHelper.ValidateCustomView, ElementChanged);
+    public static readonly BindableProperty ViewProperty = BindableProperty.Create(nameof(View), typeof(View), typeof(LabelBase), defaultValue: null, BindingMode.OneWay, ViewHelper.ValidateCustomView, ElementChanged);
+    public static readonly BindableProperty IsRequiredProperty = BindableProperty.Create(nameof(IsRequired), typeof(bool), typeof(LabelBase), defaultValue: false, propertyChanged: IsRequiredChanged);
+    public static readonly BindableProperty LabelProperty = BindableProperty.Create(nameof(Label), typeof(string), typeof(LabelBase), propertyChanged: LabelChanged);
+    public static readonly BindableProperty InfoProperty = BindableProperty.Create(nameof(Info), typeof(string), typeof(LabelBase), propertyChanged: InfoChanged);
+    public static readonly BindableProperty ErrorProperty = BindableProperty.Create(nameof(Error), typeof(string), typeof(LabelBase), propertyChanged: ErrorChanged);
+    public static readonly BindableProperty ShowLoaderProperty = BindableProperty.Create(nameof(ShowLoader), typeof(bool), typeof(LabelBase), defaultValue: false, propertyChanged: ShowLoaderChanged);
+    public static readonly BindableProperty ActionIconSourceProperty = BindableProperty.Create(nameof(ActionIconSource), typeof(ImageSource), typeof(LabelBase), defaultValue: null, propertyChanged: ActionIconSourceChanged);
+    public static readonly BindableProperty ActionIconCommandProperty = BindableProperty.Create(nameof(ActionIconCommand), typeof(ICommand), typeof(LabelBase), defaultValue: null);
 
     public View View
     {
@@ -22,29 +22,17 @@ public partial class LabelBase
         set => SetValue(ViewProperty, value);
     }
     
-    public static readonly BindableProperty IsRequiredProperty = 
-        BindableProperty.Create(nameof(IsRequired), typeof(bool), typeof(LabelBase), 
-            defaultValue: false, propertyChanged: IsRequiredChanged);
-
     public bool IsRequired
     {
         get => (bool)GetValue(IsRequiredProperty);
         set => SetValue(IsRequiredProperty, value);
     }
-    
-    public static readonly BindableProperty LabelProperty = 
-        BindableProperty.Create(nameof(Label), typeof(string), typeof(LabelBase), 
-            propertyChanged: LabelChanged);
 
     public string Label
     {
         get => (string)GetValue(LabelProperty);
         set => SetValue(LabelProperty, value);
     }
-    
-    public static readonly BindableProperty InfoProperty = 
-        BindableProperty.Create(nameof(Info), typeof(string), typeof(LabelBase), 
-            propertyChanged: InfoChanged);
 
     public string Info
     {
@@ -52,19 +40,11 @@ public partial class LabelBase
         set => SetValue(InfoProperty, value);
     }
 
-    public static readonly BindableProperty ErrorProperty = 
-        BindableProperty.Create(nameof(Error), typeof(string), typeof(LabelBase), 
-            propertyChanged: ErrorChanged);
-
     public string Error
     {
         get => (string)GetValue(ErrorProperty);
         set => SetValue(ErrorProperty, value);
     }
-
-    public static readonly BindableProperty ShowLoaderProperty = 
-        BindableProperty.Create(nameof(ShowLoader), typeof(bool), typeof(LabelBase), 
-            defaultValue: false, propertyChanged: ShowLoaderChanged);
 
     public bool ShowLoader
     {
@@ -72,24 +52,21 @@ public partial class LabelBase
         set => SetValue(ShowLoaderProperty, value);
     }
     
-    public static readonly BindableProperty ActionIconSourceProperty = 
-        BindableProperty.Create(nameof(ActionIconSource), typeof(ImageSource), typeof(LabelBase),
-            defaultValue: null, propertyChanged: ActionIconSourceChanged);
-
     public ImageSource? ActionIconSource
     {
         get => (ImageSource?)GetValue(ActionIconSourceProperty);
         set => SetValue(ActionIconSourceProperty, value);
     }
 
-    public static readonly BindableProperty ActionIconCommandProperty = 
-        BindableProperty.Create(nameof(ActionIconCommand), typeof(ICommand), typeof(LabelBase),
-            defaultValue: null, propertyChanged: ActionIconCommandChanged);
-
     public ICommand? ActionIconCommand
     {
         get => (ICommand?)GetValue(ActionIconCommandProperty);
         set => SetValue(ActionIconCommandProperty, value);
+    }
+
+    public LabelBase()
+    {
+        InitializeComponent();
     }
 
     private static void ElementChanged(BindableObject bindable, object oldValue, object newValue) => ((LabelBase)bindable).UpdateElementView();
@@ -99,7 +76,6 @@ public partial class LabelBase
     private static void ErrorChanged(BindableObject bindable, object oldValue, object newValue) => ((LabelBase)bindable).UpdateErrorView();
     private static void ShowLoaderChanged(BindableObject bindable, object oldValue, object newValue) => ((LabelBase)bindable).UpdateShowLoaderView();
     private static void ActionIconSourceChanged(BindableObject bindable, object oldValue, object newValue) => ((LabelBase)bindable).UpdateActionIconSourceView();
-    private static void ActionIconCommandChanged(BindableObject bindable, object oldValue, object newValue) => ((LabelBase)bindable).UpdateActionIconCommandView();
     
     private void UpdateElementView()
     {
@@ -134,6 +110,7 @@ public partial class LabelBase
     private void UpdateShowLoaderView()
     {
         LoaderActivityIndicator.IsVisible = ShowLoader;
+        LoaderActivityIndicator.IsRunning = ShowLoader;
         
         if (ActionIconSource is not null)
         {
@@ -146,10 +123,13 @@ public partial class LabelBase
         ActionIconButton.IsVisible = ActionIconSource is not null;
         ActionIconButton.Source = ActionIconSource;
     }
-
-    private void UpdateActionIconCommandView()
+    
+    private void OnActionIconTapped(object sender, EventArgs e)
     {
-        ActionIconButton.Command = ActionIconCommand;
+        if (ActionIconCommand?.CanExecute(null) == true)
+        {
+            ActionIconCommand.Execute(null);
+        }
     }
     
     protected override void OnBindingContextChanged()

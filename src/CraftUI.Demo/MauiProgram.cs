@@ -9,6 +9,7 @@ using CraftUI.Demo.Presentation.Pages.Controls;
 using CraftUI.Demo.Presentation.Pages.Controls.Buttons;
 using CraftUI.Demo.Presentation.Pages.Controls.Entry;
 using CraftUI.Demo.Presentation.Pages.Controls.Pickers;
+using CraftUI.Demo.Presentation.Pages.Settings;
 using CraftUI.Demo.Presentation.Pages.UseCases;
 
 namespace CraftUI.Demo;
@@ -45,6 +46,7 @@ public static class MauiProgram
         builder.Services.AddTransientWithShellRoute<PickerPopupPage, PickerPageViewModel>(RouteConstants.PickerPopupPage);
         
         builder.Services.AddTransient<ControlsList, ControlsListViewModel>();
+        builder.Services.AddTransient<SettingsPage, SettingsPageViewModel>();
 
         return builder.Build();
     }

@@ -47,6 +47,16 @@ public partial class SaButton
         _upperAnimation = new Animation(v => AnimatedProgressBar.UpperRangeValue = (float)v, start: 0.0, end: 1.4);
     }
     
+    protected override void OnPropertyChanged(string? propertyName = null)
+    {
+        base.OnPropertyChanged(propertyName);
+
+        if (propertyName == IsEnabledProperty.PropertyName)
+        {
+            Button.IsEnabled = IsEnabled;
+        }
+    }
+    
     private static void TextChanged(BindableObject bindable, object oldValue, object newValue) => ((SaButton)bindable).UpdateTextView();
     private static void IsLoadingChanged(BindableObject bindable, object oldValue, object newValue) => ((SaButton)bindable).UpdateIsLoadingView();
     
@@ -55,16 +65,6 @@ public partial class SaButton
         if (Command != null && Command.CanExecute(CommandParameter))
         {
             Command.Execute(CommandParameter);
-        }
-    }
-    
-    protected override void OnPropertyChanged(string? propertyName = null)
-    {
-        base.OnPropertyChanged(propertyName);
-
-        if (propertyName == IsEnabledProperty.PropertyName)
-        {
-            UpdateIsEnabledView();
         }
     }
     
@@ -88,10 +88,5 @@ public partial class SaButton
             this.AbortAnimation(handle: LowerKey);
             this.AbortAnimation(handle: UpperKey);
         }
-    }
-    
-    private void UpdateIsEnabledView()
-    {
-        Button.IsEnabled = IsEnabled;
     }
 }

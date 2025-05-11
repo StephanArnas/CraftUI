@@ -24,7 +24,7 @@
                         ConverterParameter={x:Static page:EntryPageViewModelValidator.FullNameProperty}}"
                     IsRequired="True"
                     Placeholder="John Doe"
-                    ActionIconSource="info.png" 
+                    ActionIconSource="demo_info.png" 
                     ActionIconCommand="{Binding FullnameInfoCommand}"/>
 
                 <controls:SaEntry
@@ -38,6 +38,14 @@
                     Placeholder="E.g: john.doe@gmail.com"
                     ReturnCommand="{Binding SaveCommand}"/>
                 
+                <controls:SaEntry
+                    Label="Website"
+                    Text="{Binding WebsiteLoader.Result}"
+                    ShowLoader="{Binding WebsiteLoader.ShowLoader}"
+                    IsReadOnly="True"
+                    ActionIconSource="demo_new_window.png"
+                    ActionIconCommand="{Binding OpenWebsiteCommand}" />
+
             </VerticalStackLayout>
         </ScrollView>
     

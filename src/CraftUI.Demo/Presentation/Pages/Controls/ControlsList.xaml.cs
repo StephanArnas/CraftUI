@@ -7,4 +7,10 @@ public partial class ControlsList
         InitializeComponent();
         BindingContext = viewModel;
     }
+
+    protected override void OnAppearing()
+    {
+        ItemsCollectionView.SelectedItem = null;
+        base.OnAppearing();
+    }
 }

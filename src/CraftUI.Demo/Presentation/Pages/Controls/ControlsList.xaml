@@ -4,36 +4,33 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:base="clr-namespace:CraftUI.Demo.Presentation.Common"
     xmlns:page="clr-namespace:CraftUI.Demo.Presentation.Pages.Controls" 
+    xmlns:model="clr-namespace:CraftUI.Demo.Application.Common;assembly=CraftUI.Demo.Application" 
     x:Class="CraftUI.Demo.Presentation.Pages.Controls.ControlsList"
     x:DataType="page:ControlsListViewModel"
     Title="Controls">
     
-    <ScrollView>
-        <VerticalStackLayout
-            Margin="32"
-            Spacing="25">
-            
-            <Button
-                Text="Button Demo" 
-                Command="{Binding GoToButtonPageCommand}"
-                HorizontalOptions="Fill" />
-            
-            <Button
-                Text="Entry Demo" 
-                Command="{Binding GoToEntryPageCommand}"
-                HorizontalOptions="Fill" />
-            
-            <Button
-                Text="Picker Demo" 
-                Command="{Binding GoToPickerPageCommand}"
-                HorizontalOptions="Fill" />
-            
-            <Button
-                Text="Picker with popup Demo" 
-                Command="{Binding GoToPickerPopupPageCommand}"
-                HorizontalOptions="Fill" />
-            
-        </VerticalStackLayout>
-    </ScrollView>
+    <CollectionView 
+        x:Name="ItemsCollectionView"
+        ItemsSource="{Binding Items}"
+        SelectionChangedCommand="{Binding NavigateToPageCommand}"
+        SelectionChangedCommandParameter="{Binding Source={x:Reference ItemsCollectionView}, Path=SelectedItem}"
+        SelectionMode="Single">
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="model:LinkMenuItem">
+                <StackLayout Orientation="Horizontal" Padding="10">
+                    
+                    <Image 
+                        Source="{Binding Image}" 
+                        WidthRequest="40" HeightRequest="40" 
+                        Margin="0,0,10,0"/>
+                    
+                    <Label 
+                        Text="{Binding Title}" 
+                        VerticalOptions="Center"/>
+                    
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
     
 </base:ContentPageBase>

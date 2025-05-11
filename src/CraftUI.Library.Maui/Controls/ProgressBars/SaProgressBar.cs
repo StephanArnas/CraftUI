@@ -93,24 +93,24 @@ public class SaProgressBar : SKCanvasView
         
         if (theme == AppTheme.Dark)
         {
-            if (Application.Current.Resources.TryGetValue(ColorResources.PrimaryDark, out var progressDarkColor))
+            if (Application.Current.Resources.TryGetValue(ColorResources.Primary400, out var progressDarkColor))
             {
                 ProgressColor = (Color)progressDarkColor;
             }
             
-            if (Application.Current.Resources.TryGetValue(ColorResources.SecondaryDark, out var baseColorDarkColor))
+            if (Application.Current.Resources.TryGetValue(ColorResources.Primary800, out var baseColorDarkColor))
             {
                 BaseColor = (Color)baseColorDarkColor;
             }
         }
         else
         {
-            if (Application.Current.Resources.TryGetValue(ColorResources.Primary, out var progressLightColor))
+            if (Application.Current.Resources.TryGetValue(ColorResources.Primary600, out var progressLightColor))
             {
                 ProgressColor = (Color)progressLightColor;
             }
             
-            if (Application.Current.Resources.TryGetValue(ColorResources.Secondary, out var baseLightColor))
+            if (Application.Current.Resources.TryGetValue(ColorResources.Primary200, out var baseLightColor))
             {
                 BaseColor = (Color)baseLightColor;
             }

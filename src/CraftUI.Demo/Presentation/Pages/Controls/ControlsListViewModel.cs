@@ -1,4 +1,7 @@
+using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CraftUI.Demo.Application.Common;
 using CraftUI.Demo.Application.Common.Interfaces.Infrastructure;
 using CraftUI.Demo.Presentation.Common;
 using CraftUI.Demo.Presentation.Pages.Controls.Pickers;
@@ -11,12 +14,17 @@ public partial class ControlsListViewModel : ViewModelBase
     private readonly ILogger<PickerPageViewModel> _logger;
     private readonly INavigationService _navigationService;
 
+    [ObservableProperty] 
+    private ObservableCollection<LinkMenuItem> _items;
+
     public ControlsListViewModel(
         ILogger<PickerPageViewModel> logger,
         INavigationService navigationService)
     {
         _logger = logger;
         _navigationService = navigationService;
+
+        InitializeItems();
         
         _logger.LogInformation("Building ControlsListViewModel");
     }
@@ -42,37 +50,25 @@ public partial class ControlsListViewModel : ViewModelBase
         base.OnDisappearing();
     }
     
-    
-    
     [RelayCommand]
-    private async Task GoToButtonPage()
+    private async Task NavigateToPage(LinkMenuItem? item)
     {
-        _logger.LogInformation("GoToButtonPage()");
-        
-        await _navigationService.NavigateToAsync(RouteConstants.ButtonPage);
+        _logger.LogInformation("NavigateToPage( item: {Item} )", item);
+
+        if (item is not null)
+        {
+            await _navigationService.NavigateToAsync(item.RoutePage);
+        }
     }
-    
-    [RelayCommand]
-    private async Task GoToEntryPage()
+
+    private void InitializeItems()
     {
-        _logger.LogInformation("GoToEntryPage()");
-        
-        await _navigationService.NavigateToAsync(RouteConstants.EntryPage);
-    }
-    
-    [RelayCommand]
-    private async Task GoToPickerPage()
-    {
-        _logger.LogInformation("GoToPickerPage()");
-        
-        await _navigationService.NavigateToAsync(RouteConstants.PickerPage);
-    }
-    
-    [RelayCommand]
-    private async Task GoToPickerPopupPage()
-    {
-        _logger.LogInformation("GoToPickerPopupPage()");
-        
-        await _navigationService.NavigateToAsync(RouteConstants.PickerPopupPage);
+        Items =
+        [
+            new LinkMenuItem("Button", "demo_hand_click.png", RouteConstants.ButtonPage),
+            new LinkMenuItem("Entry", "demo_input.png", RouteConstants.EntryPage),
+            new LinkMenuItem("Native Picker", "demo_picker.png", RouteConstants.PickerPage),
+            new LinkMenuItem("Popup Picker", "demo_picker.png", RouteConstants.PickerPopupPage)
+        ];
     }
 }

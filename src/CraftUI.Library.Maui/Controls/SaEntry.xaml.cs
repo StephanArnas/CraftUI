@@ -11,7 +11,8 @@ public partial class SaEntry
     public static readonly BindableProperty ReturnTypeProperty = BindableProperty.Create(nameof(ReturnType), typeof(ReturnType), typeof(SaEntry), defaultValue: ReturnType.Done, propertyChanged: ReturnTypeChanged);
     public static readonly BindableProperty ReturnCommandProperty = BindableProperty.Create(nameof(ReturnCommand), typeof(ICommand), typeof(SaEntry), defaultValue: null, propertyChanged: ReturnCommandChanged);
     public static readonly BindableProperty TextTransformProperty = BindableProperty.Create(nameof(TextTransform), typeof(TextTransform), typeof(SaEntry), defaultValue: TextTransform.Default, propertyChanged: TextTransformChanged);
-    
+    public static readonly BindableProperty IsReadOnlyProperty = BindableProperty.Create(nameof(IsReadOnly), typeof(bool), typeof(SaEntry), false, propertyChanged: IsReadOnlyChanged);
+
     public string Text
     {
         get => (string)GetValue(TextProperty);
@@ -48,6 +49,12 @@ public partial class SaEntry
         set => SetValue(TextTransformProperty, value);
     }
     
+    public bool IsReadOnly
+    {
+        get => (bool)GetValue(IsReadOnlyProperty);
+        set => SetValue(IsReadOnlyProperty, value);
+    }
+    
     public SaEntry()
     {
         InitializeComponent();
@@ -57,12 +64,23 @@ public partial class SaEntry
         Element.BindingContext = this;
     }
     
+    protected override void OnPropertyChanged(string? propertyName = null)
+    {
+        //base.OnPropertyChanged(propertyName);
+
+        if (propertyName == IsEnabledProperty.PropertyName)
+        {
+            Element.IsEnabled = IsEnabled;
+        }
+    }
+    
     private static void TextChanged(BindableObject bindable, object oldValue, object newValue) => ((SaEntry)bindable).UpdateTextView();
     private static void PlaceholderChanged(BindableObject bindable, object oldValue, object newValue) => ((SaEntry)bindable).UpdatePlaceholderView();
     private static void KeyboardChanged(BindableObject bindable, object oldValue, object newValue) => ((SaEntry)bindable).UpdateKeyboardView();
     private static void ReturnTypeChanged(BindableObject bindable, object oldValue, object newValue) => ((SaEntry)bindable).UpdateReturnTypeView();
     private static void ReturnCommandChanged(BindableObject bindable, object oldValue, object newValue) => ((SaEntry)bindable).UpdateReturnCommandView();
     private static void TextTransformChanged(BindableObject bindable, object oldValue, object newValue) => ((SaEntry)bindable).UpdateTextTransformView();
+    private static void IsReadOnlyChanged(BindableObject bindable, object oldValue, object newValue) => ((SaEntry)bindable).UpdateIsReadOnlyView();
     
     private void UpdateTextView()
     {
@@ -89,4 +107,5 @@ public partial class SaEntry
     private void UpdateReturnTypeView() => Element.ReturnType = ReturnType;
     private void UpdateReturnCommandView() => Element.ReturnCommand = ReturnCommand;
     private void UpdateTextTransformView() => Element.TextTransform = TextTransform;
+    private void UpdateIsReadOnlyView() => Element.IsReadOnly = IsReadOnly;
 }

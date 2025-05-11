@@ -9,4 +9,5 @@ public static class RouteConstants
     public const string PickerPopupPage = "PickerPopupPage";
     
     public const string UseCasesListPage = "UseCasesListPage";
+    public const string SettingsPage = "SettingsPage";
 }

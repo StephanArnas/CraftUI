@@ -525,14 +525,14 @@ public class CityService : ICityService
     
     public async Task<IReadOnlyList<CityVm>> GetAllCitiesAsync(CancellationToken cancellationToken = default)
     {
-        await Task.Delay(2000, cancellationToken);
+        //await Task.Delay(2000, cancellationToken);
         
         return _cities.AsReadOnly();
     }
 
     public async Task<IReadOnlyList<CityVm>> GetCitiesAsync(int countryId, CancellationToken cancellationToken = default)
     {
-        await Task.Delay(2000, cancellationToken);
+        //await Task.Delay(2000, cancellationToken);
         
         return _cities.Where(x => x.CountryId == countryId).ToList().AsReadOnly();
     }
