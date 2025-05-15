@@ -27,6 +27,10 @@
                     Text="Disabled button"
                     IsEnabled="False" />
                 
+                <controls:CfButton 
+                    Style="{StaticResource PlainPrimaryCfButton}"
+                    Text="Plain button" />
+                
             </VerticalStackLayout>
         </ScrollView>
     </Grid>

@@ -10,10 +10,11 @@ public partial class CfButton
     private readonly Animation _lowerAnimation;
     private readonly Animation _upperAnimation;
 
-    public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(CfButton), defaultBindingMode: BindingMode.OneWay, propertyChanged: TextChanged);
+    public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(CfButton), defaultBindingMode: BindingMode.OneWay);
     public static readonly BindableProperty IsLoadingProperty = BindableProperty.Create(nameof(IsLoading), typeof(bool), typeof(CfButton), defaultBindingMode: BindingMode.OneWay, propertyChanged: IsLoadingChanged);
     public static readonly BindableProperty CommandProperty = BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(CfButton));
     public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(CfButton));
+    public static readonly BindableProperty TextColorProperty = BindableProperty.Create(nameof(TextColor), typeof(object), typeof(CfButton));
     
     public string Text
     {
@@ -38,6 +39,12 @@ public partial class CfButton
         get => GetValue(CommandParameterProperty);
         set => SetValue(CommandParameterProperty, value);
     }
+
+    public Color TextColor
+    {
+        get => (Color)GetValue(TextColorProperty);
+        set => SetValue(TextColorProperty, value);
+    }
     
     public CfButton()
     {
@@ -55,9 +62,21 @@ public partial class CfButton
         {
             Button.IsEnabled = IsEnabled;
         }
+        else if (propertyName == BackgroundColorProperty.PropertyName)
+        {
+            Button.BackgroundColor = BackgroundColor;
+        }
+        else if (propertyName == TextColorProperty.PropertyName)
+        {
+            AnimatedProgressBar.ProgressColor = TextColor;
+            Button.TextColor = TextColor;
+        }
+        else if (propertyName == TextProperty.PropertyName)
+        {
+            Button.Text = Text;
+        }
     }
     
-    private static void TextChanged(BindableObject bindable, object oldValue, object newValue) => ((CfButton)bindable).UpdateTextView();
     private static void IsLoadingChanged(BindableObject bindable, object oldValue, object newValue) => ((CfButton)bindable).UpdateIsLoadingView();
     
     private void Button_OnClicked(object? sender, EventArgs e)
@@ -66,11 +85,6 @@ public partial class CfButton
         {
             Command.Execute(CommandParameter);
         }
-    }
-    
-    private void UpdateTextView()
-    {
-        Button.Text = Text;
     }
     
     private void UpdateIsLoadingView()

@@ -41,7 +41,7 @@
                 <controls:CfEntry
                     Label="Website"
                     Text="{Binding WebsiteLoader.Result}"
-                    ShowLoader="{Binding WebsiteLoader.ShowLoader}"
+                    IsLoading="{Binding WebsiteLoader.ShowLoader}"
                     IsReadOnly="True"
                     ActionIconSource="demo_new_window.png"
                     ActionIconCommand="{Binding OpenWebsiteCommand}" />

@@ -12,7 +12,7 @@ public partial class LabelBase
     public static readonly BindableProperty LabelProperty = BindableProperty.Create(nameof(Label), typeof(string), typeof(LabelBase), propertyChanged: LabelChanged);
     public static readonly BindableProperty InfoProperty = BindableProperty.Create(nameof(Info), typeof(string), typeof(LabelBase), propertyChanged: InfoChanged);
     public static readonly BindableProperty ErrorProperty = BindableProperty.Create(nameof(Error), typeof(string), typeof(LabelBase), propertyChanged: ErrorChanged);
-    public static readonly BindableProperty ShowLoaderProperty = BindableProperty.Create(nameof(ShowLoader), typeof(bool), typeof(LabelBase), defaultValue: false, propertyChanged: ShowLoaderChanged);
+    public static readonly BindableProperty IsLoadingProperty = BindableProperty.Create(nameof(IsLoading), typeof(bool), typeof(LabelBase), defaultValue: false, propertyChanged: IsLoadingChanged);
     public static readonly BindableProperty ActionIconSourceProperty = BindableProperty.Create(nameof(ActionIconSource), typeof(ImageSource), typeof(LabelBase), defaultValue: null, propertyChanged: ActionIconSourceChanged);
     public static readonly BindableProperty ActionIconCommandProperty = BindableProperty.Create(nameof(ActionIconCommand), typeof(ICommand), typeof(LabelBase), defaultValue: null);
 
@@ -46,10 +46,10 @@ public partial class LabelBase
         set => SetValue(ErrorProperty, value);
     }
 
-    public bool ShowLoader
+    public bool IsLoading
     {
-        get => (bool)GetValue(ShowLoaderProperty);
-        set => SetValue(ShowLoaderProperty, value);
+        get => (bool)GetValue(IsLoadingProperty);
+        set => SetValue(IsLoadingProperty, value);
     }
     
     public ImageSource? ActionIconSource
@@ -74,7 +74,7 @@ public partial class LabelBase
     private static void LabelChanged(BindableObject bindable, object oldValue, object newValue) => ((LabelBase)bindable).UpdateLabelView();
     private static void InfoChanged(BindableObject bindable, object oldValue, object newValue) => ((LabelBase)bindable).UpdateInfoView();
     private static void ErrorChanged(BindableObject bindable, object oldValue, object newValue) => ((LabelBase)bindable).UpdateErrorView();
-    private static void ShowLoaderChanged(BindableObject bindable, object oldValue, object newValue) => ((LabelBase)bindable).UpdateShowLoaderView();
+    private static void IsLoadingChanged(BindableObject bindable, object oldValue, object newValue) => ((LabelBase)bindable).UpdateIsLoadingView();
     private static void ActionIconSourceChanged(BindableObject bindable, object oldValue, object newValue) => ((LabelBase)bindable).UpdateActionIconSourceView();
     
     private void UpdateElementView()
@@ -107,14 +107,14 @@ public partial class LabelBase
         InvalidateSurface();
     }
 
-    private void UpdateShowLoaderView()
+    private void UpdateIsLoadingView()
     {
-        LoaderActivityIndicator.IsVisible = ShowLoader;
-        LoaderActivityIndicator.IsRunning = ShowLoader;
+        LoaderActivityIndicator.IsVisible = IsLoading;
+        LoaderActivityIndicator.IsRunning = IsLoading;
         
         if (ActionIconSource is not null)
         {
-            ActionIconButton.IsVisible = !ShowLoader;
+            ActionIconButton.IsVisible = !IsLoading;
         }
     }
 
