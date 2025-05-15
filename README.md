@@ -1,76 +1,76 @@
-# How to implement Custom Design System Controls in MAUI 
+# CraftUI for .NET MAUI 
 
-Did you ever consider building your own custom design system controls in MAUI?
+![image](https://github.com/user-attachments/assets/08942e52-75a7-4515-9c58-8ecfc1504d54)
 
-## But Why? 
+CraftUI is a design system library for .NET MAUI, giving developers a fully customizable and maintainable set of UI components, free from external dependencies and package managers. 
+Just integrate the code directly into your project and shape it exactly to your needs, now and forever.
 
-Let’s consider an example: I’m part of a company focused on .NET development. 
-We have a limited budget and a tight timeline to ship our product. 
+## Why no NuGet package? 
 
-If you decide to use a third-party library, consider the following points: licensing, the presence of experienced contributors, compatibility with the latest .NET versions, bug fix support and platform support.
+Relying on a package is always a trade-off that should be carefully considered. 
+While packages provide convenience, they often introduce hidden risks:
 
-In our case, building a custom library makes sense because our team has the expertise to create it. 
+- Popular libraries like MediatR and MassTransit eventually moved to paid models, creating unexpected costs.
+- Package updates can introduce regressions or breaking changes that disrupt stable codebases.
+- Some projects become abandoned, leaving you with outdated dependencies and no support.
+- Version conflicts between packages can create complex dependency hell scenarios.
+- You lose visibility and control over the underlying code, making debugging and customization harder.
 
-#### We prefer to avoid third-party libraries to minimize dependencies, simplify maintenance, and ensure a predictable codebase with updates.
+With CraftUI, you own the code from day one. 
+No hidden surprises, no lock-in, no external constraints. 
+You’re free to evolve it at your own pace and ensure long-term stability and maintainability.
 
-Be able to integrate future unexpected changes from the Product Owner, such as targeting the Windows platform, which a open-source library might not supported.
-Failing to consider these aspects could impact your development in the future.
+> 📅 I’m currently working on an article, a video, and a script that will guide you through all the steps required to start a new project with CraftUI or integrate it into an existing one. 
+Estimated delivery: 06/2025.
 
-#### I will explain step-by-step how to implement a custom design system in MAUI and how to use my open-source project as an external resource to accelerate the development of your own controls.
+# Controls
 
-*Content is on going to give you a step-by-step guide to implement my project in your solution.*
+CraftUI provides a set of reusable UI controls to accelerate your .NET MAUI development while keeping full control over customization and code ownership.
 
-## Articles
+- CfButton
+- CfEntry
+- CfPicker
+- CfPickerPopup
+- CfProgressBar
+- CfCollectionPopup
+
+## Button
+
+CraftUI provides developers with two predefined button styles, ensuring visual consistency while keeping full flexibility for customization.
+- FilledPrimaryButton
+- PlainPrimaryButton
+
+A convenient IsLoading property is also available to easily manage loading states directly from your view model.
+
+![CleanShot 2025-05-15 at 23 19 57](https://github.com/user-attachments/assets/0c2f05cd-4b1a-408b-a952-37078ae7587b)
+
+```xaml
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:CraftUI.Library.Maui.Controls;assembly=CraftUI.Library.Maui"
+    x:Class="CraftUI.Demo.Presentation.Pages.Controls.Buttons.ButtonPage">
+    
+    <controls:CfButton 
+        Text="Load 5s Data Demo"
+        IsLoading="{Binding DemoOneCommand.Notifier.ShowLoader}"
+        Command="{Binding DemoOneCommand}" />
+        
+</ContentPage>
+```
+
+# Articles
+
+## CraftUI library
 
 - [MAUI (Library Part 1) Create a Custom Entry using SkiaSharp](https://www.stephanarnas.com/posts/maui-create-custom-entry-control-with-border)
 - [MAUI (Library Part 2) Info & Error states with FluentValidation](https://www.stephanarnas.com/posts/maui-info-and-error-states-for-entry)
 - [MAUI (Library Part 3) Loading state with Picker Label](https://www.stephanarnas.com/posts/maui-loading-state-with-custom-picker)
 - [MAUI (Library Part 4) Custom Picker with Collection View and Popup](https://www.stephanarnas.com/posts/maui-custom-picker-with-collection-view-popup)
 - [MAUI (Library Part 5) Extending Control Behavior with Button](https://www.stephanarnas.com/posts/maui-extendind-control-behavior-with-button)
-- [Upgrade MAUI to .NET 9.0](https://www.stephanarnas.com/posts/upgrade-maui-dotnet-9)
 - [MAUI (Library Part 6) Custom Button with Progress Bar](https://www.stephanarnas.com/posts/maui-custom-button-with-progress-bar)
 
-## Open Source Community Controls
+## MAUI
 
-The open-source community offers strong and resilient advanced libraries, let's have a look.
-
-### [AlohaKit](https://github.com/jsuarezruiz/AlohaKit.Controls)
-
-A set of .NET MAUI drawn controls.
-
-### [SimpleToolkit](https://github.com/RadekVyM/SimpleToolkit)
-
-SimpleToolkit is a .NET MAUI library of helpers and simple, easily customizable controls.
-
-### [UraniumUI](https://github.com/enisn/UraniumUI)
-
-Uranium is a Free & Open-Source UI Kit for .NET MAUI. 
-It provides a set of controls and utilities to build modern applications. 
-It is built on top of the .NET MAUI infrastructure and provides a set of controls and layouts to build modern UIs. 
-It also provides infrastructure for building custom controls and themes on it.
-
-### [MauiToolkit Xceed](https://github.com/xceedsoftware/Xceed-Toolkit-for-.NET-MAUI)
-
-We're thrilled to introduce our new Toolkit for MAUI, an open-source and free version that includes additional controls and features to supplement the existing "basic controls".
-
-### [Syncfusion (Free)](https://github.com/syncfusion/essential-ui-kit-for-.net-maui?tab=readme-ov-file)
-
-The Essential UI Kit for .NET MAUI provides a collection of ready-to-use, customizable, and flexible XAML UI pages tailored for .NET MAUI applications. 
-
-# Check out the latest article on my blog
-
-In this article we enhanced the button component in our MAUI Design System by integrating a Progress Bar with a custom CButton control.
-
-![(Library Part 6) Custom Button with Progress Bar](https://www.stephanarnas.com/images/blog-07.jpg)
-
-This implementation introduces an IsLoading property for visual feedback and demonstrates the integration of the TaskLoaderCommand for state management.
-
-We also addressed button state handling and explored how to bind properties like ShowLoader for seamless UI updates, creating a responsive and interactive user experience.
-
-Happy coding!
-
-![Demo](https://www.stephanarnas.com/images/posts/2025-01-06/03.gif)
-
-Full article here : 
-https://www.stephanarnas.com/posts/maui-custom-button-with-progress-bar
-
+- [Upgrade MAUI to .NET 9.0](https://www.stephanarnas.com/posts/upgrade-maui-dotnet-9)
