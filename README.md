@@ -60,13 +60,17 @@ A convenient IsLoading property is also available to easily manage loading state
 </ContentPage>
 ```
 
-## Articles
+# Articles
+
+## CraftUI library
 
 - [MAUI (Library Part 1) Create a Custom Entry using SkiaSharp](https://www.stephanarnas.com/posts/maui-create-custom-entry-control-with-border)
 - [MAUI (Library Part 2) Info & Error states with FluentValidation](https://www.stephanarnas.com/posts/maui-info-and-error-states-for-entry)
 - [MAUI (Library Part 3) Loading state with Picker Label](https://www.stephanarnas.com/posts/maui-loading-state-with-custom-picker)
 - [MAUI (Library Part 4) Custom Picker with Collection View and Popup](https://www.stephanarnas.com/posts/maui-custom-picker-with-collection-view-popup)
 - [MAUI (Library Part 5) Extending Control Behavior with Button](https://www.stephanarnas.com/posts/maui-extendind-control-behavior-with-button)
-- [Upgrade MAUI to .NET 9.0](https://www.stephanarnas.com/posts/upgrade-maui-dotnet-9)
 - [MAUI (Library Part 6) Custom Button with Progress Bar](https://www.stephanarnas.com/posts/maui-custom-button-with-progress-bar)
 
+## MAUI
+
+- [Upgrade MAUI to .NET 9.0](https://www.stephanarnas.com/posts/upgrade-maui-dotnet-9)
