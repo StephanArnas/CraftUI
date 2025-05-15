@@ -20,6 +20,9 @@ With CraftUI, you own the code from day one.
 No hidden surprises, no lock-in, no external constraints. 
 You’re free to evolve it at your own pace and ensure long-term stability and maintainability.
 
+> 📅 I’m currently working on an article, a video, and a script that will guide you through all the steps required to start a new project with CraftUI or integrate it into an existing one. 
+Estimated delivery: 06/2025.
+
 # Controls
 
 CraftUI provides a set of reusable UI controls to accelerate your .NET MAUI development while keeping full control over customization and code ownership.
