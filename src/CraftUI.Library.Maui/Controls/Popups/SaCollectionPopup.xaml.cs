@@ -7,7 +7,7 @@ namespace CraftUI.Library.Maui.Controls.Popups;
 public partial class SaCollectionPopup
 {
     public static readonly BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(SaCollectionPopup), propertyChanged: TitleChanged, defaultBindingMode: BindingMode.OneWayToSource);
-    public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(nameof(ItemsSource), typeof(IList), typeof(SaCollectionPopup));
+    public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(nameof(ItemsSource), typeof(IList), typeof(SaCollectionPopup), propertyChanged: ItemsSourceChanged);
     public static readonly BindableProperty SelectedItemProperty = BindableProperty.Create(nameof(SelectedItem), typeof(object), typeof(SaCollectionPopup), defaultBindingMode: BindingMode.TwoWay);
 
     public SaCollectionPopup()
@@ -52,8 +52,14 @@ public partial class SaCollectionPopup
     }
 
     private static void TitleChanged(BindableObject bindable, object oldValue, object newValue) => ((SaCollectionPopup)bindable).UpdateTitleView();
+    private static void ItemsSourceChanged(BindableObject bindable, object oldValue, object newValue) => ((SaCollectionPopup)bindable).UpdateItemsSourceView();
 
     private void UpdateTitleView() => TitleLabel.Text = Title;
+
+    private void UpdateItemsSourceView()
+    {
+        PickerCollectionView.ItemsSource = ItemsSource;
+    }
 
     private void InitCollectionViewItems()
     {

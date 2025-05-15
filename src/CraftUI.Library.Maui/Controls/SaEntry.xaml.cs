@@ -66,8 +66,6 @@ public partial class SaEntry
     
     protected override void OnPropertyChanged(string? propertyName = null)
     {
-        //base.OnPropertyChanged(propertyName);
-
         if (propertyName == IsEnabledProperty.PropertyName)
         {
             Element.IsEnabled = IsEnabled;

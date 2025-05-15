@@ -75,8 +75,8 @@ public partial class SaPickerPopup
             ItemDisplay = ItemDisplay,
         };
 
-        _collectionPopup.SetBinding(SaCollectionPopup.SelectedItemProperty, "SelectedItem");
-        _collectionPopup.SetBinding(SaCollectionPopup.ItemsSourceProperty, "ItemsSource");
+        _collectionPopup.SetBinding(SaCollectionPopup.SelectedItemProperty, path: nameof(SelectedItem));
+        _collectionPopup.SetBinding(SaCollectionPopup.ItemsSourceProperty, path: nameof(ItemsSource));
 
         Shell.Current.ShowPopup(_collectionPopup);
     }
