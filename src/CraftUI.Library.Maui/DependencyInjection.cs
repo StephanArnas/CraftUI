@@ -11,7 +11,7 @@ public static class DependencyInjection
         
         builder.ConfigureMauiHandlers(handlers =>
         {
-            handlers.AddHandler<ProgressBar, SaProgressBarHandler>();
+            handlers.AddHandler<ProgressBar, CfProgressBarHandler>();
         });
         
         return builder;

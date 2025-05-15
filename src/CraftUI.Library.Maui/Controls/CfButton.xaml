@@ -4,14 +4,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ccb="clr-namespace:CraftUI.Library.Maui.Controls"
     xmlns:progressBars="clr-namespace:CraftUI.Library.Maui.Controls.ProgressBars"
-    x:Class="CraftUI.Library.Maui.Controls.SaButton"
-    x:DataType="ccb:SaButton">
+    x:Class="CraftUI.Library.Maui.Controls.CfButton"
+    x:DataType="ccb:CfButton">
     
     <Button
         x:Name="Button"
         Clicked="Button_OnClicked"/>
     
-    <progressBars:SaProgressBar 
+    <progressBars:CfProgressBar 
         x:Name="AnimatedProgressBar"
         IsVisible="False"
         Margin="6, 0"

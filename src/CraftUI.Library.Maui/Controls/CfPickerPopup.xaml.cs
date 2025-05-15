@@ -6,17 +6,17 @@ using CraftUI.Library.Maui.Controls.Popups;
 
 namespace CraftUI.Library.Maui.Controls;
 
-public partial class SaPickerPopup
+public partial class CfPickerPopup
 {
-    private SaCollectionPopup? _collectionPopup;
+    private CfCollectionPopup? _collectionPopup;
     private readonly TapGestureRecognizer _tapGestureRecognizer;
     
-    public static readonly BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(SaPickerPopup));
-    public static readonly BindableProperty SelectedItemProperty = BindableProperty.Create(nameof(SelectedItem), typeof(object), typeof(SaPickerPopup), propertyChanged: SelectedItemChanged, defaultBindingMode: BindingMode.TwoWay);
-    public static readonly BindableProperty TapCommandProperty = BindableProperty.Create(nameof(TapCommand), typeof(ICommand), typeof(SaPickerPopup), defaultBindingMode: BindingMode.TwoWay);
-    public static readonly BindableProperty ItemDisplayProperty = BindableProperty.Create(nameof(ItemDisplay), typeof(string), typeof(SaPickerPopup), defaultBindingMode: BindingMode.OneWay);
-    public static readonly BindableProperty DefaultValueProperty = BindableProperty.Create(nameof(DefaultValue), typeof(string), typeof(SaPickerPopup), propertyChanged: DefaultValueChanged, defaultBindingMode: BindingMode.OneWay);
-    public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(nameof(ItemsSource), typeof(IList), typeof(SaPickerPopup), defaultBindingMode: BindingMode.OneWay);
+    public static readonly BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(CfPickerPopup));
+    public static readonly BindableProperty SelectedItemProperty = BindableProperty.Create(nameof(SelectedItem), typeof(object), typeof(CfPickerPopup), propertyChanged: SelectedItemChanged, defaultBindingMode: BindingMode.TwoWay);
+    public static readonly BindableProperty TapCommandProperty = BindableProperty.Create(nameof(TapCommand), typeof(ICommand), typeof(CfPickerPopup), defaultBindingMode: BindingMode.TwoWay);
+    public static readonly BindableProperty ItemDisplayProperty = BindableProperty.Create(nameof(ItemDisplay), typeof(string), typeof(CfPickerPopup), defaultBindingMode: BindingMode.OneWay);
+    public static readonly BindableProperty DefaultValueProperty = BindableProperty.Create(nameof(DefaultValue), typeof(string), typeof(CfPickerPopup), propertyChanged: DefaultValueChanged, defaultBindingMode: BindingMode.OneWay);
+    public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(nameof(ItemsSource), typeof(IList), typeof(CfPickerPopup), defaultBindingMode: BindingMode.OneWay);
 
     public IList? ItemsSource
     {
@@ -54,7 +54,7 @@ public partial class SaPickerPopup
         set => SetValue(TitleProperty, value);
     }
 
-    public SaPickerPopup()
+    public CfPickerPopup()
     {
         InitializeComponent();
         
@@ -66,17 +66,17 @@ public partial class SaPickerPopup
     
     private void OnTapped(object? sender, EventArgs e)
     {
-        _collectionPopup = new SaCollectionPopup
+        _collectionPopup = new CfCollectionPopup
         {
             BindingContext = this,
             Title = !string.IsNullOrEmpty(Title) ? Title : Label,
             ItemsSource = ItemsSource,
             SelectedItem = SelectedItem,
-            ItemDisplay = ItemDisplay,
+            ItemDisplay = ItemDisplay
         };
 
-        _collectionPopup.SetBinding(SaCollectionPopup.SelectedItemProperty, path: nameof(SelectedItem));
-        _collectionPopup.SetBinding(SaCollectionPopup.ItemsSourceProperty, path: nameof(ItemsSource));
+        _collectionPopup.SetBinding(CfCollectionPopup.SelectedItemProperty, path: nameof(SelectedItem));
+        _collectionPopup.SetBinding(CfCollectionPopup.ItemsSourceProperty, path: nameof(ItemsSource));
 
         Shell.Current.ShowPopup(_collectionPopup);
     }
@@ -89,8 +89,8 @@ public partial class SaPickerPopup
         ActionIconCommand ??= new Command(() => OnTapped(null, EventArgs.Empty));
     }
 
-    private static void SelectedItemChanged(BindableObject bindable, object oldValue, object newValue) => ((SaPickerPopup)bindable).UpdateSelectedItemView();
-    private static void DefaultValueChanged(BindableObject bindable, object oldValue, object newValue) => ((SaPickerPopup)bindable).UpdateDefaultValueView();
+    private static void SelectedItemChanged(BindableObject bindable, object oldValue, object newValue) => ((CfPickerPopup)bindable).UpdateSelectedItemView();
+    private static void DefaultValueChanged(BindableObject bindable, object oldValue, object newValue) => ((CfPickerPopup)bindable).UpdateDefaultValueView();
 
     private void UpdateSelectedItemView()
     {

@@ -4,12 +4,12 @@ using CraftUI.Library.Maui.Common.Extensions;
 
 namespace CraftUI.Library.Maui.Controls;
 
-public partial class SaPicker
+public partial class CfPicker
 {
-    public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(nameof(ItemsSource), typeof(IList), typeof(SaPicker), propertyChanged: OnItemsSourceChanged);
-    public static readonly BindableProperty SelectedItemProperty = BindableProperty.Create(nameof(SelectedItem), typeof(object), typeof(SaPicker), defaultValue: null, BindingMode.TwoWay, propertyChanged: OnSelectedItemChanged);
-    public static readonly BindableProperty ItemDisplayProperty = BindableProperty.Create(nameof(ItemDisplay), typeof(string), typeof(SaPicker), propertyChanged: OnItemDisplayBindingChanged, defaultBindingMode: BindingMode.OneWay);
-    public static readonly BindableProperty TapCommandProperty = BindableProperty.Create(nameof(TapCommand), typeof(ICommand), typeof(SaPicker));
+    public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(nameof(ItemsSource), typeof(IList), typeof(CfPicker), propertyChanged: OnItemsSourceChanged);
+    public static readonly BindableProperty SelectedItemProperty = BindableProperty.Create(nameof(SelectedItem), typeof(object), typeof(CfPicker), defaultValue: null, BindingMode.TwoWay, propertyChanged: OnSelectedItemChanged);
+    public static readonly BindableProperty ItemDisplayProperty = BindableProperty.Create(nameof(ItemDisplay), typeof(string), typeof(CfPicker), propertyChanged: OnItemDisplayBindingChanged, defaultBindingMode: BindingMode.OneWay);
+    public static readonly BindableProperty TapCommandProperty = BindableProperty.Create(nameof(TapCommand), typeof(ICommand), typeof(CfPicker));
 
     public IList ItemsSource
     {
@@ -35,7 +35,7 @@ public partial class SaPicker
         set => SetValue(TapCommandProperty, value);
     }
     
-    public SaPicker()
+    public CfPicker()
     {
         InitializeComponent();
         
@@ -45,9 +45,9 @@ public partial class SaPicker
         Element.BindingContext = this;
     }
     
-    private static void OnItemsSourceChanged(BindableObject bindable, object oldValue, object newValue) => ((SaPicker)bindable).OnItemsSourceChanged();
-    private static void OnSelectedItemChanged(BindableObject bindable, object oldValue, object newValue) => ((SaPicker)bindable).OnSelectedItemChanged();
-    private static void OnItemDisplayBindingChanged(BindableObject bindable, object oldValue, object newValue) => ((SaPicker)bindable).OnItemDisplayBindingChanged();
+    private static void OnItemsSourceChanged(BindableObject bindable, object oldValue, object newValue) => ((CfPicker)bindable).OnItemsSourceChanged();
+    private static void OnSelectedItemChanged(BindableObject bindable, object oldValue, object newValue) => ((CfPicker)bindable).OnSelectedItemChanged();
+    private static void OnItemDisplayBindingChanged(BindableObject bindable, object oldValue, object newValue) => ((CfPicker)bindable).OnItemDisplayBindingChanged();
 
     private void OnPickerTapped(object? sender, EventArgs e)
     {

@@ -16,7 +16,7 @@
                 Margin="16, 32"
                 Spacing="25">
                 
-                <controls:SaPicker
+                <controls:CfPicker
                     Label="Country"
                     SelectedItem="{Binding Country}"
                     ItemsSource="{Binding CountriesLoader.Result}" 
@@ -24,7 +24,7 @@
                     TapCommand="{Binding CountrySelectedCommand}"
                     ShowLoader="{Binding CountriesLoader.ShowLoader}" />
                 
-                <controls:SaPicker
+                <controls:CfPicker
                     Label="City"
                     SelectedItem="{Binding City}"
                     ItemsSource="{Binding CitiesLoader.Result}"

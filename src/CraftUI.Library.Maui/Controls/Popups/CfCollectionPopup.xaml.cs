@@ -4,13 +4,13 @@ using CraftUI.Library.Maui.MarkupExtensions;
 
 namespace CraftUI.Library.Maui.Controls.Popups;
 
-public partial class SaCollectionPopup
+public partial class CfCollectionPopup
 {
-    public static readonly BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(SaCollectionPopup), propertyChanged: TitleChanged, defaultBindingMode: BindingMode.OneWayToSource);
-    public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(nameof(ItemsSource), typeof(IList), typeof(SaCollectionPopup), propertyChanged: ItemsSourceChanged);
-    public static readonly BindableProperty SelectedItemProperty = BindableProperty.Create(nameof(SelectedItem), typeof(object), typeof(SaCollectionPopup), defaultBindingMode: BindingMode.TwoWay);
+    public static readonly BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(CfCollectionPopup), propertyChanged: TitleChanged, defaultBindingMode: BindingMode.OneWayToSource);
+    public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(nameof(ItemsSource), typeof(IList), typeof(CfCollectionPopup), propertyChanged: ItemsSourceChanged);
+    public static readonly BindableProperty SelectedItemProperty = BindableProperty.Create(nameof(SelectedItem), typeof(object), typeof(CfCollectionPopup), defaultBindingMode: BindingMode.TwoWay);
 
-    public SaCollectionPopup()
+    public CfCollectionPopup()
     {
         InitializeComponent();
         
@@ -39,7 +39,7 @@ public partial class SaCollectionPopup
     }
 
     public static readonly BindableProperty ItemDisplayProperty = BindableProperty.Create("ItemDisplay",
-        typeof(string), typeof(SaCollectionPopup), defaultBindingMode: BindingMode.OneWayToSource);
+        typeof(string), typeof(CfCollectionPopup), defaultBindingMode: BindingMode.OneWayToSource);
 
     public string? ItemDisplay
     {
@@ -51,8 +51,8 @@ public partial class SaCollectionPopup
         }
     }
 
-    private static void TitleChanged(BindableObject bindable, object oldValue, object newValue) => ((SaCollectionPopup)bindable).UpdateTitleView();
-    private static void ItemsSourceChanged(BindableObject bindable, object oldValue, object newValue) => ((SaCollectionPopup)bindable).UpdateItemsSourceView();
+    private static void TitleChanged(BindableObject bindable, object oldValue, object newValue) => ((CfCollectionPopup)bindable).UpdateTitleView();
+    private static void ItemsSourceChanged(BindableObject bindable, object oldValue, object newValue) => ((CfCollectionPopup)bindable).UpdateItemsSourceView();
 
     private void UpdateTitleView() => TitleLabel.Text = Title;
 

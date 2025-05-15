@@ -16,7 +16,7 @@
                 Margin="16, 32"
                 Spacing="25">
                 
-                <controls:SaEntry
+                <controls:CfEntry
                     Label="First name or Last name"
                     Text="{Binding FullName, Mode=TwoWay}"
                     Error="{Binding ValidationResult, 
@@ -27,7 +27,7 @@
                     ActionIconSource="demo_info.png" 
                     ActionIconCommand="{Binding FullnameInfoCommand}"/>
 
-                <controls:SaEntry
+                <controls:CfEntry
                     Label="Email"
                     Text="{Binding Email, Mode=TwoWay}"
                     Error="{Binding ValidationResult, 
@@ -38,7 +38,7 @@
                     Placeholder="E.g: john.doe@gmail.com"
                     ReturnCommand="{Binding SaveCommand}"/>
                 
-                <controls:SaEntry
+                <controls:CfEntry
                     Label="Website"
                     Text="{Binding WebsiteLoader.Result}"
                     ShowLoader="{Binding WebsiteLoader.ShowLoader}"

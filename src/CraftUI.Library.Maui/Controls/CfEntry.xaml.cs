@@ -3,15 +3,15 @@ using CraftUI.Library.Maui.Common.Extensions;
 
 namespace CraftUI.Library.Maui.Controls;
 
-public partial class SaEntry
+public partial class CfEntry
 {
-    public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(SaEntry), propertyChanged: TextChanged, defaultBindingMode: BindingMode.TwoWay);
-    public static readonly BindableProperty PlaceholderProperty = BindableProperty.Create(nameof(Placeholder), typeof(string), typeof(SaEntry), propertyChanged: PlaceholderChanged);
-    public static readonly BindableProperty KeyboardProperty = BindableProperty.Create(nameof(Keyboard), typeof(Keyboard), typeof(SaEntry), defaultValue: Keyboard.Plain, propertyChanged: KeyboardChanged);
-    public static readonly BindableProperty ReturnTypeProperty = BindableProperty.Create(nameof(ReturnType), typeof(ReturnType), typeof(SaEntry), defaultValue: ReturnType.Done, propertyChanged: ReturnTypeChanged);
-    public static readonly BindableProperty ReturnCommandProperty = BindableProperty.Create(nameof(ReturnCommand), typeof(ICommand), typeof(SaEntry), defaultValue: null, propertyChanged: ReturnCommandChanged);
-    public static readonly BindableProperty TextTransformProperty = BindableProperty.Create(nameof(TextTransform), typeof(TextTransform), typeof(SaEntry), defaultValue: TextTransform.Default, propertyChanged: TextTransformChanged);
-    public static readonly BindableProperty IsReadOnlyProperty = BindableProperty.Create(nameof(IsReadOnly), typeof(bool), typeof(SaEntry), false, propertyChanged: IsReadOnlyChanged);
+    public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(CfEntry), propertyChanged: TextChanged, defaultBindingMode: BindingMode.TwoWay);
+    public static readonly BindableProperty PlaceholderProperty = BindableProperty.Create(nameof(Placeholder), typeof(string), typeof(CfEntry), propertyChanged: PlaceholderChanged);
+    public static readonly BindableProperty KeyboardProperty = BindableProperty.Create(nameof(Keyboard), typeof(Keyboard), typeof(CfEntry), defaultValue: Keyboard.Plain, propertyChanged: KeyboardChanged);
+    public static readonly BindableProperty ReturnTypeProperty = BindableProperty.Create(nameof(ReturnType), typeof(ReturnType), typeof(CfEntry), defaultValue: ReturnType.Done, propertyChanged: ReturnTypeChanged);
+    public static readonly BindableProperty ReturnCommandProperty = BindableProperty.Create(nameof(ReturnCommand), typeof(ICommand), typeof(CfEntry), defaultValue: null, propertyChanged: ReturnCommandChanged);
+    public static readonly BindableProperty TextTransformProperty = BindableProperty.Create(nameof(TextTransform), typeof(TextTransform), typeof(CfEntry), defaultValue: TextTransform.Default, propertyChanged: TextTransformChanged);
+    public static readonly BindableProperty IsReadOnlyProperty = BindableProperty.Create(nameof(IsReadOnly), typeof(bool), typeof(CfEntry), false, propertyChanged: IsReadOnlyChanged);
 
     public string Text
     {
@@ -55,7 +55,7 @@ public partial class SaEntry
         set => SetValue(IsReadOnlyProperty, value);
     }
     
-    public SaEntry()
+    public CfEntry()
     {
         InitializeComponent();
         
@@ -72,13 +72,13 @@ public partial class SaEntry
         }
     }
     
-    private static void TextChanged(BindableObject bindable, object oldValue, object newValue) => ((SaEntry)bindable).UpdateTextView();
-    private static void PlaceholderChanged(BindableObject bindable, object oldValue, object newValue) => ((SaEntry)bindable).UpdatePlaceholderView();
-    private static void KeyboardChanged(BindableObject bindable, object oldValue, object newValue) => ((SaEntry)bindable).UpdateKeyboardView();
-    private static void ReturnTypeChanged(BindableObject bindable, object oldValue, object newValue) => ((SaEntry)bindable).UpdateReturnTypeView();
-    private static void ReturnCommandChanged(BindableObject bindable, object oldValue, object newValue) => ((SaEntry)bindable).UpdateReturnCommandView();
-    private static void TextTransformChanged(BindableObject bindable, object oldValue, object newValue) => ((SaEntry)bindable).UpdateTextTransformView();
-    private static void IsReadOnlyChanged(BindableObject bindable, object oldValue, object newValue) => ((SaEntry)bindable).UpdateIsReadOnlyView();
+    private static void TextChanged(BindableObject bindable, object oldValue, object newValue) => ((CfEntry)bindable).UpdateTextView();
+    private static void PlaceholderChanged(BindableObject bindable, object oldValue, object newValue) => ((CfEntry)bindable).UpdatePlaceholderView();
+    private static void KeyboardChanged(BindableObject bindable, object oldValue, object newValue) => ((CfEntry)bindable).UpdateKeyboardView();
+    private static void ReturnTypeChanged(BindableObject bindable, object oldValue, object newValue) => ((CfEntry)bindable).UpdateReturnTypeView();
+    private static void ReturnCommandChanged(BindableObject bindable, object oldValue, object newValue) => ((CfEntry)bindable).UpdateReturnCommandView();
+    private static void TextTransformChanged(BindableObject bindable, object oldValue, object newValue) => ((CfEntry)bindable).UpdateTextTransformView();
+    private static void IsReadOnlyChanged(BindableObject bindable, object oldValue, object newValue) => ((CfEntry)bindable).UpdateIsReadOnlyView();
     
     private void UpdateTextView()
     {

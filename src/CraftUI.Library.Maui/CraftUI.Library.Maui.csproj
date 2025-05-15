@@ -19,19 +19,19 @@
       <MauiXaml Update="Common\LabelBase.xaml">
         <SubType>Designer</SubType>
       </MauiXaml>
-      <MauiXaml Update="Controls\SaEntry.xaml">
+      <MauiXaml Update="Controls\CfEntry.xaml">
         <SubType>Designer</SubType>
       </MauiXaml>
-      <MauiXaml Update="Controls\SaPicker.xaml">
+      <MauiXaml Update="Controls\CfPicker.xaml">
         <SubType>Designer</SubType>
       </MauiXaml>
-      <MauiXaml Update="Controls\SaPickerPopup.xaml">
+      <MauiXaml Update="Controls\CfPickerPopup.xaml">
         <SubType>Designer</SubType>
       </MauiXaml>
-      <MauiXaml Update="Controls\Popups\SaCollectionPopup.xaml">
+      <MauiXaml Update="Controls\Popups\CfCollectionPopup.xaml">
         <SubType>Designer</SubType>
       </MauiXaml>
-      <MauiXaml Update="Controls\SaButton.xaml">
+      <MauiXaml Update="Controls\CfButton.xaml">
         <SubType>Designer</SubType>
       </MauiXaml>
     </ItemGroup>
@@ -41,23 +41,23 @@
         <DependentUpon>LabelBase.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Update="Controls\SaEntry.xaml.cs">
+      <Compile Update="Controls\CfEntry.xaml.cs">
         <DependentUpon>SaEntry.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Update="Controls\SaPicker.xaml.cs">
+      <Compile Update="Controls\CfPicker.xaml.cs">
         <DependentUpon>SaPicker.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Update="Controls\SaPickerPopup.xaml.cs">
+      <Compile Update="Controls\CfPickerPopup.xaml.cs">
         <DependentUpon>SaPickerPopup.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Update="Controls\Popups\SaCollectionPopup.xaml.cs">
+      <Compile Update="Controls\Popups\CfCollectionPopup.xaml.cs">
         <DependentUpon>SaCollectionPopup.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Update="Controls\SaButton.xaml.cs">
+      <Compile Update="Controls\CfButton.xaml.cs">
         <DependentUpon>SaButton.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
