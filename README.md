@@ -42,25 +42,24 @@ CraftUI provides developers with two predefined button styles, ensuring visual c
 
 A convenient IsLoading property is also available to easily manage loading states directly from your view model.
 
-![CleanShot 2025-05-15 at 23 19 57](https://github.com/user-attachments/assets/0c2f05cd-4b1a-408b-a952-37078ae7587b)
+<table>
+    <tr>
+        <td><img src="https://github.com/user-attachments/assets/140d0a37-a6c5-48a8-bc78-f8831665c3c9" width="300"/></td>
+        <td><img src="https://github.com/user-attachments/assets/307caa80-3aa4-49bf-87c0-3a37969ffb0d" width="300"/></td>
+    </tr>
+</table>
 
 ```xaml
-<?xml version="1.0" encoding="utf-8"?>
-<ContentPage 
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:controls="clr-namespace:CraftUI.Library.Maui.Controls;assembly=CraftUI.Library.Maui"
-    x:Class="CraftUI.Demo.Presentation.Pages.Controls.Buttons.ButtonPage">
-    
-    <controls:CfButton 
-        Text="Load 5s Data Demo"
-        IsLoading="{Binding DemoOneCommand.Notifier.ShowLoader}"
-        Command="{Binding DemoOneCommand}" />
-        
-</ContentPage>
+<controls:CfButton 
+    Text="Load 5s Data Demo"
+    IsLoading="{Binding DemoOneCommand.Notifier.ShowLoader}"
+    Command="{Binding DemoOneCommand}" />
 ```
 
 # Articles
+
+I wrote articles to explain how I built this library. 
+If you’re curious about the backstage, have a look here.
 
 ## CraftUI library
 
