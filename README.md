@@ -34,13 +34,16 @@ CraftUI provides a set of reusable UI controls to accelerate your .NET MAUI deve
 - CfProgressBar
 - CfCollectionPopup
 
-## Button
+## CfButton
 
-CraftUI provides developers with two predefined button styles, ensuring visual consistency while keeping full flexibility for customization.
-- FilledPrimaryButton
-- PlainPrimaryButton
+Important properties that don't exist in a native MAUI Button control but are available in the CfButton:
 
-A convenient IsLoading property is also available to easily manage loading states directly from your view model.
+- **IsLoading** Shows a progress bar at the bottom
+
+Both Button and CfButton have two main styles available:
+
+- **PlainPrimary(Cf)Button** - Text-only button with primary color text and transparent background
+- **FilledPrimary(Cf)Button** - Solid button with primary color background and contrasting text
 
 <table>
     <tr>
@@ -54,6 +57,38 @@ A convenient IsLoading property is also available to easily manage loading state
     Text="Load 5s Data Demo"
     IsLoading="{Binding DemoOneCommand.Notifier.ShowLoader}"
     Command="{Binding DemoOneCommand}" />
+```
+
+## CfEntry
+
+Important properties that don't exist in a native MAUI Entry control but are available in the CfEntry:
+
+- **Label** Provides a text label above the input field
+- **Error** Displays validation error messages
+- **IsRequired** Indicates if the field requires input
+- **Info** Shows additional information text below the input
+- **ActionIconSource** Adds an icon button inside the entry
+- **ActionIconCommand** Command executed when the action icon is tapped
+- **IsLoading** Shows a loading indicator
+
+<table>
+    <tr>
+        <td><img src="https://github.com/user-attachments/assets/fa48ccce-8522-4e86-b14f-72f199c5a513" width="300"/></td>
+        <td><img src="https://github.com/user-attachments/assets/5162177c-5aad-45db-bbd4-d6d0e089982b" width="300"/></td>
+    </tr>
+</table>
+
+```xaml
+<controls:CfEntry
+    Label="First name or Last name"
+    Text="{Binding FullName, Mode=TwoWay}"
+    Error="{Binding ValidationResult, 
+        Converter={StaticResource ShowErrorConverter}, 
+        ConverterParameter={x:Static page:EntryPageViewModelValidator.FullNameProperty}}"
+    IsRequired="True"
+    Placeholder="John Doe"
+    ActionIconSource="demo_info.png" 
+    ActionIconCommand="{Binding FullnameInfoCommand}"/>
 ```
 
 # Articles
