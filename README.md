@@ -31,8 +31,8 @@ CraftUI provides a set of reusable UI controls to accelerate your .NET MAUI deve
 - [CfEntry](#cfentry)
 - [CfPicker](#cfpicker)
 - [CfPickerPopup](#cfpickerpopup)
-- CfProgressBar
-- CfCollectionPopup
+- [CfProgressBar](#cfprogressBar)
+- [CfCollectionPopup](#cfcollectionpopup)
 
 ## CfButton
 
@@ -138,6 +138,49 @@ For common properties and detailed behavior, refer to [CfPicker](#cfpicker).
     TapCommand="{Binding CountrySelectedCommand}"
     IsLoading="{Binding CountriesLoader.ShowLoader}"/>
 ```
+
+## CfProgressBar
+
+Important properties available in the CfProgressBar:
+
+- **Progress** Float value between 0.0 and 1.0 that represents the progress level
+- **ProgressColor** Defines the color of the progress indicator
+- **BaseColor** Sets the background color of the progress bar
+- **UseGradient** Boolean flag to enable a gradient effect on the progress indicator
+- **GradientColor** Defines the start color for the gradient (when UseGradient is true)
+- **RoundCaps** Boolean flag to enable rounded ends on the progress bar
+- **UseRange** Boolean flag to display a specific range rather than progress from left to right
+- **LowerRangeValue** When UseRange is true, defines the start position of the highlighted range (0-1)
+- **UpperRangeValue** When UseRange is true, defines the end position of the highlighted range (0-1)
+
+<table>
+    <tr>
+        <td><img src="https://github.com/user-attachments/assets/d37dfe66-b00c-4c8e-ad10-4257569212f8" width="300"/></td>
+        <td><img src="https://github.com/user-attachments/assets/d2df7fc9-83c4-47eb-8db6-dc5978a3eb08" width="300"/></td>
+    </tr>
+</table>
+
+```xaml
+<controls:CfProgressBar
+    Progress="{Binding CurrentProgress}"
+    UseGradient="True"
+    GradientColor="{StaticResource Primary200}"
+    ProgressColor="{StaticResource Primary600}"
+    RoundCaps="True"
+    HeightRequest="20"
+    Style="{StaticResource ProgressBarStyle}" />
+```
+
+## CfCollectionPopup
+
+CfCollectionPopup is a custom Popup control that displays a list of selectable items in a bottom-sheet style interface.
+
+- **Title** Sets the header text displayed at the top of the popup
+- **ItemsSource** The collection of items to display in the popup list
+- **SelectedItem** The currently selected item (two-way bindable)
+- **ItemDisplay** Defines which property of the items should be displayed as text
+
+> This component forms the foundation for the CfPickerPopup control and is used throughout the application to provide consistent selection experiences. Additional implementation examples can be found in the Use Cases section of the Demo app.
 
 # Articles
 
