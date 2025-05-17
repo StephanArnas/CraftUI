@@ -6,7 +6,7 @@ using FluentValidation.Results;
 using Microsoft.Extensions.Logging;
 using Sharpnado.TaskLoaderView;
 
-namespace CraftUI.Demo.Presentation.Pages.Controls.Entry;
+namespace CraftUI.Demo.Presentation.Pages.Controls.Entries;
 
 public partial class EntryPageViewModel : ViewModelBase
 {

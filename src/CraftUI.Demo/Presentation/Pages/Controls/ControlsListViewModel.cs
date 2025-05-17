@@ -68,7 +68,8 @@ public partial class ControlsListViewModel : ViewModelBase
             new LinkMenuItem("Button", "demo_hand_click.png", RouteConstants.ButtonPage),
             new LinkMenuItem("Entry", "demo_input.png", RouteConstants.EntryPage),
             new LinkMenuItem("Native Picker", "demo_picker.png", RouteConstants.PickerPage),
-            new LinkMenuItem("Popup Picker", "demo_picker.png", RouteConstants.PickerPopupPage)
+            new LinkMenuItem("Popup Picker", "demo_picker.png", RouteConstants.PickerPopupPage),
+            new LinkMenuItem("Progress Bar", "demo_progress_bar.png", RouteConstants.ProgressBarPage)
         ];
     }
 }

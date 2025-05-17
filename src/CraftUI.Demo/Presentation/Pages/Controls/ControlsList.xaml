@@ -17,8 +17,7 @@
         SelectionMode="Single">
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="model:LinkMenuItem">
-                <StackLayout Orientation="Horizontal" Padding="10">
-                    
+                <HorizontalStackLayout Padding="10" Style="{StaticResource CollectionViewItemHorizontalStackLayout}">
                     <Image 
                         Source="{Binding Image}" 
                         WidthRequest="40" HeightRequest="40" 
@@ -28,7 +27,7 @@
                         Text="{Binding Title}" 
                         VerticalOptions="Center"/>
                     
-                </StackLayout>
+                </HorizontalStackLayout>
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>

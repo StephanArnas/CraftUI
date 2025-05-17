@@ -7,10 +7,12 @@ using Microsoft.Maui.Handlers;
 using CraftUI.Demo.Presentation.Common;
 using CraftUI.Demo.Presentation.Pages.Controls;
 using CraftUI.Demo.Presentation.Pages.Controls.Buttons;
-using CraftUI.Demo.Presentation.Pages.Controls.Entry;
+using CraftUI.Demo.Presentation.Pages.Controls.Entries;
 using CraftUI.Demo.Presentation.Pages.Controls.Pickers;
+using CraftUI.Demo.Presentation.Pages.Controls.ProgressBars;
 using CraftUI.Demo.Presentation.Pages.Settings;
 using CraftUI.Demo.Presentation.Pages.UseCases;
+using EntryPageViewModel = CraftUI.Demo.Presentation.Pages.Controls.Entries.EntryPageViewModel;
 
 namespace CraftUI.Demo;
 
@@ -44,6 +46,7 @@ public static class MauiProgram
         builder.Services.AddTransientWithShellRoute<EntryPage, EntryPageViewModel>(RouteConstants.EntryPage);
         builder.Services.AddTransientWithShellRoute<PickerPage, PickerPageViewModel>(RouteConstants.PickerPage);
         builder.Services.AddTransientWithShellRoute<PickerPopupPage, PickerPageViewModel>(RouteConstants.PickerPopupPage);
+        builder.Services.AddTransientWithShellRoute<ProgressBarPage, ProgressBarPageViewModel>(RouteConstants.ProgressBarPage);
         
         builder.Services.AddTransient<ControlsList, ControlsListViewModel>();
         builder.Services.AddTransient<SettingsPage, SettingsPageViewModel>();

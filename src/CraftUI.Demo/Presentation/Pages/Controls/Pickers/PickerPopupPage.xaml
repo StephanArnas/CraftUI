@@ -18,6 +18,7 @@
                 
                 <controls:CfPickerPopup
                     Label="Country"
+                    
                     SelectedItem="{Binding Country}"
                     ItemsSource="{Binding CountriesLoader.Result}" 
                     ItemDisplay="{x:Static page:PickerPageViewModel.CountryDisplayProperty}"

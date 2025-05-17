@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace CraftUI.Demo.Presentation.Pages.Controls.Entry;
+namespace CraftUI.Demo.Presentation.Pages.Controls.Entries;
 
 public class EntryPageViewModelValidator : AbstractValidator<EntryPageViewModel>
 {

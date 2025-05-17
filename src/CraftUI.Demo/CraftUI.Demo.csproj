@@ -20,7 +20,7 @@
         <Nullable>enable</Nullable>
 
         <!-- Display name -->
-        <ApplicationTitle>Blog_MAUI_Components</ApplicationTitle>
+        <ApplicationTitle>CraftUI Demo</ApplicationTitle>
 
         <!-- App Identifier -->
         <ApplicationId>com.stephanarnas.blog_maui_components</ApplicationId>
@@ -124,7 +124,7 @@
 
     <ItemGroup>
       <AdditionalFiles Include="Presentation\Pages\Controls\Buttons\ButtonPage.xaml" />
-      <AdditionalFiles Include="Presentation\Pages\Controls\Entry\EntryPage.xaml" />
+      <AdditionalFiles Include="Presentation\Pages\Controls\Entries\EntryPage.xaml" />
       <AdditionalFiles Include="Presentation\Pages\Controls\Pickers\PickerPage.xaml" />
       <AdditionalFiles Include="Presentation\Pages\Controls\Pickers\PickerPopupPage.xaml" />
     </ItemGroup>
