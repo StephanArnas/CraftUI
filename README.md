@@ -25,6 +25,11 @@ Estimated delivery: 06/2025.
 
 # Controls
 
+| MAUI Supported platforms   |
+|----------------------------|
+| :heavy_check_mark: Android |
+| :heavy_check_mark: iOS     |
+
 CraftUI provides a set of reusable UI controls to accelerate your .NET MAUI development while keeping full control over customization and code ownership.
 
 - [CfButton](#cfbutton)
