@@ -27,10 +27,10 @@ Estimated delivery: 06/2025.
 
 CraftUI provides a set of reusable UI controls to accelerate your .NET MAUI development while keeping full control over customization and code ownership.
 
-- CfButton
-- CfEntry
-- CfPicker
-- CfPickerPopup
+- [CfButton](#cfbutton)
+- [CfEntry](#cfentry)
+- [CfPicker](#cfpicker)
+- [CfPickerPopup](#cfpickerpopup)
 - CfProgressBar
 - CfCollectionPopup
 
@@ -69,7 +69,7 @@ Important properties that don't exist in a native MAUI Entry control but are ava
 - **Info** Shows additional information text below the input
 - **ActionIconSource** Adds an icon button inside the entry
 - **ActionIconCommand** Command executed when the action icon is tapped
-- **IsLoading** Shows a loading indicator
+- **IsLoading** Shows a loading indicator when data is being fetched
 
 <table>
     <tr>
@@ -86,9 +86,57 @@ Important properties that don't exist in a native MAUI Entry control but are ava
         Converter={StaticResource ShowErrorConverter}, 
         ConverterParameter={x:Static page:EntryPageViewModelValidator.FullNameProperty}}"
     IsRequired="True"
-    Placeholder="John Doe"
     ActionIconSource="demo_info.png" 
     ActionIconCommand="{Binding FullnameInfoCommand}"/>
+```
+
+## CfPicker
+
+Important properties available in the CfPicker:
+
+- **Label** Provides a text label above the picker field
+- **SelectedItem** Two-way binding to the selected item from ItemsSource
+- **ItemsSource** The collection of items to display in the picker
+- **ItemDisplay** Defines which property of the ItemsSource objects should be displayed
+- **TapCommand** Command executed when the picker is tapped or an item is selected
+- **IsLoading** Shows a loading indicator when data is being fetched
+
+<table>
+    <tr>
+        <td><img src="https://github.com/user-attachments/assets/12c6f83c-9cf8-4891-9f56-81abc4a89cf1" width="300"/></td>
+        <td><img src="https://github.com/user-attachments/assets/572369df-ad78-41d4-999a-2ea657d0e7a9" width="300"/></td>
+    </tr>
+</table>
+
+```xaml
+<controls:CfPicker
+    Label="Country"
+    SelectedItem="{Binding Country}"
+    ItemsSource="{Binding CountriesLoader.Result}" 
+    ItemDisplay="{x:Static page:PickerPageViewModel.CountryDisplayProperty}"
+    TapCommand="{Binding CountrySelectedCommand}"
+    IsLoading="{Binding CountriesLoader.ShowLoader}" />
+```
+
+## CfPickerPopup
+
+For common properties and detailed behavior, refer to [CfPicker](#cfpicker).
+
+<table>
+    <tr>
+        <td><img src="https://github.com/user-attachments/assets/c2405fd4-abb7-4475-a0b0-e9b93a0efd94" width="300"/></td>
+        <td><img src="https://github.com/user-attachments/assets/78c6451e-8ec1-4706-81fd-277599ba1055" width="300"/></td>
+    </tr>
+</table>
+
+```xaml
+<controls:CfPickerPopup
+    Label="Country"
+    SelectedItem="{Binding Country}"
+    ItemsSource="{Binding CountriesLoader.Result}" 
+    ItemDisplay="{x:Static page:PickerPageViewModel.CountryDisplayProperty}"
+    TapCommand="{Binding CountrySelectedCommand}"
+    IsLoading="{Binding CountriesLoader.ShowLoader}"/>
 ```
 
 # Articles
