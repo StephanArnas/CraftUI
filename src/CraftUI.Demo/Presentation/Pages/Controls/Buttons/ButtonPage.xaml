@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base:ContentPageBase 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:CraftUI.Demo.Presentation.Common"
+    xmlns:page="clr-namespace:CraftUI.Demo.Presentation.Pages.Controls.Buttons"
+    xmlns:controls="clr-namespace:CraftUI.Library.Maui.Controls;assembly=CraftUI.Library.Maui"
+    x:Class="CraftUI.Demo.Presentation.Pages.Controls.Buttons.ButtonPage"
+    x:DataType="page:ButtonPageViewModel"
+    Title="Button Demo">
+    
+    <Grid RowDefinitions="*,Auto" > 
+        <ScrollView>
+            <VerticalStackLayout
+                Margin="16, 32"
+                Spacing="25">
+                
+                <controls:CfButton 
+                    Text="Load 5s Data Demo"
+                    
+                    IsLoading="{Binding DemoOneCommand.Notifier.ShowLoader}"
+                    Command="{Binding DemoOneCommand}" />
+                
+                <controls:CfButton 
+                    Text="Normal button" />
+                
+                <controls:CfButton 
+                    Text="Disabled button"
+                    IsEnabled="False" />
+                
+                <controls:CfButton 
+                    Style="{StaticResource PlainPrimaryCfButton}"
+                    Text="Plain button" />
+                
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</base:ContentPageBase>

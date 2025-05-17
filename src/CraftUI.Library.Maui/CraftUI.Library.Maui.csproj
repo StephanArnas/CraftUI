@@ -1,0 +1,66 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="CommunityToolkit.Maui" Version="11.2.0" />
+      <PackageReference Include="FluentValidation" Version="12.0.0" />
+      <PackageReference Include="Microsoft.Maui.Controls" Version="9.0.70" />
+      <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.70" />
+      <PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="3.119.0" />
+      <PackageReference Include="SkiaSharp.Views.Maui.Core" Version="3.119.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <MauiXaml Update="Common\LabelBase.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
+      <MauiXaml Update="Controls\CfEntry.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
+      <MauiXaml Update="Controls\CfPicker.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
+      <MauiXaml Update="Controls\CfPickerPopup.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
+      <MauiXaml Update="Controls\Popups\CfCollectionPopup.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
+      <MauiXaml Update="Controls\CfButton.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Common\LabelBase.xaml.cs">
+        <DependentUpon>LabelBase.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Controls\CfEntry.xaml.cs">
+        <DependentUpon>SaEntry.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Controls\CfPicker.xaml.cs">
+        <DependentUpon>SaPicker.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Controls\CfPickerPopup.xaml.cs">
+        <DependentUpon>SaPickerPopup.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Controls\Popups\CfCollectionPopup.xaml.cs">
+        <DependentUpon>SaCollectionPopup.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Controls\CfButton.xaml.cs">
+        <DependentUpon>SaButton.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
+
+</Project>

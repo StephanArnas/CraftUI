@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="CraftUI.Demo.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:const="clr-namespace:CraftUI.Demo.Presentation.Common"
+    xmlns:useCases="clr-namespace:CraftUI.Demo.Presentation.Pages.UseCases"
+    xmlns:settings="clr-namespace:CraftUI.Demo.Presentation.Pages.Settings"
+    xmlns:controls="clr-namespace:CraftUI.Demo.Presentation.Pages.Controls"
+    FlyoutBehavior="Disabled">
+
+    <TabBar>
+        <Tab
+            Icon="demo_code.png"
+            Route="{x:Static const:RouteConstants.ControlsListPage}"
+            Title="Controls">
+            <ShellContent ContentTemplate="{DataTemplate controls:ControlsList}" />
+        </Tab>
+        <Tab
+            Icon="demo_use_cases.png"
+            Route="{x:Static const:RouteConstants.UseCasesListPage}"
+            Title="Use Cases">
+            <ShellContent ContentTemplate="{DataTemplate useCases:UseCasesList}" />
+        </Tab>
+        <Tab
+            Icon="demo_cog.png"
+            Route="{x:Static const:RouteConstants.SettingsPage}"
+            Title="Settings">
+            <ShellContent ContentTemplate="{DataTemplate settings:SettingsPage}" />
+        </Tab>
+    </TabBar>
+
+</Shell>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base:ContentPageBase
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:CraftUI.Demo.Presentation.Common"
+    xmlns:page="clr-namespace:CraftUI.Demo.Presentation.Pages.Controls" 
+    xmlns:model="clr-namespace:CraftUI.Demo.Application.Common;assembly=CraftUI.Demo.Application" 
+    x:Class="CraftUI.Demo.Presentation.Pages.Controls.ControlsList"
+    x:DataType="page:ControlsListViewModel"
+    Title="Controls">
+    
+    <CollectionView 
+        x:Name="ItemsCollectionView"
+        ItemsSource="{Binding Items}"
+        SelectionChangedCommand="{Binding NavigateToPageCommand}"
+        SelectionChangedCommandParameter="{Binding Source={x:Reference ItemsCollectionView}, Path=SelectedItem}"
+        SelectionMode="Single">
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="model:LinkMenuItem">
+                <HorizontalStackLayout Padding="10" Style="{StaticResource CollectionViewItemHorizontalStackLayout}">
+                    <Image 
+                        Source="{Binding Image}" 
+                        WidthRequest="40" HeightRequest="40" 
+                        Margin="0,0,10,0"/>
+                    
+                    <Label 
+                        Text="{Binding Title}" 
+                        VerticalOptions="Center"/>
+                    
+                </HorizontalStackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+    
+</base:ContentPageBase>

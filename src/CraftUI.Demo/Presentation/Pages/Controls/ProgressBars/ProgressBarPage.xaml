@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base:ContentPageBase 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:CraftUI.Demo.Presentation.Common"
+    xmlns:page="clr-namespace:CraftUI.Demo.Presentation.Pages.Controls.ProgressBars" 
+    x:Class="CraftUI.Demo.Presentation.Pages.Controls.ProgressBars.ProgressBarPage"
+    xmlns:controls="clr-namespace:CraftUI.Library.Maui.Controls.ProgressBars;assembly=CraftUI.Library.Maui"
+    x:DataType="page:ProgressBarPageViewModel"
+    Title="Progress Bars">
+    
+    <base:ContentPageBase.Resources>
+        <Style x:Key="ProgressBarLabelStyle" TargetType="Label">
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="{StaticResource Gray900}" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Margin" Value="0,0,0,8" />
+        </Style>
+        <Style x:Key="ProgressBarStyle" TargetType="controls:CfProgressBar">
+            <Setter Property="Margin" Value="0,0,0,44" />
+        </Style>
+    </base:ContentPageBase.Resources>
+    
+    <Grid RowDefinitions="*,Auto" >
+        <ScrollView>
+            <VerticalStackLayout
+                Margin="16, 32">
+
+                <Label 
+                    Text="Basic"
+                    Style="{StaticResource ProgressBarLabelStyle}" />
+                <controls:CfProgressBar
+                    Progress="{Binding BasicProgress}"
+                    HeightRequest="16"
+                    Style="{StaticResource ProgressBarStyle}" />
+
+                <Label 
+                    Text="Pulsating"
+                    Style="{StaticResource ProgressBarLabelStyle}" />
+                <controls:CfProgressBar
+                    Progress="{Binding PulsatingProgress}"
+                    ProgressColor="Orange"
+                    BaseColor="{StaticResource Gray200}"
+                    HeightRequest="12" 
+                    Style="{StaticResource ProgressBarStyle}"/>
+
+                <Label 
+                    Text="Wavy Gradient"
+                    Style="{StaticResource ProgressBarLabelStyle}" />
+                <controls:CfProgressBar
+                    Progress="{Binding WavyProgress}"
+                    UseGradient="True"
+                    GradientColor="{StaticResource Primary}"
+                    ProgressColor="#FF9900"
+                    RoundCaps="True"
+                    HeightRequest="24" 
+                    Style="{StaticResource ProgressBarStyle}"/>
+
+                <Label 
+                    Text="Range Steps"
+                    Style="{StaticResource ProgressBarLabelStyle}" />
+                <controls:CfProgressBar
+                    UseRange="True"
+                    LowerRangeValue="0.3"
+                    UpperRangeValue="0.7"
+                    ProgressColor="{StaticResource Success}"
+                    BaseColor="{StaticResource Gray100}"
+                    RoundCaps="True"
+                    Progress="{Binding StepProgress}"
+                    HeightRequest="8" 
+                    Style="{StaticResource ProgressBarStyle}"/>
+
+                <Label 
+                    Text="Linear Gradient"
+                    Style="{StaticResource ProgressBarLabelStyle}" />
+                <controls:CfProgressBar
+                    Progress="{Binding CurrentProgress}"
+                    UseGradient="True"
+                    GradientColor="{StaticResource Primary200}"
+                    ProgressColor="{StaticResource Primary600}"
+                    RoundCaps="True"
+                    HeightRequest="20"
+                    Style="{StaticResource ProgressBarStyle}" />
+    
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+    
+</base:ContentPageBase>

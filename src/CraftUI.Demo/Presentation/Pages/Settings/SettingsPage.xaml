@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<base:ContentPageBase
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:CraftUI.Demo.Presentation.Common"
+    x:Class="CraftUI.Demo.Presentation.Pages.Settings.SettingsPage"
+    Title="Settings">
+
+    <Grid
+        RowDefinitions="*,*,3*">
+        <Image
+            Grid.Row="1"
+            Source="demo_work_in_progress.png"
+            WidthRequest="120"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"/>
+    </Grid>
+    
+</base:ContentPageBase>

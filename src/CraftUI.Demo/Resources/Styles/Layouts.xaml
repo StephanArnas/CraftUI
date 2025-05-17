@@ -1,0 +1,32 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:markup="clr-namespace:CraftUI.Library.Maui.MarkupExtensions;assembly=CraftUI.Library.Maui">
+    
+    <Style x:Key="RootGrid" TargetType="Grid">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource PageBackground}, Dark={StaticResource PageBackgroundDark}}" />
+    </Style>
+
+    <Style x:Key="BottomElementVerticalStackLayout" TargetType="VerticalStackLayout">
+        <Setter Property="VerticalOptions" Value="End" />
+        <Setter Property="Spacing" Value="20" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Surface}, Dark={StaticResource SurfaceDark}}" />
+        <Setter Property="Padding" Value="{markup:Gutter All=1}" />
+    </Style>
+    
+    <Style x:Key="CollectionViewItemHorizontalStackLayout" TargetType="HorizontalStackLayout">
+        <Setter Property="Padding" Value="10" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Normal" />
+                    <VisualState Name="Selected">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{StaticResource Primary100}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+    
+</ResourceDictionary>
