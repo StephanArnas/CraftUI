@@ -36,7 +36,7 @@ CraftUI provides a set of reusable UI controls to accelerate your .NET MAUI deve
 
 ## CfButton
 
-Important properties that don't exist in a native MAUI Button control but are available in the CfButton:
+Key properties available in the CfButton:
 
 - **IsLoading** Shows a progress bar at the bottom
 
@@ -61,7 +61,7 @@ Both Button and CfButton have two main styles available:
 
 ## CfEntry
 
-Important properties that don't exist in a native MAUI Entry control but are available in the CfEntry:
+Key properties available in the CfEntry:
 
 - **Label** Provides a text label above the input field
 - **Error** Displays validation error messages
@@ -92,7 +92,7 @@ Important properties that don't exist in a native MAUI Entry control but are ava
 
 ## CfPicker
 
-Important properties available in the CfPicker:
+Key properties available in the CfPicker:
 
 - **Label** Provides a text label above the picker field
 - **SelectedItem** Two-way binding to the selected item from ItemsSource
@@ -120,7 +120,7 @@ Important properties available in the CfPicker:
 
 ## CfPickerPopup
 
-For common properties and detailed behavior, refer to [CfPicker](#cfpicker).
+For key properties, refer to [CfPicker](#cfpicker).
 
 <table>
     <tr>
@@ -141,7 +141,7 @@ For common properties and detailed behavior, refer to [CfPicker](#cfpicker).
 
 ## CfProgressBar
 
-Important properties available in the CfProgressBar:
+Key properties available in the CfProgressBar:
 
 - **Progress** Float value between 0.0 and 1.0 that represents the progress level
 - **ProgressColor** Defines the color of the progress indicator
