@@ -19,6 +19,9 @@ public partial class PickerPageViewModel : ViewModelBase
     private CountryVm? _country;
     
     [ObservableProperty]
+    private List<CountryVm>? _countries;
+    
+    [ObservableProperty]
     private CityVm? _city;
     
     public static string CountryDisplayProperty => nameof(CountryVm.Name);

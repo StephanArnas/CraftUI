@@ -21,4 +21,15 @@ public static class ObjectExtension
 
         return (T)propertyInfo.GetValue(item)!;
     }
+    
+    public static string? GetDisplayString(this object? item, string? propertyName)
+    {
+        if (item == null || string.IsNullOrEmpty(propertyName))
+        {
+            return item?.ToString();
+        }
+
+        var prop = item.GetType().GetProperty(propertyName);
+        return prop?.GetValue(item)?.ToString();
+    }
 }

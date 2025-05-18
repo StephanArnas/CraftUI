@@ -7,6 +7,7 @@ public static class RouteConstants
     public const string EntryPage = "EntryPage";
     public const string PickerPage = "PikerPage";
     public const string PickerPopupPage = "PickerPopupPage";
+    public const string MultiPickerPopupPage = "MultiPickerPopupPage";
     public const string ProgressBarPage = "ProgressBarPage";
     
     public const string UseCasesListPage = "UseCasesListPage";
