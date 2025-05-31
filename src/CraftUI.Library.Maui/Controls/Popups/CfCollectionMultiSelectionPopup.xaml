@@ -39,7 +39,7 @@
         BindingContext="{x:Reference This}"
         RowDefinitions="Auto,Auto"
         Style="{StaticResource BottomPopupRootGrid}"
-        x:DataType="controls:CfCollectionSingleSelectionPopup">
+        x:DataType="controls:CfCollectionMultiSelectionPopup">
         
         <VerticalStackLayout>
             <VerticalStackLayout Padding="16">
