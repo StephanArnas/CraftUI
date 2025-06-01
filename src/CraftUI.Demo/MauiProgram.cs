@@ -7,12 +7,12 @@ using Microsoft.Maui.Handlers;
 using CraftUI.Demo.Presentation.Common;
 using CraftUI.Demo.Presentation.Pages.Controls;
 using CraftUI.Demo.Presentation.Pages.Controls.Buttons;
+using CraftUI.Demo.Presentation.Pages.Controls.DatePickers;
 using CraftUI.Demo.Presentation.Pages.Controls.Entries;
 using CraftUI.Demo.Presentation.Pages.Controls.Pickers;
 using CraftUI.Demo.Presentation.Pages.Controls.ProgressBars;
 using CraftUI.Demo.Presentation.Pages.Settings;
 using CraftUI.Demo.Presentation.Pages.UseCases;
-using EntryPageViewModel = CraftUI.Demo.Presentation.Pages.Controls.Entries.EntryPageViewModel;
 
 namespace CraftUI.Demo;
 
@@ -44,8 +44,10 @@ public static class MauiProgram
         builder.Services.AddTransient<UseCasesList, UseCasesListViewModel>();
         builder.Services.AddTransientWithShellRoute<ButtonPage, ButtonPageViewModel>(RouteConstants.ButtonPage);
         builder.Services.AddTransientWithShellRoute<EntryPage, EntryPageViewModel>(RouteConstants.EntryPage);
+        builder.Services.AddTransientWithShellRoute<DatePickerPage, DatePickerPageViewModel>(RouteConstants.DatePickerPage);
         builder.Services.AddTransientWithShellRoute<PickerPage, PickerPageViewModel>(RouteConstants.PickerPage);
         builder.Services.AddTransientWithShellRoute<PickerPopupPage, PickerPageViewModel>(RouteConstants.PickerPopupPage);
+        builder.Services.AddTransientWithShellRoute<MultiPickerPopupPage, PickerPageViewModel>(RouteConstants.MultiPickerPopupPage);
         builder.Services.AddTransientWithShellRoute<ProgressBarPage, ProgressBarPageViewModel>(RouteConstants.ProgressBarPage);
         
         builder.Services.AddTransient<ControlsList, ControlsListViewModel>();
@@ -97,6 +99,19 @@ public static class MauiProgram
         }
 #elif WINDOWS
 
+#endif
+        });
+        
+        DatePickerHandler.Mapper.AppendToMapping("Borderless", (handler, view) =>
+        {
+#if ANDROID
+            handler.PlatformView.Background = null;
+            handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.Transparent);
+            handler.PlatformView.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Colors.Transparent.ToAndroid());
+#elif IOS || MACCATALYST
+            handler.PlatformView.BackgroundColor = UIKit.UIColor.Clear;
+            handler.PlatformView.Layer.BorderWidth = 0;
+            handler.PlatformView.BorderStyle = UIKit.UITextBorderStyle.None;
 #endif
         });
     }

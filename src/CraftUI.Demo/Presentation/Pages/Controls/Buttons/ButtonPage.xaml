@@ -17,7 +17,6 @@
                 
                 <controls:CfButton 
                     Text="Load 5s Data Demo"
-                    
                     IsLoading="{Binding DemoOneCommand.Notifier.ShowLoader}"
                     Command="{Binding DemoOneCommand}" />
                 

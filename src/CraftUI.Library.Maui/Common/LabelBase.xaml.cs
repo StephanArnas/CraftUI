@@ -104,7 +104,7 @@ public partial class LabelBase
     {
         ErrorLabel.Text = Error;
         ErrorLabel.IsVisible = !string.IsNullOrEmpty(Error);
-        InvalidateSurface();
+        InvalidateSurfaceForCanvasView();
     }
 
     private void UpdateIsLoadingView()
@@ -135,16 +135,24 @@ public partial class LabelBase
     protected override void OnBindingContextChanged()
     {
         base.OnBindingContextChanged();
-        InvalidateSurface();
+        InvalidateSurfaceForCanvasView();
     }
 
-    protected void InvalidateSurface()
+    protected void PlatformSizeChangedCanvasView()
     {
-        BorderCanvasView.InvalidateSurface(); // Repaint when binding context changes
+        BorderCanvasView.InvalidateMeasure();
+        BorderCanvasView.PlatformSizeChanged();
+    }
+
+    protected void InvalidateSurfaceForCanvasView()
+    {
+        BorderCanvasView.InvalidateSurface();
     }
     
     private void OnCanvasViewPaintSurface(object sender, SKPaintSurfaceEventArgs e)
     {
+        // System.Diagnostics.Debug.WriteLine($"SKCanvasView: {BorderCanvasView.Width}x{BorderCanvasView.Height}, SKInfo: {e.Info.Width}x{e.Info.Height}");
+
         var canvas = e.Surface.Canvas;
         canvas.Clear(); // Clear the canvas
 

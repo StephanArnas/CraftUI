@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<common:LabelBase 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:common="clr-namespace:CraftUI.Library.Maui.Common"
+    xmlns:controls="clr-namespace:CraftUI.Library.Maui.Controls"
+    x:Class="CraftUI.Library.Maui.Controls.CfDatePicker">
+    
+    <controls:CfDatePicker.Resources>
+        <Style TargetType="Image" x:Key="ClosePopupImage">
+            <Setter Property="WidthRequest" Value="26" />
+            <Setter Property="HeightRequest" Value="26" />
+            <Setter Property="HorizontalOptions" Value="End" />
+        </Style>
+    </controls:CfDatePicker.Resources>
+    
+    <common:LabelBase.View>
+        <Grid ColumnDefinitions="*,Auto">
+            
+            <controls:CfDatePickerInternal 
+                x:Name="Element"  />
+            
+            <Image
+                Grid.Column="1"
+                Style="{StaticResource ClosePopupImage}"
+                x:Name="CloseImage"
+                Source="close.png" />
+            
+        </Grid>
+    </common:LabelBase.View>
+</common:LabelBase>

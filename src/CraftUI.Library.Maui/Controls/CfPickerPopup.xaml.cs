@@ -8,7 +8,7 @@ namespace CraftUI.Library.Maui.Controls;
 
 public partial class CfPickerPopup
 {
-    private CfCollectionPopup? _collectionPopup;
+    private CfCollectionSingleSelectionPopup? _collectionPopup;
     private readonly TapGestureRecognizer _tapGestureRecognizer;
     
     public static readonly BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(CfPickerPopup));
@@ -66,7 +66,7 @@ public partial class CfPickerPopup
     
     private void OnTapped(object? sender, EventArgs e)
     {
-        _collectionPopup = new CfCollectionPopup
+        _collectionPopup = new CfCollectionSingleSelectionPopup
         {
             BindingContext = this,
             Title = !string.IsNullOrEmpty(Title) ? Title : Label,
@@ -75,8 +75,8 @@ public partial class CfPickerPopup
             ItemDisplay = ItemDisplay
         };
 
-        _collectionPopup.SetBinding(CfCollectionPopup.SelectedItemProperty, path: nameof(SelectedItem));
-        _collectionPopup.SetBinding(CfCollectionPopup.ItemsSourceProperty, path: nameof(ItemsSource));
+        _collectionPopup.SetBinding(CfCollectionSingleSelectionPopup.SelectedItemProperty, path: nameof(SelectedItem));
+        _collectionPopup.SetBinding(CfCollectionSingleSelectionPopup.ItemsSourceProperty, path: nameof(ItemsSource));
 
         Shell.Current.ShowPopup(_collectionPopup);
     }

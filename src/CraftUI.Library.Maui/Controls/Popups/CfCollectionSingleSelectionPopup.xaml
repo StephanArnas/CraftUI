@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<toolkit:Popup
+    HorizontalOptions="Fill"
+    VerticalOptions="End"
+    x:Class="CraftUI.Library.Maui.Controls.Popups.CfCollectionSingleSelectionPopup"
+    x:Name="This"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:markup="clr-namespace:CraftUI.Library.Maui.MarkupExtensions"
+    xmlns:controls="clr-namespace:CraftUI.Library.Maui.Controls.Popups">
+    
+    <toolkit:Popup.Resources>
+        <Style TargetType="Grid" x:Key="BottomPopupRootGrid">
+            <Setter Property="MinimumWidthRequest" Value="{x:Static markup:GutterSystem.WidthScreen}" />
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding 
+                Light={StaticResource PageBackground}, 
+                Dark={StaticResource PageBackgroundDark}}" />
+        </Style>
+        <Style TargetType="Image" x:Key="ClosePopupImage">
+            <Setter Property="WidthRequest" Value="26" />
+            <Setter Property="HeightRequest" Value="26" />
+            <Setter Property="HorizontalOptions" Value="End" />
+        </Style>
+        <Style TargetType="Label" x:Key="TitlePopupLabel">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+        </Style>
+        <Style TargetType="Rectangle" x:Key="BreakLineRectangle">
+            <Setter Property="Fill" Value="{DynamicResource Gray100}" />
+            <Setter Property="HeightRequest" Value="2" />
+            <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+        </Style>
+    </toolkit:Popup.Resources>
+
+    <Grid
+        BindingContext="{x:Reference This}"
+        RowDefinitions="Auto,Auto"
+        Style="{StaticResource BottomPopupRootGrid}"
+        x:DataType="controls:CfCollectionSingleSelectionPopup">
+        
+        <VerticalStackLayout>
+            <VerticalStackLayout Padding="16">
+                <FlexLayout
+                    AlignItems="Center"
+                    HeightRequest="26"
+                    JustifyContent="SpaceBetween">
+
+                    <Label 
+                        Style="{StaticResource TitlePopupLabel}" 
+                        x:Name="TitleLabel" />
+                    
+                    <Image
+                        Style="{StaticResource ClosePopupImage}"
+                        x:Name="CloseImage"
+                        Source="close.png" />
+
+                </FlexLayout>
+            </VerticalStackLayout>
+            <Rectangle Style="{StaticResource BreakLineRectangle}" />
+        </VerticalStackLayout>
+
+        <CollectionView
+            Grid.Row="1"
+            ItemSizingStrategy="MeasureFirstItem"
+            ItemsLayout="VerticalList"
+            ItemsSource="{Binding ItemsSource}"
+            SelectionMode="Single"
+            x:Name="PickerCollectionView">
+        </CollectionView>
+        
+    </Grid>
+
+</toolkit:Popup>

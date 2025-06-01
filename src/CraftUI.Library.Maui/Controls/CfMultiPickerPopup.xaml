@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<common:LabelBase 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:common="clr-namespace:CraftUI.Library.Maui.Common"
+    x:Class="CraftUI.Library.Maui.Controls.CfMultiPickerPopup"
+    x:Name="Root">
+    
+    <common:LabelBase.Resources>
+        <Style x:Key="LabelLabel" TargetType="Label">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="TextColor" Value="{StaticResource Gray950}" />
+            <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+            <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+            <Setter Property="MinimumHeightRequest" Value="40" />
+        </Style>
+    </common:LabelBase.Resources>
+    
+    <common:LabelBase.View>
+        <FlexLayout
+            x:Name="MainLayout"
+            Direction="Row"
+            Wrap="Wrap"
+            Margin="8,8,8,0"
+            MinimumHeightRequest="32"
+            BindingContext="{x:Reference Name=Root}"
+            BackgroundColor="AntiqueWhite"
+            BindableLayout.ItemsSource="{Binding SelectedStrings, Mode=TwoWay}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <Border
+                        BackgroundColor="{StaticResource Gray100}"
+                        StrokeShape="RoundRectangle 12"
+                        Padding="4"
+                        StrokeThickness="0"
+                        Margin="0,0,6,8">
+                        <Label
+                            Text="{Binding .}"
+                            TextColor="{StaticResource Gray900}"
+                            FontSize="14"
+                            VerticalOptions="Center"/>
+                    </Border>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </FlexLayout>    
+    </common:LabelBase.View>
+</common:LabelBase>
