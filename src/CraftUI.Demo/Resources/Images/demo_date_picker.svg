@@ -1,0 +1,12 @@
+<svg id="fi_12048814" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="15.5" cy="21.5" r="1.5"/>
+    <circle cx="21.5" cy="21.5" r="1.5"/>
+    <circle cx="15.5" cy="33.5" r="1.5"/>
+    <circle cx="21.5" cy="33.5" r="1.5"/>
+    <circle cx="27.5" cy="33.5" r="1.5"/>
+    <circle cx="33.5" cy="33.5" r="1.5"/>
+    <path d="m39 8h-5v5a1 1 0 0 1 -2 0v-5h-16v5a1 1 0 0 1 -2 0v-5h-5a3 3 0 0 0 -3 3v25a4 4 0 0 0 4 4h28a4 4 0 0 0 4-4v-4a1 1 0 0 0 -2 0v4a2 2 0 0 1 -2 2h-28a2 2 0 0 1 -2-2v-20h32v9a1 1 0 0 0 2 0v-14a3 3 0 0 0 -3-3z"/>
+    <circle cx="33.5" cy="27.5" r="1.5"/>
+    <rect height="3" rx="1.5" width="15" x="14" y="26"/>
+    <rect height="3" rx="1.5" width="9" x="26" y="20"/>
+</svg>
