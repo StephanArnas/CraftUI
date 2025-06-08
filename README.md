@@ -36,7 +36,8 @@ CraftUI provides a set of reusable UI controls to accelerate your .NET MAUI deve
 - [CfEntry](#cfentry)
 - [CfPicker](#cfpicker)
 - [CfPickerPopup](#cfpickerpopup)
-- [CfProgressBar](#cfprogressBar)
+- [CfProgressBar](#cfprogressbar)
+- [CfDatePicker](#cfdatepicker)
 - [CfCollectionPopup](#cfcollectionpopup)
 
 ## CfButton
@@ -174,6 +175,34 @@ Key properties available in the CfProgressBar:
     RoundCaps="True"
     HeightRequest="20"
     Style="{StaticResource ProgressBarStyle}" />
+```
+
+## CfDatePicker
+
+Key properties available in the CfDatePicker:
+
+- **PlaceHolder**: Text displayed when no date is selected, the default value I used is "/ . / . /".
+- **NullableDate**: The selected date that can be null, allowing the field to be cleared.
+- **Format**: Defines how the selected date is displayed (e.g., "dd/MM/yyyy").
+- **MinimumDate**: Sets the earliest selectable date in the picker.
+- **MaximumDate**: Sets the latest selectable date in the picker.
+- **ShowClearButton**: Determines whether the clear (X) button is visible to reset the date.
+
+<table>
+    <tr>
+        <td><img src="https://github.com/user-attachments/assets/d37dfe66-b00c-4c8e-ad10-4257569212f8" width="300"/></td>
+        <td><img src="https://github.com/user-attachments/assets/d2df7fc9-83c4-47eb-8db6-dc5978a3eb08" width="300"/></td>
+    </tr>
+</table>
+
+```xaml
+<controls:CfDatePicker 
+    Label="Select a date (with min/max)"
+    NullableDate="{Binding RangeDateNullable}"
+    MinimumDate="{Binding MinimumDate}"
+    MaximumDate="{Binding MaximumDate}" 
+    ShowClearButton="True"
+    Info="Pick a date between yesterday dans 30 days ahead."/>
 ```
 
 ## CfCollectionPopup
