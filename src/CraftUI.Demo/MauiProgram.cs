@@ -106,8 +106,6 @@ public static class MauiProgram
         {
 #if ANDROID
             handler.PlatformView.Background = null;
-            handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.Transparent);
-            handler.PlatformView.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Colors.Transparent.ToAndroid());
 #elif IOS || MACCATALYST
             handler.PlatformView.BackgroundColor = UIKit.UIColor.Clear;
             handler.PlatformView.Layer.BorderWidth = 0;

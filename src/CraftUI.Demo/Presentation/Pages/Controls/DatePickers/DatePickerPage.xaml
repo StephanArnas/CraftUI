@@ -8,7 +8,7 @@
     xmlns:controls="clr-namespace:CraftUI.Library.Maui.Controls;assembly=CraftUI.Library.Maui"
     x:Class="CraftUI.Demo.Presentation.Pages.Controls.DatePickers.DatePickerPage"
     x:DataType="page:DatePickerPageViewModel"
-    Title="Button Demo">
+    Title="Date Picker Demo">
     
     <Grid RowDefinitions="*,Auto" > 
         <ScrollView>
