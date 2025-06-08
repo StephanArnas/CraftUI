@@ -190,8 +190,8 @@ Key properties available in the CfDatePicker:
 
 <table>
     <tr>
-        <td><img src="https://github.com/user-attachments/assets/d37dfe66-b00c-4c8e-ad10-4257569212f8" width="300"/></td>
-        <td><img src="https://github.com/user-attachments/assets/d2df7fc9-83c4-47eb-8db6-dc5978a3eb08" width="300"/></td>
+        <td><img src="https://github.com/user-attachments/assets/b6fdc20c-0ebb-4676-a528-132f1db4b499" width="300"/></td>
+        <td><img src="https://github.com/user-attachments/assets/77cbbe66-5384-4c17-ab86-1fef0725388c" width="300"/></td>
     </tr>
 </table>
 
