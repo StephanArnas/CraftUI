@@ -229,6 +229,7 @@ If you’re curious about the backstage, have a look here.
 - [MAUI (Library Part 4) Custom Picker with Collection View and Popup](https://www.stephanarnas.com/posts/maui-custom-picker-with-collection-view-popup)
 - [MAUI (Library Part 5) Extending Control Behavior with Button](https://www.stephanarnas.com/posts/maui-extendind-control-behavior-with-button)
 - [MAUI (Library Part 6) Custom Button with Progress Bar](https://www.stephanarnas.com/posts/maui-custom-button-with-progress-bar)
+- [MAUI (CraftUI Part 7) Custom Date Picker Nullable](https://www.stephanarnas.com/posts/maui-date-picker-nullable)
 
 ## MAUI
 
