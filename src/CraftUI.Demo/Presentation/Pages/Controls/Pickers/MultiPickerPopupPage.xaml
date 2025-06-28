@@ -18,10 +18,12 @@
                 
                 <controls:CfMultiPickerPopup
                     Label="Country"
-                    SelectedItems="{Binding Countries}"
+                    SelectedItems="{Binding SelectedCountries, Mode=TwoWay}"
+                    SelectionChangedCommand="{Binding CountriesChangedCommand}"
                     ItemsSource="{Binding CountriesLoader.Result}" 
                     ItemDisplay="{x:Static page:PickerPageViewModel.CountryDisplayProperty}"
-                    IsLoading="{Binding CountriesLoader.ShowLoader}" />
+                    IsLoading="{Binding CountriesLoader.ShowLoader}"
+                    />
                 
             </VerticalStackLayout>
         </ScrollView>
@@ -30,6 +32,10 @@
             <Button Command="{Binding ResetCommand}" 
                     Style="{StaticResource FilledPrimaryButton}" 
                     Text="Reset" />
+            
+            <Button Command="{Binding ShowSelectedItemsCommand}" 
+                    Style="{StaticResource FilledPrimaryButton}" 
+                    Text="Show Selected Items" />
         </VerticalStackLayout>
 
     </Grid>

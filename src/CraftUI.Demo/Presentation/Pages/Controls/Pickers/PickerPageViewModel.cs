@@ -1,9 +1,12 @@
+using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CraftUI.Demo.Application.Cities;
+using CraftUI.Demo.Application.Common.Interfaces.Infrastructure;
 using CraftUI.Demo.Application.Common.Interfaces.Services;
 using CraftUI.Demo.Application.Countries;
 using CraftUI.Demo.Presentation.Common;
+using CraftUI.Library.Maui.Common.Extensions;
 using Microsoft.Extensions.Logging;
 using Sharpnado.TaskLoaderView;
 
@@ -14,15 +17,16 @@ public partial class PickerPageViewModel : ViewModelBase
     private readonly ILogger<PickerPageViewModel> _logger;
     private readonly ICityService _cityService;
     private readonly ICountryService _countryService;
+    private readonly IDisplayService _displayService;
     
     [ObservableProperty]
     private CountryVm? _country;
     
     [ObservableProperty]
-    private List<CountryVm>? _countries;
-    
-    [ObservableProperty]
     private CityVm? _city;
+
+    [ObservableProperty]
+    private ObservableCollection<object> _selectedCountries;
     
     public static string CountryDisplayProperty => nameof(CountryVm.Name);
     public static string CityDisplayProperty => nameof(CityVm.Name);
@@ -33,12 +37,16 @@ public partial class PickerPageViewModel : ViewModelBase
     public PickerPageViewModel(
         ILogger<PickerPageViewModel> logger,
         ICityService cityService,
-        ICountryService countryService)
+        ICountryService countryService, 
+        IDisplayService displayService)
     {
         _logger = logger;
         _cityService = cityService;
         _countryService = countryService;
-        
+        _displayService = displayService;
+
+        SelectedCountries = new ObservableCollection<object>();
+
         _logger.LogInformation("Building LabelPageViewModel");
     }
     
@@ -74,7 +82,7 @@ public partial class PickerPageViewModel : ViewModelBase
 
         var domainResult = await _countryService.GetAllCountriesAsync(cancellationToken);
         _logger.LogInformation("Items loaded: {Count}", domainResult.Count);
-
+        
         return domainResult;
     }
 
@@ -114,7 +122,27 @@ public partial class PickerPageViewModel : ViewModelBase
         Country = null;
         City = null;
         CitiesLoader.Reset();
+        SelectedCountries.Clear();
         
+        return Task.CompletedTask;
+    }
+    
+    [RelayCommand]
+    private async Task ShowSelectedItems()
+    {
+        _logger.LogInformation("ShowSelectedItems()");
+        
+        await _displayService.ShowPopupAsync(
+            title: "Selected Countries",
+            message: SelectedCountries.Count == 0 ? "No countries selected." : string.Join(", ", SelectedCountries.Select(c => c.GetDisplayString(CountryDisplayProperty))),
+            accept: "OK");
+    }
+
+    [RelayCommand]
+    private Task CountriesChanged(List<object>? collection = null)
+    {
+        _logger.LogInformation("CountriesChanged()");
+
         return Task.CompletedTask;
     }
 }

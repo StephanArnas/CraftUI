@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
+using System.Windows.Input;
 using CommunityToolkit.Maui.Views;
+using CraftUI.Library.Maui.Common;
 using CraftUI.Library.Maui.Common.Extensions;
 using CraftUI.Library.Maui.Controls.Popups;
 
@@ -13,12 +14,13 @@ public partial class CfMultiPickerPopup
     private readonly TapGestureRecognizer _tapGestureRecognizer;
 
     public static readonly BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(CfMultiPickerPopup));
-    public static readonly BindableProperty SelectedItemsProperty = BindableProperty.Create(nameof(SelectedItems), typeof(ObservableCollection<object>), typeof(CfMultiPickerPopup), defaultValue: new ObservableCollection<object>(), defaultBindingMode: BindingMode.TwoWay, propertyChanged: OnSelectedItemsChanged);
+    public static readonly BindableProperty SelectedItemsProperty = BindableProperty.Create(nameof(SelectedItems), typeof(IList<object>), typeof(CfMultiPickerPopup), defaultBindingMode: BindingMode.TwoWay, propertyChanged: SelectedItemsPropertyChanged, coerceValue: CoerceSelectedItems, defaultValueCreator: DefaultValueCreator);
     public static readonly BindableProperty ItemDisplayProperty = BindableProperty.Create(nameof(ItemDisplay), typeof(string), typeof(CfMultiPickerPopup), defaultBindingMode: BindingMode.OneWay);
     public static readonly BindableProperty DefaultValueProperty = BindableProperty.Create(nameof(DefaultValue), typeof(string), typeof(CfMultiPickerPopup), defaultBindingMode: BindingMode.OneWay);
     public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(nameof(ItemsSource), typeof(IList), typeof(CfMultiPickerPopup), defaultBindingMode: BindingMode.OneWay);
+    public static readonly BindableProperty SelectionChangedCommandProperty = BindableProperty.Create(nameof(SelectionChangedCommand), typeof(ICommand), typeof(CfMultiPickerPopup));
+    public static readonly BindableProperty SelectionChangedCommandParameterProperty = BindableProperty.Create(nameof(SelectionChangedCommandParameter), typeof(object), typeof(CfMultiPickerPopup));
     
-    // TODO: Temporary, could be removed by using SelectedItems directly.
     public ObservableCollection<string> SelectedStrings { get; set; }
 
     public IList? ItemsSource
@@ -27,10 +29,10 @@ public partial class CfMultiPickerPopup
         set => SetValue(ItemsSourceProperty, value);
     }
 
-    public ObservableCollection<object>? SelectedItems
+    public IList<object>? SelectedItems
     {
-        get => (ObservableCollection<object>?)GetValue(SelectedItemsProperty);
-        set => SetValue(SelectedItemsProperty, value);
+        get => (IList<object>?)GetValue(SelectedItemsProperty);
+        set => SetValue(SelectedItemsProperty, new SelectionList(this, value));
     }
 
     public string ItemDisplay
@@ -50,6 +52,18 @@ public partial class CfMultiPickerPopup
         get => (string)GetValue(TitleProperty);
         set => SetValue(TitleProperty, value);
     }
+    
+    public ICommand? SelectionChangedCommand
+    {
+        get => (ICommand?)GetValue(SelectionChangedCommandProperty);
+        set => SetValue(SelectionChangedCommandProperty, value);
+    }
+
+    public object SelectionChangedCommandParameter
+    {
+        get => GetValue(SelectionChangedCommandParameterProperty);
+        set => SetValue(SelectionChangedCommandParameterProperty, value);
+    }
 
     public CfMultiPickerPopup()
     {
@@ -62,45 +76,68 @@ public partial class CfMultiPickerPopup
         
         GestureRecognizers.Add(_tapGestureRecognizer);
     }
-    
-    private static void OnSelectedItemsChanged(BindableObject bindable, object oldValue, object newValue)
+
+    protected override void OnBindingContextChanged()
     {
-        if (oldValue is ObservableCollection<object> oldCollection)
+        base.OnBindingContextChanged();
+
+        ActionIconSource ??= "chevron_bottom.png";
+        ActionIconCommand ??= new Command(() => OnTapped(null, EventArgs.Empty));
+    }
+
+    private static void SelectedItemsPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        var selectableItemsView = (CfMultiPickerPopup)bindable;
+        var oldSelection = (IList<object>)oldValue;
+        var newSelection = (IList<object>)newValue;
+
+        selectableItemsView.SelectedItemsPropertyChanged(oldSelection, newSelection);
+    }
+
+    private static object CoerceSelectedItems(BindableObject bindable, object? value)
+    {
+        if (value == null)
         {
-            oldCollection.CollectionChanged -= ((CfMultiPickerPopup)bindable).SelectedItems_CollectionChanged;
+            return new SelectionList((CfMultiPickerPopup)bindable);
         }
 
-        if (newValue is ObservableCollection<object> newCollection)
+        if (value is SelectionList)
         {
-            newCollection.CollectionChanged += ((CfMultiPickerPopup)bindable).SelectedItems_CollectionChanged;
+            return value;
         }
+
+        return new SelectionList((CfMultiPickerPopup)bindable, value as IList<object>);
     }
-    
-    private void SelectedItems_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+
+    private static object DefaultValueCreator(BindableObject bindable)
     {
-        if (e is { Action: NotifyCollectionChangedAction.Add, NewItems: not null })
+        return new SelectionList((CfMultiPickerPopup)bindable);
+    }
+
+    internal void SelectedItemsPropertyChanged(IList<object> oldSelection, IList<object> newSelection)
+    {
+        UpdateSelectedStrings();
+        OnPropertyChanged(SelectedItemsProperty.PropertyName);
+    }
+
+    private void UpdateSelectedStrings()
+    {
+        SelectedStrings.Clear();
+
+        if (SelectedItems is null)
         {
-            foreach (var item in e.NewItems)
-            {
-                var propertyContent = item.GetDisplayString(propertyName: ItemDisplay);
-                if (propertyContent != null && !SelectedStrings.Contains(propertyContent))
-                {
-                    SelectedStrings.Add(propertyContent);
-                }
-            }
-        }
-        else if (e is { Action: NotifyCollectionChangedAction.Remove, OldItems: not null })
-        {
-            foreach (var item in e.OldItems)
-            {
-                var propertyContent = item.GetDisplayString(propertyName: ItemDisplay);
-                if (propertyContent != null)
-                {
-                    SelectedStrings.Remove(propertyContent);
-                }
-            }
+            return;
         }
         
+        foreach (var item in SelectedItems)
+        {
+            var displayValue = item.GetDisplayString(ItemDisplay);
+            if (!string.IsNullOrEmpty(displayValue) && !SelectedStrings.Contains(displayValue))
+            {
+                SelectedStrings.Add(displayValue);
+            }
+        }
+    
         OnPropertyChanged(nameof(SelectedStrings));
         // MainLayout.InvalidateMeasure();
         // MainLayout.PlatformSizeChanged();
@@ -112,39 +149,23 @@ public partial class CfMultiPickerPopup
     
     private void OnTapped(object? sender, EventArgs e)
     {
-        if (SelectedItems is not { } observableSelectedItems)
-        {
-            observableSelectedItems = new ObservableCollection<object>();
-            if (SelectedItems != null)
-            {
-                foreach (var item in SelectedItems)
-                {
-                    observableSelectedItems.Add(item);
-                }
-            }
-            SelectedItems = observableSelectedItems;
-        }
-        
         _collectionPopup = new CfCollectionMultiSelectionPopup
         {
             BindingContext = this,
             Title = !string.IsNullOrEmpty(Title) ? Title : Label,
             ItemsSource = ItemsSource,
-            SelectedItems = observableSelectedItems,
+            SelectedItems = SelectedItems,
             ItemDisplay = ItemDisplay
         };
-
-        _collectionPopup.SetBinding(CfCollectionMultiSelectionPopup.SelectedItemsProperty, path: nameof(SelectedItems));
+        
+        _collectionPopup.Closed += (_, _) =>
+        {
+            SelectionChangedCommand?.Execute(SelectedItems?.Select(x => x).ToList());
+        };
+        
         _collectionPopup.SetBinding(CfCollectionMultiSelectionPopup.ItemsSourceProperty, path: nameof(ItemsSource));
+        _collectionPopup.SetBinding(CfCollectionMultiSelectionPopup.SelectedItemsProperty, path: nameof(SelectedItems));
 
         Shell.Current.ShowPopup(_collectionPopup);
-    }
-
-    protected override void OnBindingContextChanged()
-    {
-        base.OnBindingContextChanged();
-
-        ActionIconSource ??= "chevron_bottom.png";
-        ActionIconCommand ??= new Command(() => OnTapped(null, EventArgs.Empty));
     }
 }

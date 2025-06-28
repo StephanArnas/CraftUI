@@ -7,26 +7,13 @@
     x:Class="CraftUI.Library.Maui.Controls.CfMultiPickerPopup"
     x:Name="Root">
     
-    <common:LabelBase.Resources>
-        <Style x:Key="LabelLabel" TargetType="Label">
-            <Setter Property="FontSize" Value="16" />
-            <Setter Property="TextColor" Value="{StaticResource Gray950}" />
-            <Setter Property="VerticalOptions" Value="CenterAndExpand" />
-            <Setter Property="VerticalTextAlignment" Value="Center" />
-            <Setter Property="HorizontalOptions" Value="StartAndExpand" />
-            <Setter Property="MinimumHeightRequest" Value="40" />
-        </Style>
-    </common:LabelBase.Resources>
-    
     <common:LabelBase.View>
         <FlexLayout
-            x:Name="MainLayout"
             Direction="Row"
             Wrap="Wrap"
             Margin="8,8,8,0"
             MinimumHeightRequest="32"
             BindingContext="{x:Reference Name=Root}"
-            BackgroundColor="AntiqueWhite"
             BindableLayout.ItemsSource="{Binding SelectedStrings, Mode=TwoWay}">
             <BindableLayout.ItemTemplate>
                 <DataTemplate>

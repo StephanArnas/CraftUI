@@ -67,7 +67,7 @@
             ItemSizingStrategy="MeasureFirstItem"
             ItemsLayout="VerticalList"
             ItemsSource="{Binding ItemsSource}"
-            SelectionMode="Single"
+            SelectionMode="Multiple"
             x:Name="PickerCollectionView">
         </CollectionView>
         

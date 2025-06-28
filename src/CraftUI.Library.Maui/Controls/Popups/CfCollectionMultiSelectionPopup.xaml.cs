@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.ObjectModel;
 using CraftUI.Library.Maui.Common.Helpers;
 using CraftUI.Library.Maui.Converters;
 using CraftUI.Library.Maui.MarkupExtensions;
@@ -9,8 +8,8 @@ namespace CraftUI.Library.Maui.Controls.Popups;
 public partial class CfCollectionMultiSelectionPopup
 {
     public static readonly BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(CfCollectionMultiSelectionPopup), propertyChanged: TitleChanged, defaultBindingMode: BindingMode.OneWayToSource);
-    public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(nameof(ItemsSource), typeof(IList), typeof(CfCollectionMultiSelectionPopup), propertyChanged: ItemsSourceChanged);
-    public static readonly BindableProperty SelectedItemsProperty = BindableProperty.Create(nameof(SelectedItems), typeof(ObservableCollection<object>), typeof(CfCollectionMultiSelectionPopup), defaultBindingMode: BindingMode.TwoWay);
+    public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(nameof(ItemsSource), typeof(IList), typeof(CfCollectionMultiSelectionPopup));
+    public static readonly BindableProperty SelectedItemsProperty = BindableProperty.Create(nameof(SelectedItems), typeof(IList<object>), typeof(CfCollectionMultiSelectionPopup), defaultBindingMode: BindingMode.TwoWay);
     public static readonly BindableProperty ItemDisplayProperty = BindableProperty.Create(nameof(ItemDisplay), typeof(string), typeof(CfCollectionMultiSelectionPopup), defaultBindingMode: BindingMode.OneWayToSource);
 
     public CfCollectionMultiSelectionPopup()
@@ -20,8 +19,6 @@ public partial class CfCollectionMultiSelectionPopup
         var tapped = new TapGestureRecognizer();
         tapped.Tapped += (_, _) => Close();
         CloseImage.GestureRecognizers.Add(tapped);
-
-        SelectedItems = new ObservableCollection<object>();
     }
 
     public string Title
@@ -36,9 +33,9 @@ public partial class CfCollectionMultiSelectionPopup
         set => SetValue(ItemsSourceProperty, value);
     }
 
-    public ObservableCollection<object>? SelectedItems
+    public IList<object>? SelectedItems
     {
-        get => (ObservableCollection<object>?)GetValue(SelectedItemsProperty);
+        get => (IList<object>?)GetValue(SelectedItemsProperty);
         set => SetValue(SelectedItemsProperty, value);
     }
 
@@ -53,14 +50,8 @@ public partial class CfCollectionMultiSelectionPopup
     }
 
     private static void TitleChanged(BindableObject bindable, object oldValue, object newValue) => ((CfCollectionMultiSelectionPopup)bindable).UpdateTitleView();
-    private static void ItemsSourceChanged(BindableObject bindable, object oldValue, object newValue) => ((CfCollectionMultiSelectionPopup)bindable).UpdateItemsSourceView();
 
     private void UpdateTitleView() => TitleLabel.Text = Title;
-
-    private void UpdateItemsSourceView()
-    {
-        PickerCollectionView.ItemsSource = ItemsSource;
-    }
 
     private void InitCollectionViewItems()
     {
