@@ -19,7 +19,6 @@ public partial class CfMultiPickerPopup
     public static readonly BindableProperty DefaultValueProperty = BindableProperty.Create(nameof(DefaultValue), typeof(string), typeof(CfMultiPickerPopup), defaultBindingMode: BindingMode.OneWay);
     public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(nameof(ItemsSource), typeof(IList), typeof(CfMultiPickerPopup), defaultBindingMode: BindingMode.OneWay);
     public static readonly BindableProperty SelectionChangedCommandProperty = BindableProperty.Create(nameof(SelectionChangedCommand), typeof(ICommand), typeof(CfMultiPickerPopup));
-    public static readonly BindableProperty SelectionChangedCommandParameterProperty = BindableProperty.Create(nameof(SelectionChangedCommandParameter), typeof(object), typeof(CfMultiPickerPopup));
     
     public ObservableCollection<string> SelectedStrings { get; set; }
 
@@ -57,12 +56,6 @@ public partial class CfMultiPickerPopup
     {
         get => (ICommand?)GetValue(SelectionChangedCommandProperty);
         set => SetValue(SelectionChangedCommandProperty, value);
-    }
-
-    public object SelectionChangedCommandParameter
-    {
-        get => GetValue(SelectionChangedCommandParameterProperty);
-        set => SetValue(SelectionChangedCommandParameterProperty, value);
     }
 
     public CfMultiPickerPopup()
@@ -160,7 +153,7 @@ public partial class CfMultiPickerPopup
         
         _collectionPopup.Closed += (_, _) =>
         {
-            SelectionChangedCommand?.Execute(SelectedItems?.Select(x => x).ToList());
+            SelectionChangedCommand?.Execute(null);
         };
         
         _collectionPopup.SetBinding(CfCollectionMultiSelectionPopup.ItemsSourceProperty, path: nameof(ItemsSource));

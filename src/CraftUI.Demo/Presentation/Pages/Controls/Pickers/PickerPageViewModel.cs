@@ -92,7 +92,6 @@ public partial class PickerPageViewModel : ViewModelBase
 
         if (Country is null)
         {
-            // Add a toast to enhance the user experience.
             return Array.Empty<CityVm>();
         }
         
@@ -130,7 +129,7 @@ public partial class PickerPageViewModel : ViewModelBase
     [RelayCommand]
     private async Task ShowSelectedItems()
     {
-        _logger.LogInformation("ShowSelectedItems()");
+        _logger.LogInformation("ShowSelectedItems( Count: {Count} )", SelectedCountries.Count);
         
         await _displayService.ShowPopupAsync(
             title: "Selected Countries",
@@ -139,7 +138,7 @@ public partial class PickerPageViewModel : ViewModelBase
     }
 
     [RelayCommand]
-    private Task CountriesChanged(List<object>? collection = null)
+    private Task CountriesChanged()
     {
         _logger.LogInformation("CountriesChanged()");
 

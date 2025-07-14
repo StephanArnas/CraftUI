@@ -61,9 +61,9 @@
     <ItemGroup>
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
         <PackageReference Include="FluentValidation" Version="12.0.0" />
-        <PackageReference Include="Microsoft.Maui.Controls" Version="9.0.70" />
-        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.5" />
-        <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.70" />
+        <PackageReference Include="Microsoft.Maui.Controls" Version="9.0.82" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.7" />
+        <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.82" />
         <PackageReference Include="Sharpnado.Maui.TaskLoaderView" Version="2.5.1" />
     </ItemGroup>
 
@@ -134,10 +134,6 @@
       <AdditionalFiles Include="Presentation\Pages\Controls\Entries\EntryPage.xaml" />
       <AdditionalFiles Include="Presentation\Pages\Controls\Pickers\PickerPage.xaml" />
       <AdditionalFiles Include="Presentation\Pages\Controls\Pickers\PickerPopupPage.xaml" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Presentation\Pages\Controls\MultiPickers\" />
     </ItemGroup>
 
 </Project>
