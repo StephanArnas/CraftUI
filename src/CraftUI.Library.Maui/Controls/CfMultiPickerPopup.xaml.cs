@@ -5,6 +5,7 @@ using CommunityToolkit.Maui.Views;
 using CraftUI.Library.Maui.Common;
 using CraftUI.Library.Maui.Common.Extensions;
 using CraftUI.Library.Maui.Controls.Popups;
+using Microsoft.Maui.Platform;
 
 namespace CraftUI.Library.Maui.Controls;
 
@@ -17,7 +18,7 @@ public partial class CfMultiPickerPopup
     public static readonly BindableProperty SelectedItemsProperty = BindableProperty.Create(nameof(SelectedItems), typeof(IList<object>), typeof(CfMultiPickerPopup), defaultBindingMode: BindingMode.TwoWay, propertyChanged: SelectedItemsPropertyChanged, coerceValue: CoerceSelectedItems, defaultValueCreator: DefaultValueCreator);
     public static readonly BindableProperty ItemDisplayProperty = BindableProperty.Create(nameof(ItemDisplay), typeof(string), typeof(CfMultiPickerPopup), defaultBindingMode: BindingMode.OneWay);
     public static readonly BindableProperty DefaultValueProperty = BindableProperty.Create(nameof(DefaultValue), typeof(string), typeof(CfMultiPickerPopup), defaultBindingMode: BindingMode.OneWay);
-    public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(nameof(ItemsSource), typeof(IList), typeof(CfMultiPickerPopup), defaultBindingMode: BindingMode.OneWay);
+    public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(nameof(ItemsSource), typeof(IList), typeof(CfMultiPickerPopup), propertyChanged: ItemsSourceChanged, defaultBindingMode: BindingMode.OneWay);
     public static readonly BindableProperty SelectionChangedCommandProperty = BindableProperty.Create(nameof(SelectionChangedCommand), typeof(ICommand), typeof(CfMultiPickerPopup));
     
     public ObservableCollection<string> SelectedStrings { get; set; }
@@ -77,7 +78,21 @@ public partial class CfMultiPickerPopup
         ActionIconSource ??= "chevron_bottom.png";
         ActionIconCommand ??= new Command(() => OnTapped(null, EventArgs.Empty));
     }
+    
+    private static void ItemsSourceChanged(BindableObject bindable, object oldValue, object newValue) => ((CfMultiPickerPopup)bindable).UpdateItemsSourceView();
 
+    private async void UpdateItemsSourceView()
+    {
+        if (_collectionPopup?.ItemsSource?.Count > 0 && DeviceInfo.Platform == DevicePlatform.iOS)
+        {
+            // On iOS, we need to close the popup before showing a new one to avoid issues with the collection view.
+            await _collectionPopup.CloseAsync().ContinueWith(_ => 
+            {
+                MainThread.BeginInvokeOnMainThread(() => OnTapped(null, EventArgs.Empty));
+            });
+        }
+    }
+    
     private static void SelectedItemsPropertyChanged(BindableObject bindable, object oldValue, object newValue)
     {
         var selectableItemsView = (CfMultiPickerPopup)bindable;

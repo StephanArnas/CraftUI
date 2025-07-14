@@ -16,7 +16,7 @@ public partial class CfPickerPopup
     public static readonly BindableProperty TapCommandProperty = BindableProperty.Create(nameof(TapCommand), typeof(ICommand), typeof(CfPickerPopup), defaultBindingMode: BindingMode.TwoWay);
     public static readonly BindableProperty ItemDisplayProperty = BindableProperty.Create(nameof(ItemDisplay), typeof(string), typeof(CfPickerPopup), defaultBindingMode: BindingMode.OneWay);
     public static readonly BindableProperty DefaultValueProperty = BindableProperty.Create(nameof(DefaultValue), typeof(string), typeof(CfPickerPopup), propertyChanged: DefaultValueChanged, defaultBindingMode: BindingMode.OneWay);
-    public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(nameof(ItemsSource), typeof(IList), typeof(CfPickerPopup), defaultBindingMode: BindingMode.OneWay);
+    public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(nameof(ItemsSource), typeof(IList), typeof(CfPickerPopup), propertyChanged: ItemsSourceChanged, defaultBindingMode: BindingMode.OneWay);
 
     public IList? ItemsSource
     {
@@ -88,9 +88,10 @@ public partial class CfPickerPopup
         ActionIconSource ??= "chevron_bottom.png";
         ActionIconCommand ??= new Command(() => OnTapped(null, EventArgs.Empty));
     }
-
+    
     private static void SelectedItemChanged(BindableObject bindable, object oldValue, object newValue) => ((CfPickerPopup)bindable).UpdateSelectedItemView();
     private static void DefaultValueChanged(BindableObject bindable, object oldValue, object newValue) => ((CfPickerPopup)bindable).UpdateDefaultValueView();
+    private static void ItemsSourceChanged(BindableObject bindable, object oldValue, object newValue) => ((CfPickerPopup)bindable).UpdateItemsSourceView();
 
     private void UpdateSelectedItemView()
     {
@@ -101,5 +102,17 @@ public partial class CfPickerPopup
     private void UpdateDefaultValueView()
     {
         Element.Text = DefaultValue;
+    }
+
+    private async void UpdateItemsSourceView()
+    {
+        if (_collectionPopup?.ItemsSource?.Count > 0 && DeviceInfo.Platform == DevicePlatform.iOS)
+        {
+            // On iOS, we need to close the popup before showing a new one to avoid issues with the collection view.
+            await _collectionPopup.CloseAsync().ContinueWith(_ => 
+            {
+                MainThread.BeginInvokeOnMainThread(() => OnTapped(null, EventArgs.Empty));
+            });
+        }
     }
 }
