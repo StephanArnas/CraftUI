@@ -21,7 +21,7 @@
                     SelectedItem="{Binding Country}"
                     ItemsSource="{Binding CountriesLoader.Result}" 
                     ItemDisplay="{x:Static page:PickerPageViewModel.CountryDisplayProperty}"
-                    TapCommand="{Binding CountrySelectedCommand}"
+                    SelectionChangedCommand="{Binding CountrySelectedCommand}"
                     IsLoading="{Binding CountriesLoader.ShowLoader}" />
                 
                 <controls:CfPicker

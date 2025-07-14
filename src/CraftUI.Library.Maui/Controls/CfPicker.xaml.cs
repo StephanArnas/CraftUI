@@ -9,7 +9,7 @@ public partial class CfPicker
     public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(nameof(ItemsSource), typeof(IList), typeof(CfPicker), propertyChanged: OnItemsSourceChanged);
     public static readonly BindableProperty SelectedItemProperty = BindableProperty.Create(nameof(SelectedItem), typeof(object), typeof(CfPicker), defaultValue: null, BindingMode.TwoWay, propertyChanged: OnSelectedItemChanged);
     public static readonly BindableProperty ItemDisplayProperty = BindableProperty.Create(nameof(ItemDisplay), typeof(string), typeof(CfPicker), propertyChanged: OnItemDisplayBindingChanged, defaultBindingMode: BindingMode.OneWay);
-    public static readonly BindableProperty TapCommandProperty = BindableProperty.Create(nameof(TapCommand), typeof(ICommand), typeof(CfPicker));
+    public static readonly BindableProperty SelectionChangedCommandProperty = BindableProperty.Create(nameof(SelectionChangedCommand), typeof(ICommand), typeof(CfPicker));
 
     public IList ItemsSource
     {
@@ -29,10 +29,10 @@ public partial class CfPicker
         set => SetValue(ItemDisplayProperty, value);
     }
     
-    public ICommand? TapCommand
+    public ICommand? SelectionChangedCommand
     {
-        get => (ICommand?)GetValue(TapCommandProperty);
-        set => SetValue(TapCommandProperty, value);
+        get => (ICommand?)GetValue(SelectionChangedCommandProperty);
+        set => SetValue(SelectionChangedCommandProperty, value);
     }
     
     public CfPicker()
@@ -69,7 +69,7 @@ public partial class CfPicker
     private void OnSelectedItemChanged()
     {
         Element.SelectedItem = SelectedItem;
-        TapCommand?.Execute(null);
+        SelectionChangedCommand?.Execute(null);
     }
 
     private void OnItemDisplayBindingChanged()

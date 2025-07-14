@@ -21,7 +21,7 @@ No hidden surprises, no lock-in, no external constraints.
 You’re free to evolve it at your own pace and ensure long-term stability and maintainability.
 
 > 📅 I’m currently working on an article, a video, and a script that will guide you through all the steps required to start a new project with CraftUI or integrate it into an existing one. 
-Estimated delivery: 06/2025.
+Estimated delivery: 08/2025.
 
 # Controls
 
@@ -36,9 +36,11 @@ CraftUI provides a set of reusable UI controls to accelerate your .NET MAUI deve
 - [CfEntry](#cfentry)
 - [CfPicker](#cfpicker)
 - [CfPickerPopup](#cfpickerpopup)
+- [CfMultiPickerPopup](#cfmultipickerpopup)
 - [CfProgressBar](#cfprogressbar)
 - [CfDatePicker](#cfdatepicker)
-- [CfCollectionPopup](#cfcollectionpopup)
+- [CfCollectionSingleSelectionPopup](#cfcollectionsingleselectionpopup)
+- [CfCollectionMultiSelectionPopup](#cfcollectionmultiselectionpopup)
 
 ## CfButton
 
@@ -104,7 +106,7 @@ Key properties available in the CfPicker:
 - **SelectedItem** Two-way binding to the selected item from ItemsSource
 - **ItemsSource** The collection of items to display in the picker
 - **ItemDisplay** Defines which property of the ItemsSource objects should be displayed
-- **TapCommand** Command executed when the picker is tapped or an item is selected
+- **SelectionChangedCommand** Command executed when the picker is tapped or an item is selected
 - **IsLoading** Shows a loading indicator when data is being fetched
 
 <table>
@@ -120,13 +122,19 @@ Key properties available in the CfPicker:
     SelectedItem="{Binding Country}"
     ItemsSource="{Binding CountriesLoader.Result}" 
     ItemDisplay="{x:Static page:PickerPageViewModel.CountryDisplayProperty}"
-    TapCommand="{Binding CountrySelectedCommand}"
+    SelectionChangedCommand="{Binding CountrySelectedCommand}"
     IsLoading="{Binding CountriesLoader.ShowLoader}" />
 ```
 
 ## CfPickerPopup
 
-For key properties, refer to [CfPicker](#cfpicker).
+- **Label** Provides a text label above the picker field
+- **SelectedItem** Two-way binding to the selected item from ItemsSource
+- **ItemsSource** The collection of items to display in the picker
+- **ItemDisplay** Defines which property of the ItemsSource objects should be displayed
+- **SelectionChangedCommand** Command executed when the picker is tapped or an item is selected
+- **IsLoading** Shows a loading indicator when data is being fetched
+- **DefaultValue** Sets a default value for the picker when no item is selected
 
 <table>
     <tr>
@@ -141,8 +149,35 @@ For key properties, refer to [CfPicker](#cfpicker).
     SelectedItem="{Binding Country}"
     ItemsSource="{Binding CountriesLoader.Result}" 
     ItemDisplay="{x:Static page:PickerPageViewModel.CountryDisplayProperty}"
-    TapCommand="{Binding CountrySelectedCommand}"
+    SelectionChangedCommand="{Binding CountrySelectedCommand}"
     IsLoading="{Binding CountriesLoader.ShowLoader}"/>
+```
+
+## CfMultiPickerPopup
+
+- **Label** Provides a text label above the picker field
+- **SelectedItems** The collection of selected items (two-way bindable)
+- **ItemsSource** The collection of items to display in the picker
+- **ItemDisplay** Defines which property of the ItemsSource objects should be displayed
+- **SelectionChangedCommand** Command executed when the picker is tapped or an item is selected
+- **IsLoading** Shows a loading indicator when data is being fetched
+
+<table>
+    <tr>
+        <td><img src="https://github.com/user-attachments/assets/c2405fd4-abb7-4475-a0b0-e9b93a0efd94" width="300"/></td>
+        <td><img src="https://github.com/user-attachments/assets/78c6451e-8ec1-4706-81fd-277599ba1055" width="300"/></td>
+    </tr>
+</table>
+
+```xaml
+<controls:CfMultiPickerPopup
+    Label="Country"
+    SelectedItems="{Binding SelectedCountries, Mode=TwoWay}"
+    SelectionChangedCommand="{Binding CountriesChangedCommand}"
+    ItemsSource="{Binding CountriesLoader.Result}" 
+    ItemDisplay="{x:Static page:PickerPageViewModel.CountryDisplayProperty}"
+    IsLoading="{Binding CountriesLoader.ShowLoader}"
+    />
 ```
 
 ## CfProgressBar
@@ -205,21 +240,32 @@ Key properties available in the CfDatePicker:
     Info="Pick a date between yesterday dans 30 days ahead."/>
 ```
 
-## CfCollectionPopup
+## CfCollectionSingleSelectionPopup
 
-CfCollectionPopup is a custom Popup control that displays a list of selectable items in a bottom-sheet style interface.
+CfCollectionSingleSelectionPopup is a custom Popup control that displays a list of selectable items in a bottom-sheet style interface where only one item can be selected at a time.
 
 - **Title** Sets the header text displayed at the top of the popup
 - **ItemsSource** The collection of items to display in the popup list
 - **SelectedItem** The currently selected item (two-way bindable)
 - **ItemDisplay** Defines which property of the items should be displayed as text
 
-> This component forms the foundation for the CfPickerPopup control and is used throughout the application to provide consistent selection experiences. Additional implementation examples can be found in the Use Cases section of the Demo app.
+> This component forms the foundation for the **CfPickerPopup** control and is used throughout the application to provide consistent selection experiences. Additional implementation examples can be found in the Use Cases section of the Demo app.
+
+## CfCollectionMultiSelectionPopup
+
+CfCollectionSingleSelectionPopup is a custom Popup control that displays a list of selectable items in a bottom-sheet style interface where multiple items can be selected.
+
+- **Title** Sets the header text displayed at the top of the popup
+- **ItemsSource** The collection of items to display in the popup list
+- **SelectedItems** The collection of selected items (two-way bindable)
+- **ItemDisplay** Defines which property of the items should be displayed as text
+
+> This component forms the foundation for the **CfMultiPickerPopup** control and is used throughout the application to provide consistent selection experiences. Additional implementation examples can be found in the Use Cases section of the Demo app.
 
 # Articles
 
 I wrote articles to explain how I built this library. 
-If you’re curious about the backstage, have a look here.
+If you’re curious about the backstage, have a look below.
 
 ## CraftUI library
 
@@ -230,6 +276,7 @@ If you’re curious about the backstage, have a look here.
 - [MAUI (Library Part 5) Extending Control Behavior with Button](https://www.stephanarnas.com/posts/maui-extendind-control-behavior-with-button)
 - [MAUI (Library Part 6) Custom Button with Progress Bar](https://www.stephanarnas.com/posts/maui-custom-button-with-progress-bar)
 - [MAUI (CraftUI Part 7) Custom Date Picker Nullable](https://www.stephanarnas.com/posts/maui-date-picker-nullable)
+- [MAUI (CraftUI Part 8) Custom Multi Selection Picker](https://www.stephanarnas.com/posts/maui-custom-multi-selection-picker)
 
 ## MAUI
 
