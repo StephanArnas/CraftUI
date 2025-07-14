@@ -9,15 +9,7 @@ public partial class CfCollectionSingleSelectionPopup
     public static readonly BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(CfCollectionSingleSelectionPopup), propertyChanged: TitleChanged, defaultBindingMode: BindingMode.OneWayToSource);
     public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(nameof(ItemsSource), typeof(IList), typeof(CfCollectionSingleSelectionPopup), propertyChanged: ItemsSourceChanged);
     public static readonly BindableProperty SelectedItemProperty = BindableProperty.Create(nameof(SelectedItem), typeof(object), typeof(CfCollectionSingleSelectionPopup), defaultBindingMode: BindingMode.TwoWay);
-
-    public CfCollectionSingleSelectionPopup()
-    {
-        InitializeComponent();
-        
-        var tapped = new TapGestureRecognizer();
-        tapped.Tapped += (_, _) => Close();
-        CloseImage.GestureRecognizers.Add(tapped); 
-    }
+    public static readonly BindableProperty ItemDisplayProperty = BindableProperty.Create(nameof(ItemDisplay), typeof(string), typeof(CfCollectionSingleSelectionPopup), defaultBindingMode: BindingMode.OneWayToSource);
 
     public string Title
     {
@@ -31,15 +23,11 @@ public partial class CfCollectionSingleSelectionPopup
         set => SetValue(ItemsSourceProperty, value);
     }
 
-
     public object? SelectedItem
     {
         get => GetValue(SelectedItemProperty);
         set => SetValue(SelectedItemProperty, value);
     }
-
-    public static readonly BindableProperty ItemDisplayProperty = BindableProperty.Create("ItemDisplay",
-        typeof(string), typeof(CfCollectionSingleSelectionPopup), defaultBindingMode: BindingMode.OneWayToSource);
 
     public string? ItemDisplay
     {
@@ -49,6 +37,15 @@ public partial class CfCollectionSingleSelectionPopup
             SetValue(ItemDisplayProperty, value);
             InitCollectionViewItems();
         }
+    }
+
+    public CfCollectionSingleSelectionPopup()
+    {
+        InitializeComponent();
+        
+        var tapped = new TapGestureRecognizer();
+        tapped.Tapped += (_, _) => Close();
+        CloseImage.GestureRecognizers.Add(tapped); 
     }
 
     private static void TitleChanged(BindableObject bindable, object oldValue, object newValue) => ((CfCollectionSingleSelectionPopup)bindable).UpdateTitleView();
