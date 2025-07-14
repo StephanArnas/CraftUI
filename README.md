@@ -164,8 +164,8 @@ Key properties available in the CfPicker:
 
 <table>
     <tr>
-        <td><img src="https://github.com/user-attachments/assets/ec49baf7-1359-46e8-b1c4-1436dc92bcda" width="300"/></td>
-        <td><img src="https://github.com/user-attachments/assets/f797bee1-66f8-446d-a968-523205b77c55" width="300"/></td>
+        <td><img src="https://github.com/user-attachments/assets/4caa7480-7dcf-409d-80aa-319043b9f93d" width="300"/></td>
+        <td><img src="https://github.com/user-attachments/assets/afff21fc-9827-4e17-bfe4-4c075aab3384" width="300"/></td>
     </tr>
 </table>
 
