@@ -23,7 +23,7 @@
         <ApplicationTitle>CraftUI Demo</ApplicationTitle>
 
         <!-- App Identifier -->
-        <ApplicationId>com.stephanarnas.blog_maui_components</ApplicationId>
+        <ApplicationId>com.stephanarnas.craftui</ApplicationId>
 
         <!-- Versions -->
         <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
