@@ -4,22 +4,56 @@ using System.Windows.Input;
 using CommunityToolkit.Maui.Extensions;
 using CraftUI.Maui.Core.Common;
 using CraftUI.Maui.Core.Common.Extensions;
+using CraftUI.Maui.Core.Common.Helpers;
 using CraftUI.Maui.Core.Popups;
+using Microsoft.Maui.Controls.Shapes;
+using Microsoft.Maui.Layouts;
 
 namespace CraftUI.Maui.Core.Controls.PickerMultipleSelection;
 
-public partial class CfPickerMultipleSelection
+public class CfPickerMultipleSelection : InputTextLayout.InputTextLayout
 {
     private CfCollectionMultiSelectionPopup? _collectionPopup;
     private readonly TapGestureRecognizer _tapGestureRecognizer;
 
-    public static readonly BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(CfPickerMultipleSelection));
-    public static readonly BindableProperty SelectedItemsProperty = BindableProperty.Create(nameof(SelectedItems), typeof(IList<object>), typeof(CfPickerMultipleSelection), defaultBindingMode: BindingMode.TwoWay, propertyChanged: SelectedItemsPropertyChanged, coerceValue: CoerceSelectedItems, defaultValueCreator: DefaultValueCreator);
-    public static readonly BindableProperty ItemDisplayProperty = BindableProperty.Create(nameof(ItemDisplay), typeof(string), typeof(CfPickerMultipleSelection), defaultBindingMode: BindingMode.OneWay);
-    public static readonly BindableProperty DefaultValueProperty = BindableProperty.Create(nameof(DefaultValue), typeof(string), typeof(CfPickerMultipleSelection), defaultBindingMode: BindingMode.OneWay);
-    public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(nameof(ItemsSource), typeof(IList), typeof(CfPickerMultipleSelection), propertyChanged: ItemsSourceChanged, defaultBindingMode: BindingMode.OneWay);
-    public static readonly BindableProperty SelectionChangedCommandProperty = BindableProperty.Create(nameof(SelectionChangedCommand), typeof(ICommand), typeof(CfPickerMultipleSelection));
-    
+    public static readonly BindableProperty TitleProperty = BindableProperty.Create(
+        nameof(Title),
+        typeof(string),
+        typeof(CfPickerMultipleSelection));
+
+    public static readonly BindableProperty SelectedItemsProperty = BindableProperty.Create(
+        nameof(SelectedItems),
+        typeof(IList<object>),
+        typeof(CfPickerMultipleSelection),
+        defaultBindingMode: BindingMode.TwoWay,
+        propertyChanged: SelectedItemsPropertyChanged,
+        coerceValue: CoerceSelectedItems,
+        defaultValueCreator: DefaultValueCreator);
+
+    public static readonly BindableProperty ItemDisplayProperty = BindableProperty.Create(
+        nameof(ItemDisplay),
+        typeof(string),
+        typeof(CfPickerMultipleSelection),
+        defaultBindingMode: BindingMode.OneWay);
+
+    public static readonly BindableProperty DefaultValueProperty = BindableProperty.Create(
+        nameof(DefaultValue),
+        typeof(string),
+        typeof(CfPickerMultipleSelection),
+        defaultBindingMode: BindingMode.OneWay);
+
+    public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(
+        nameof(ItemsSource),
+        typeof(IList),
+        typeof(CfPickerMultipleSelection),
+        propertyChanged: ItemsSourceChanged,
+        defaultBindingMode: BindingMode.OneWay);
+
+    public static readonly BindableProperty SelectionChangedCommandProperty = BindableProperty.Create(
+        nameof(SelectionChangedCommand),
+        typeof(ICommand),
+        typeof(CfPickerMultipleSelection));
+
     public ObservableCollection<string> SelectedStrings { get; set; }
 
     public IList? ItemsSource
@@ -51,7 +85,7 @@ public partial class CfPickerMultipleSelection
         get => (string)GetValue(TitleProperty);
         set => SetValue(TitleProperty, value);
     }
-    
+
     public ICommand? SelectionChangedCommand
     {
         get => (ICommand?)GetValue(SelectionChangedCommandProperty);
@@ -60,13 +94,23 @@ public partial class CfPickerMultipleSelection
 
     public CfPickerMultipleSelection()
     {
-        InitializeComponent();
-        
         _tapGestureRecognizer = new TapGestureRecognizer();
         _tapGestureRecognizer.Tapped += OnTapped;
 
-        SelectedStrings = new ObservableCollection<string>();
-        
+        SelectedStrings = [];
+
+        var flexLayout = new FlexLayout
+        {
+            Direction = FlexDirection.Row,
+            Wrap = FlexWrap.Wrap,
+            Margin = new Thickness(8, 8, 8, 0),
+            MinimumHeightRequest = 32
+        };
+
+        BindableLayout.SetItemsSource(flexLayout, SelectedStrings);
+        BindableLayout.SetItemTemplate(flexLayout, CreateItemTemplate());
+
+        View = flexLayout;
         GestureRecognizers.Add(_tapGestureRecognizer);
     }
 
@@ -77,21 +121,51 @@ public partial class CfPickerMultipleSelection
         ActionIconSource ??= "chevron_bottom.png";
         ActionIconCommand ??= new Command(() => OnTapped(null, EventArgs.Empty));
     }
-    
-    private static void ItemsSourceChanged(BindableObject bindable, object oldValue, object newValue) => ((CfPickerMultipleSelection)bindable).UpdateItemsSourceView();
+
+    private static DataTemplate CreateItemTemplate()
+    {
+        return new DataTemplate(() =>
+        {
+            var label = new Label
+            {
+                FontSize = 14,
+                VerticalOptions = LayoutOptions.Center
+            };
+            label.SetBinding(Microsoft.Maui.Controls.Label.TextProperty, ".");
+            label.SetAppThemeColor(Microsoft.Maui.Controls.Label.TextColorProperty,
+                ResourceHelper.GetResource<Color>("Gray900"),
+                ResourceHelper.GetResource<Color>("Gray900"));
+
+            var border = new Border
+            {
+                StrokeShape = new RoundRectangle { CornerRadius = 12 },
+                Padding = new Thickness(4),
+                StrokeThickness = 0,
+                Margin = new Thickness(0, 0, 6, 8),
+                Content = label
+            };
+            border.SetAppThemeColor(Microsoft.Maui.Controls.Label.TextColorProperty,
+                ResourceHelper.GetResource<Color>("Gray100"),
+                ResourceHelper.GetResource<Color>("Gray100"));
+
+            return border;
+        });
+    }
+
+    private static void ItemsSourceChanged(BindableObject bindable, object oldValue, object newValue) =>
+        ((CfPickerMultipleSelection)bindable).UpdateItemsSourceView();
 
     private async void UpdateItemsSourceView()
     {
         if (_collectionPopup?.ItemsSource?.Count > 0 && DeviceInfo.Platform == DevicePlatform.iOS)
         {
-            // On iOS, we need to close the popup before showing a new one to avoid issues with the collection view.
-            await _collectionPopup.CloseAsync().ContinueWith(_ => 
+            await _collectionPopup.CloseAsync().ContinueWith(_ =>
             {
                 MainThread.BeginInvokeOnMainThread(() => OnTapped(null, EventArgs.Empty));
             });
         }
     }
-    
+
     private static void SelectedItemsPropertyChanged(BindableObject bindable, object oldValue, object newValue)
     {
         var selectableItemsView = (CfPickerMultipleSelection)bindable;
@@ -135,7 +209,7 @@ public partial class CfPickerMultipleSelection
         {
             return;
         }
-        
+
         foreach (var item in SelectedItems)
         {
             var displayValue = item.GetDisplayString(ItemDisplay);
@@ -144,16 +218,11 @@ public partial class CfPickerMultipleSelection
                 SelectedStrings.Add(displayValue);
             }
         }
-    
+
         OnPropertyChanged(nameof(SelectedStrings));
-        // MainLayout.InvalidateMeasure();
-        // MainLayout.PlatformSizeChanged();
-        // InvalidateMeasure();
-        // PlatformSizeChanged();
-        // PlatformSizeChangedCanvasView();
         InvalidateSurfaceForCanvasView();
     }
-    
+
     private async void OnTapped(object? sender, EventArgs e)
     {
         _collectionPopup = new CfCollectionMultiSelectionPopup
@@ -164,12 +233,12 @@ public partial class CfPickerMultipleSelection
             SelectedItems = SelectedItems,
             ItemDisplay = ItemDisplay
         };
-        
+
         _collectionPopup.Closed += (_, _) =>
         {
             SelectionChangedCommand?.Execute(null);
         };
-        
+
         _collectionPopup.SetBinding(CfCollectionMultiSelectionPopup.ItemsSourceProperty, path: nameof(ItemsSource));
         _collectionPopup.SetBinding(CfCollectionMultiSelectionPopup.SelectedItemsProperty, path: nameof(SelectedItems));
 

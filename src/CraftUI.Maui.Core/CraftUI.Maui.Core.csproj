@@ -58,61 +58,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <MauiXaml Update="Controls\Button\CfButton.xaml">
-        <SubType>Designer</SubType>
-      </MauiXaml>
-      <MauiXaml Update="Controls\DatePicker\CfDatePicker.xaml">
-        <SubType>Designer</SubType>
-      </MauiXaml>
-      <MauiXaml Update="Controls\InputTextLayout\InputTextLayout.xaml">
-        <SubType>Designer</SubType>
-      </MauiXaml>
-      <MauiXaml Update="Controls\Entry\CfEntry.xaml">
-        <SubType>Designer</SubType>
-      </MauiXaml>
-      <MauiXaml Update="Controls\Picker\CfPicker.xaml">
-        <SubType>Designer</SubType>
-      </MauiXaml>
-      <MauiXaml Update="Controls\PickerMultipleSelection\CfPickerMultipleSelection.xaml">
-        <SubType>Designer</SubType>
-      </MauiXaml>
-      <MauiXaml Update="Controls\PickerSingleSelection\CfPickerSingleSelection.xaml">
-        <SubType>Designer</SubType>
-      </MauiXaml>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Compile Update="Controls\Button\CfButton.xaml.cs">
-        <DependentUpon>CfButton.xaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
-      <Compile Update="Controls\DatePicker\CfDatePicker.xaml.cs">
-        <DependentUpon>CfDatePicker.xaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
-      <Compile Update="Controls\InputTextLayout\InputTextLayout.xaml.cs">
-        <DependentUpon>LabelBase.xaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
-      <Compile Update="Controls\Entry\CfEntry.xaml.cs">
-        <DependentUpon>CfEntry.xaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
-      <Compile Update="Controls\Picker\CfPicker.xaml.cs">
-        <DependentUpon>CfPicker.xaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
-      <Compile Update="Controls\PickerMultipleSelection\CfPickerMultipleSelection.xaml.cs">
-        <DependentUpon>CfPickerMultipleSelection.xaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
-      <Compile Update="Controls\PickerSingleSelection\CfPickerSingleSelection.xaml.cs">
-        <DependentUpon>CfPickerSingleSelection.xaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
-    </ItemGroup>
-
-    <ItemGroup>
       <AdditionalFiles Include="Popups\CfCollectionMultiSelectionPopup.xaml" />
       <AdditionalFiles Include="Popups\CfCollectionSingleSelectionPopup.xaml" />
     </ItemGroup>

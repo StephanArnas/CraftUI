@@ -5,6 +5,6 @@
                     xmlns:keys="clr-namespace:CraftUI.Maui.Core.Common.Resources"
                     x:Class="CraftUI.Maui.Core.Resources.Styles.Colors">
     
-    <Color x:Name="TestColor" x:Key="TestColor">Red</Color>
+    <Color x:Key="TestColor">Red</Color>
     
 </ResourceDictionary>
