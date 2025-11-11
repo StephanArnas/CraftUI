@@ -1,4 +1,4 @@
-namespace CraftUI.Maui.Common.Extensions;
+namespace CraftUI.Maui.Core.Common.Extensions;
 
 public static class BaseLabelExtension
 {

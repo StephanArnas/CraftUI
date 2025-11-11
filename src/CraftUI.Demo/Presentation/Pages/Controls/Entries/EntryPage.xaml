@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:base="clr-namespace:CraftUI.Demo.Presentation.Common"
     xmlns:page="clr-namespace:CraftUI.Demo.Presentation.Pages.Controls.Entries"
-    xmlns:controls="clr-namespace:CraftUI.Library.Maui.Controls;assembly=CraftUI.Library.Maui"
+    xmlns:entry="clr-namespace:CraftUI.Maui.Core.Controls.Entry;assembly=CraftUI.Maui.Core"
     x:Class="CraftUI.Demo.Presentation.Pages.Controls.Entries.EntryPage"
     x:DataType="page:EntryPageViewModel"
     Title="Entry Demo">
@@ -16,7 +16,7 @@
                 Margin="16, 32"
                 Spacing="25">
                 
-                <controls:CfEntry
+                <entry:CfEntry
                     Label="First name or Last name"
                     Text="{Binding FullName, Mode=TwoWay}"
                     Error="{Binding ValidationResult, 
@@ -27,7 +27,7 @@
                     ActionIconSource="demo_info.png" 
                     ActionIconCommand="{Binding FullnameInfoCommand}"/>
 
-                <controls:CfEntry
+                <entry:CfEntry
                     Label="Email"
                     Text="{Binding Email, Mode=TwoWay}"
                     Error="{Binding ValidationResult, 
@@ -38,7 +38,7 @@
                     Placeholder="E.g: john.doe@gmail.com"
                     ReturnCommand="{Binding SaveCommand}"/>
                 
-                <controls:CfEntry
+                <entry:CfEntry
                     Label="Website"
                     Text="{Binding WebsiteLoader.Result}"
                     IsLoading="{Binding WebsiteLoader.ShowLoader}"
@@ -46,7 +46,7 @@
                     ActionIconSource="demo_new_window.png"
                     ActionIconCommand="{Binding OpenWebsiteCommand}" />
 
-                <controls:CfEntry
+                <entry:CfEntry
                     Label="Country"
                     IsEnabled="False"
                     Text="France" />

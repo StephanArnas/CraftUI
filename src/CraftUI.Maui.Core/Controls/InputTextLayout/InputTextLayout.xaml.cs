@@ -1,9 +1,9 @@
 using System.Windows.Input;
-using CraftUI.Maui.Common.Helpers;
+using CraftUI.Maui.Core.Common.Helpers;
 using SkiaSharp;
 using SkiaSharp.Views.Maui;
 
-namespace CraftUI.Maui.Controls.InputTextLayout;
+namespace CraftUI.Maui.Core.Controls.InputTextLayout;
 
 public partial class InputTextLayout
 {

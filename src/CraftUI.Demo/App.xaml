@@ -1,8 +1,9 @@
 ﻿<?xml version = "1.0" encoding = "UTF-8" ?>
-<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:converters="clr-namespace:CraftUI.Library.Maui.Converters;assembly=CraftUI.Library.Maui"
-             x:Class="CraftUI.Demo.App">
+<Application 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:CraftUI.Maui.Core.Converters;assembly=CraftUI.Maui.Core"
+    x:Class="CraftUI.Demo.App">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

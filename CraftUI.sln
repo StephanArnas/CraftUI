@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CraftUI.Demo", "src\CraftUI.Demo\CraftUI.Demo.csproj", "{350C190D-BE1F-4998-B849-47C79B8407E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CraftUI.Maui", "src\CraftUI.Maui\CraftUI.Maui.csproj", "{050FEBD3-B53F-414B-9AFC-5E5C2F202858}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CraftUI.Maui.Core", "src\CraftUI.Maui.Core\CraftUI.Maui.Core.csproj", "{050FEBD3-B53F-414B-9AFC-5E5C2F202858}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CraftUI.Demo.Application", "src\CraftUI.Demo.Application\CraftUI.Demo.Application.csproj", "{91F72502-ADC1-499A-B8C4-712FA1E3D726}"
 EndProject

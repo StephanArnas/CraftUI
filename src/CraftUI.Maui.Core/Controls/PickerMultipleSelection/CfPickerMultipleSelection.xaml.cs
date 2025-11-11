@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using CommunityToolkit.Maui.Extensions;
-using CraftUI.Maui.Common;
-using CraftUI.Maui.Common.Extensions;
-using CraftUI.Maui.Popups;
+using CraftUI.Maui.Core.Common;
+using CraftUI.Maui.Core.Common.Extensions;
+using CraftUI.Maui.Core.Popups;
 
-namespace CraftUI.Maui.Controls.PickerMultipleSelection;
+namespace CraftUI.Maui.Core.Controls.PickerMultipleSelection;
 
 public partial class CfPickerMultipleSelection
 {

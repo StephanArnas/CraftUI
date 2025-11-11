@@ -103,7 +103,7 @@ public partial class EntryPageViewModel : ViewModelBase
     {
         _logger.LogInformation("OpenWebsite()");
 
-        if (WebsiteLoader.ShowResult)
+        if (WebsiteLoader.ShowResult &&  !string.IsNullOrEmpty(WebsiteLoader.Result))
         {
             await Launcher.OpenAsync(uri: new Uri(WebsiteLoader.Result));
         }

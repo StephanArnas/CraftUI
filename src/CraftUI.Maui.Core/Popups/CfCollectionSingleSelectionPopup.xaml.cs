@@ -1,9 +1,8 @@
 using System.Collections;
-using CraftUI.Library.Maui.MarkupExtensions;
-using CraftUI.Maui.Common;
-using CraftUI.Maui.Common.Helpers;
+using CraftUI.Maui.Core.Common;
+using CraftUI.Maui.Core.Common.Helpers;
 
-namespace CraftUI.Maui.Popups;
+namespace CraftUI.Maui.Core.Popups;
 
 public partial class CfCollectionSingleSelectionPopup
 {

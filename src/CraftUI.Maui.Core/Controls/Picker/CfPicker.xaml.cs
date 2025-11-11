@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Windows.Input;
-using CraftUI.Maui.Common.Extensions;
+using CraftUI.Maui.Core.Common.Extensions;
 
-namespace CraftUI.Maui.Controls.Picker;
+namespace CraftUI.Maui.Core.Controls.Picker;
 
 public partial class CfPicker
 {

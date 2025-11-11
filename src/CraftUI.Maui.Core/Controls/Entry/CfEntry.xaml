@@ -2,11 +2,12 @@
 <inputTextLayout:InputTextLayout 
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:inputTextLayout="clr-namespace:CraftUI.Maui.Controls.InputTextLayout"
-    x:Class="CraftUI.Maui.Controls.Entry.CfEntry">
+    xmlns:inputTextLayout="clr-namespace:CraftUI.Maui.Core.Controls.InputTextLayout"
+    xmlns:keys="clr-namespace:CraftUI.Maui.Core.Common.Resources"
+    x:Class="CraftUI.Maui.Core.Controls.Entry.CfEntry">
     
     <inputTextLayout:InputTextLayout.View>
-        <Entry x:Name="Element" />
+        <Entry x:Name="Element" TextColor="{StaticResource TestColor}" />
     </inputTextLayout:InputTextLayout.View>
     
 </inputTextLayout:InputTextLayout>

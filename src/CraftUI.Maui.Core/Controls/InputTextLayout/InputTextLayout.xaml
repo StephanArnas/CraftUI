@@ -6,7 +6,7 @@
     xmlns:controls="clr-namespace:Microsoft.Maui.Controls;assembly=Microsoft.Maui.Controls"
     xmlns:xaml="clr-namespace:Microsoft.Maui.Controls.Xaml;assembly=Microsoft.Maui.Controls.Xaml"
     RowDefinitions="Auto,Auto,Auto"
-    x:Class="CraftUI.Maui.Controls.InputTextLayout.InputTextLayout"
+    x:Class="CraftUI.Maui.Core.Controls.InputTextLayout.InputTextLayout"
     Margin="0, 10, 0, 0">
        
    <Grid.Resources>

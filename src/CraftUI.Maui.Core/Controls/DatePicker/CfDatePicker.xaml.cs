@@ -1,4 +1,4 @@
-namespace CraftUI.Maui.Controls.DatePicker;
+namespace CraftUI.Maui.Core.Controls.DatePicker;
 
 public partial class CfDatePicker
 {

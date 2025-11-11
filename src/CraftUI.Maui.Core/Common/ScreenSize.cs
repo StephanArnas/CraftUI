@@ -1,4 +1,4 @@
-namespace CraftUI.Maui.Common;
+namespace CraftUI.Maui.Core.Common;
 
 public static class ScreenSize
 {

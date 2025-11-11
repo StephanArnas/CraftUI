@@ -1,7 +1,9 @@
-namespace CraftUI.Maui.Common.Resources;
+namespace CraftUI.Maui.Core.Common.Resources;
 
 public static class ColorResources
 {
+    public const string TestColor = nameof(TestColor);
+
     public const string Primary50 = "Primary50";
     public const string Primary100 = "Primary100";
     public const string Primary200 = "Primary200";

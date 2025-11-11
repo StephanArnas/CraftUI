@@ -1,7 +1,7 @@
 using System.Globalization;
 using FluentValidation.Results;
 
-namespace CraftUI.Maui.Converters;
+namespace CraftUI.Maui.Core.Converters;
 
 public class ShowErrorConverter : IValueConverter
 {

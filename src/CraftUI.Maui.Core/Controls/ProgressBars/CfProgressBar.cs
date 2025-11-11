@@ -1,9 +1,9 @@
-using CraftUI.Maui.Common.Resources;
+using CraftUI.Maui.Core.Common.Resources;
 using SkiaSharp;
 using SkiaSharp.Views.Maui;
 using SkiaSharp.Views.Maui.Controls;
 
-namespace CraftUI.Maui.Controls.ProgressBars;
+namespace CraftUI.Maui.Core.Controls.ProgressBars;
 
 // Source: https://github.com/ewerspej/epj.SaProgressBar.Maui
 

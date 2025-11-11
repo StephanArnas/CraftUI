@@ -3,8 +3,8 @@
 <inputTextLayout:InputTextLayout 
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:inputTextLayout="clr-namespace:CraftUI.Maui.Controls.InputTextLayout"
-    x:Class="CraftUI.Maui.Controls.Picker.CfPicker">
+    xmlns:inputTextLayout="clr-namespace:CraftUI.Maui.Core.Controls.InputTextLayout"
+    x:Class="CraftUI.Maui.Core.Controls.Picker.CfPicker">
     
     <inputTextLayout:InputTextLayout.Resources>
         <Style x:Key="PickerLabel" TargetType="Picker">

@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:base="clr-namespace:CraftUI.Demo.Presentation.Common"
     xmlns:page="clr-namespace:CraftUI.Demo.Presentation.Pages.Controls.Pickers"
-    xmlns:controls="clr-namespace:CraftUI.Library.Maui.Controls;assembly=CraftUI.Library.Maui"
+    xmlns:picker="clr-namespace:CraftUI.Maui.Core.Controls.PickerSingleSelection;assembly=CraftUI.Maui.Core"
     Title="Picker with Popup Demo"
     x:DataType="page:PickerPageViewModel"
     x:Class="CraftUI.Demo.Presentation.Pages.Controls.Pickers.PickerPopupPage">
@@ -16,16 +16,15 @@
                 Margin="16, 32"
                 Spacing="25">
                 
-                <controls:CfPickerSingleSelection
+                <picker:CfPickerSingleSelection
                     Label="Country"
-                    
                     SelectedItem="{Binding Country}"
                     ItemsSource="{Binding CountriesLoader.Result}" 
                     ItemDisplay="{x:Static page:PickerPageViewModel.CountryDisplayProperty}"
                     TapCommand="{Binding CountrySelectedCommand}"
                     IsLoading="{Binding CountriesLoader.ShowLoader}"/>
                 
-                <controls:CfPickerSingleSelection
+                <picker:CfPickerSingleSelection
                     Label="City"
                     SelectedItem="{Binding City}"
                     ItemsSource="{Binding CitiesLoader.Result}"

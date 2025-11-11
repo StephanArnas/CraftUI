@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Windows.Input;
 using CommunityToolkit.Maui.Extensions;
-using CraftUI.Maui.Common.Extensions;
-using CraftUI.Maui.Popups;
+using CraftUI.Maui.Core.Common.Extensions;
+using CraftUI.Maui.Core.Popups;
 
-namespace CraftUI.Maui.Controls.PickerSingleSelection;
+namespace CraftUI.Maui.Core.Controls.PickerSingleSelection;
 
 public partial class CfPickerSingleSelection
 {

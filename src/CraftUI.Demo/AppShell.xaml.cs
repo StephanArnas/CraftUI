@@ -1,4 +1,4 @@
-﻿using CraftUI.Library.Maui.Common.Helpers;
+﻿using CraftUI.Maui.Core.Common.Helpers;
 
 namespace CraftUI.Demo;
 

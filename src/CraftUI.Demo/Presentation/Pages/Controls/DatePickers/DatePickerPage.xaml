@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:base="clr-namespace:CraftUI.Demo.Presentation.Common"
     xmlns:page="clr-namespace:CraftUI.Demo.Presentation.Pages.Controls.DatePickers"
-    xmlns:controls="clr-namespace:CraftUI.Library.Maui.Controls;assembly=CraftUI.Library.Maui"
+    xmlns:datePicker="clr-namespace:CraftUI.Maui.Core.Controls.DatePicker;assembly=CraftUI.Maui.Core"
     x:Class="CraftUI.Demo.Presentation.Pages.Controls.DatePickers.DatePickerPage"
     x:DataType="page:DatePickerPageViewModel"
     Title="Date Picker Demo">
@@ -16,17 +16,17 @@
                 Margin="16, 32"
                 Spacing="25">
                 
-                <controls:CfDatePicker 
+                <datePicker:CfDatePicker 
                     Label="Select a date"
                     NullableDate="{Binding Date}"
                     ShowClearButton="False"  />
                 
-                <controls:CfDatePicker 
+                <datePicker:CfDatePicker 
                     Label="Select a date (nullable)"
                     NullableDate="{Binding DateNullable}"
                     ShowClearButton="True" />
 
-                <controls:CfDatePicker 
+                <datePicker:CfDatePicker 
                     Label="Select a date (with min/max)"
                     NullableDate="{Binding RangeDateNullable}"
                     MinimumDate="{Binding MinimumDate}"

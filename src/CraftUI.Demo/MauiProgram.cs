@@ -1,5 +1,4 @@
 ﻿using CraftUI.Demo.Infrastructure;
-using CraftUI.Library.Maui;
 using CraftUI.Demo.Services;
 using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
@@ -13,6 +12,7 @@ using CraftUI.Demo.Presentation.Pages.Controls.Pickers;
 using CraftUI.Demo.Presentation.Pages.Controls.ProgressBars;
 using CraftUI.Demo.Presentation.Pages.Settings;
 using CraftUI.Demo.Presentation.Pages.UseCases;
+using CraftUI.Maui.Core;
 using Microsoft.Maui.Controls.Shapes;
 
 namespace CraftUI.Demo;

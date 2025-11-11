@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Specialized;
-using CraftUI.Maui.Controls.PickerMultipleSelection;
+using CraftUI.Maui.Core.Controls.PickerMultipleSelection;
 
-namespace CraftUI.Maui.Common;
+namespace CraftUI.Maui.Core.Common;
 
 internal class SelectionList : IList<object>
 {

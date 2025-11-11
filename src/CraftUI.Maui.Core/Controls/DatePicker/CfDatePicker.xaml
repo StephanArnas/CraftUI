@@ -3,22 +3,22 @@
 <inputTextLayout:InputTextLayout 
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:datePicker="clr-namespace:CraftUI.Maui.Controls.DatePicker"
-    xmlns:inputTextLayout="clr-namespace:CraftUI.Maui.Controls.InputTextLayout"
-    x:Class="CraftUI.Maui.Controls.DatePicker.CfDatePicker">
+    xmlns:inputTextLayout="clr-namespace:CraftUI.Maui.Core.Controls.InputTextLayout"
+    xmlns:datePicker1="clr-namespace:CraftUI.Maui.Core.Controls.DatePicker"
+    x:Class="CraftUI.Maui.Core.Controls.DatePicker.CfDatePicker">
     
-    <datePicker:CfDatePicker.Resources>
+    <datePicker1:CfDatePicker.Resources>
         <Style TargetType="Image" x:Key="ClosePopupImage">
             <Setter Property="WidthRequest" Value="26" />
             <Setter Property="HeightRequest" Value="26" />
             <Setter Property="HorizontalOptions" Value="End" />
         </Style>
-    </datePicker:CfDatePicker.Resources>
+    </datePicker1:CfDatePicker.Resources>
     
     <inputTextLayout:InputTextLayout.View>
         <Grid ColumnDefinitions="*,Auto">
             
-            <datePicker:CfDatePickerInternal 
+            <datePicker1:CfDatePickerInternal 
                 x:Name="Element"  />
             
             <Image

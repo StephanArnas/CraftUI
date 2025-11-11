@@ -6,7 +6,7 @@ using CraftUI.Demo.Application.Common.Interfaces.Infrastructure;
 using CraftUI.Demo.Application.Common.Interfaces.Services;
 using CraftUI.Demo.Application.Countries;
 using CraftUI.Demo.Presentation.Common;
-using CraftUI.Library.Maui.Common.Extensions;
+using CraftUI.Maui.Core.Common.Extensions;
 using Microsoft.Extensions.Logging;
 using Sharpnado.TaskLoaderView;
 

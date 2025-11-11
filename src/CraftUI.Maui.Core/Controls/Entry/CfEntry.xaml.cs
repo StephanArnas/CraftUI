@@ -1,9 +1,9 @@
 using System.Windows.Input;
-using CraftUI.Maui.Common.Extensions;
+using CraftUI.Maui.Core.Common.Extensions;
 
-namespace CraftUI.Maui.Controls.Entry;
+namespace CraftUI.Maui.Core.Controls.Entry;
 
-public partial class CfEntry
+public partial class CfEntry : InputTextLayout.InputTextLayout
 {
     public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(CfEntry), propertyChanged: TextChanged, defaultBindingMode: BindingMode.TwoWay);
     public static readonly BindableProperty PlaceholderProperty = BindableProperty.Create(nameof(Placeholder), typeof(string), typeof(CfEntry), propertyChanged: PlaceholderChanged);

@@ -1,4 +1,4 @@
-namespace CraftUI.Maui.Controls.DatePicker;
+namespace CraftUI.Maui.Core.Controls.DatePicker;
 
 /// <summary>
 /// This control exists to avoid the issue of DatePicker setting the date today when the date is set today.

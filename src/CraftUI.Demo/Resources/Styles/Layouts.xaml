@@ -1,6 +1,5 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                    xmlns:markup="clr-namespace:CraftUI.Library.Maui.MarkupExtensions;assembly=CraftUI.Library.Maui">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     
     <Style x:Key="RootGrid" TargetType="Grid">
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource PageBackground}, Dark={StaticResource PageBackgroundDark}}" />
@@ -10,7 +9,7 @@
         <Setter Property="VerticalOptions" Value="End" />
         <Setter Property="Spacing" Value="20" />
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Surface}, Dark={StaticResource SurfaceDark}}" />
-        <Setter Property="Padding" Value="{markup:Gutter All=1}" />
+        <Setter Property="Padding" Value="16" />
     </Style>
     
     <Style x:Key="CollectionViewItemHorizontalStackLayout" TargetType="HorizontalStackLayout">

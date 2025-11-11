@@ -2,9 +2,50 @@
 
     <PropertyGroup>
         <TargetFrameworks>net9.0;net9.0-android;net9.0-ios;net9.0-maccatalyst</TargetFrameworks>
+        <RootNamespace>CraftUI.Maui.Core</RootNamespace>
+        <UseMaui>true</UseMaui>
+        <UseMauiCompat>false</UseMauiCompat>
+        <SingleProject>true</SingleProject>
+        <AssemblyName>CraftUI.Maui.Core</AssemblyName>
+        <AssemblyTitle>CraftUI.Maui.Core</AssemblyTitle>
+
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <LangVersion>latest</LangVersion>
+        <LangVersion>latest</LangVersion>        
+
+        <Platforms>AnyCPU</Platforms>
+        <Version>1.0.0</Version>
+        <AssemblyVersion>1.0.0</AssemblyVersion>
+        <FileVersion>1.0.0.0</FileVersion>
+        <Company>Arnas Software Inc.</Company>
+        <Authors>Arnas Software Inc.</Authors>
+        <Copyright>Copyright 2022 - 2025 Arnas Software Inc.</Copyright>
+
+        <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+        <DebugType>portable</DebugType>
+        <OutputType>Library</OutputType>
+
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageIcon>craftui_logo.png</PackageIcon>
+        <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+        <PackageProjectUrl>https://github.com/StephanArnas/CraftUI</PackageProjectUrl>
+        <PackageReleaseNotes>https://github.com/StephanArnas/CraftUI/releases</PackageReleaseNotes>
+        <Description>This package contains the Craft UI controls for .NET MAUI</Description>
+        <PackageTags>craftui;maui;ios;android;maccatalyst;dotnet-maui;craftui-maui</PackageTags>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">15.0</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">15.0</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(TargetFramework)' == 'net9.0' or '$(TargetFramework)' == 'net9.0-android' or '$(TargetFramework)' == 'net9.0-ios' or '$(TargetFramework)' == 'net9.0-maccatalyst'">
+        <IsAotCompatible>true</IsAotCompatible>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(TargetFramework)' == 'net9.0-android' ">
+        <AndroidGenerateResourceDesigner>false</AndroidGenerateResourceDesigner>
+        <AndroidUseIntermediateDesignerFile>false</AndroidUseIntermediateDesignerFile>
     </PropertyGroup>
 
     <ItemGroup>
@@ -74,6 +115,16 @@
     <ItemGroup>
       <AdditionalFiles Include="Popups\CfCollectionMultiSelectionPopup.xaml" />
       <AdditionalFiles Include="Popups\CfCollectionSingleSelectionPopup.xaml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Resources\Images\" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="..\..\LICENSE.txt" Link="LICENSE.txt" Pack="true" PackagePath="" />
+        <None Include="..\..\craftui_logo.png" Link="craftui_logo.png" Pack="true" PackagePath="" />
+        <None Include="..\..\README.md" Link="README.md" Pack="true" PackagePath="" />
     </ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
 using System.Windows.Input;
 
-namespace CraftUI.Maui.Controls.Button;
+namespace CraftUI.Maui.Core.Controls.Button;
 
 public partial class CfButton
 {
@@ -76,16 +76,8 @@ public partial class CfButton
             Button.Text = Text;
         }
     }
-    
+
     private static void IsLoadingChanged(BindableObject bindable, object oldValue, object newValue) => ((CfButton)bindable).UpdateIsLoadingView();
-    
-    private void Button_OnClicked(object? sender, EventArgs e)
-    {
-        if (Command != null && Command.CanExecute(CommandParameter))
-        {
-            Command.Execute(CommandParameter);
-        }
-    }
     
     private void UpdateIsLoadingView()
     {
@@ -101,6 +93,14 @@ public partial class CfButton
         {
             this.AbortAnimation(handle: LowerKey);
             this.AbortAnimation(handle: UpperKey);
+        }
+    }
+    
+    private void Button_OnClicked(object? sender, EventArgs e)
+    {
+        if (Command != null && Command.CanExecute(CommandParameter))
+        {
+            Command.Execute(CommandParameter);
         }
     }
 }

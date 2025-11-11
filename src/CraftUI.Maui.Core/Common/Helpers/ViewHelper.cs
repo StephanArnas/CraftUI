@@ -1,4 +1,4 @@
-namespace CraftUI.Maui.Common.Helpers;
+namespace CraftUI.Maui.Core.Common.Helpers;
 
 public static class ViewHelper
 {

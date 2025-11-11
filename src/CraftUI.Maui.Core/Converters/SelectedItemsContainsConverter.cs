@@ -1,7 +1,7 @@
 using System.Globalization;
-using CraftUI.Maui.Popups;
+using CraftUI.Maui.Core.Popups;
 
-namespace CraftUI.Maui.Converters;
+namespace CraftUI.Maui.Core.Converters;
 
 public class SelectedItemsContainsConverter : IValueConverter
 {
