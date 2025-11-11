@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Grid 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:skia="clr-namespace:SkiaSharp.Views.Maui.Controls;assembly=SkiaSharp.Views.Maui.Controls"
+    xmlns:controls="clr-namespace:Microsoft.Maui.Controls;assembly=Microsoft.Maui.Controls"
+    xmlns:xaml="clr-namespace:Microsoft.Maui.Controls.Xaml;assembly=Microsoft.Maui.Controls.Xaml"
+    RowDefinitions="Auto,Auto,Auto"
+    x:Class="CraftUI.Maui.Controls.InputTextLayout.InputTextLayout"
+    Margin="0, 10, 0, 0">
+       
+   <Grid.Resources>
+       <Style x:Key="BaseLabel" TargetType="Label">
+           <Setter Property="Padding" Value="4, 0" />
+           <Setter Property="Margin" Value="12, 0, 0, 0" />
+           <Setter Property="FontSize" Value="12" />
+           <Setter Property="HorizontalOptions" Value="Start" />
+           <Setter Property="VerticalOptions" Value="Start" />
+       </Style>
+       <Style x:Key="BaseLabelLabel" BasedOn="{xaml:StaticResource BaseLabel}" TargetType="Label">
+           <Setter Property="TextColor" Value="{xaml:AppThemeBinding 
+            Light={xaml:StaticResource Gray900}, 
+            Dark={xaml:StaticResource Gray100}}" />
+           <Setter Property="FontSize" Value="14"/>
+           <Setter Property="FontAttributes" Value="Bold"/>
+           <Setter Property="Margin" Value="0, 4, 0, 4" />
+       </Style>
+       <Style x:Key="BaseRequiredLabelLabel" BasedOn="{xaml:StaticResource BaseLabelLabel}" TargetType="Label">
+           <Setter Property="TextColor" Value="{xaml:DynamicResource Danger }" />
+           <Setter Property="Margin" Value="4, 0, -4, 0" />
+       </Style>
+       <Style x:Key="BaseBorder" TargetType="Border">
+           <Setter Property="Padding" Value="8, 4" />
+           <Setter Property="Stroke" Value="Transparent" />
+           <Setter Property="StrokeShape" Value="RoundRectangle 4" />
+           <Setter Property="StrokeThickness" Value="0" />
+       </Style>
+   </Grid.Resources>
+    
+   <HorizontalStackLayout VerticalOptions="Start"  Margin="12, -13, 0, 0">
+        <Label x:Name="RequiredLabel" 
+           Text="*"
+           Style="{xaml:StaticResource BaseRequiredLabelLabel}" />
+
+        <Label x:Name="LabelLabel" 
+            Style="{xaml:StaticResource BaseLabelLabel}" />
+   </HorizontalStackLayout>
+    
+    <skia:SKCanvasView x:Name="BorderCanvasView"
+        PaintSurface="OnCanvasViewPaintSurface" />
+
+    <Border x:Name="BorderLabel" 
+         Style="{xaml:StaticResource BaseBorder}" />
+
+    <Label x:Name="InfoLabel" controls:Grid.Row="1"
+        IsVisible="False"
+        TextColor="{xaml:DynamicResource Gray500}"
+        Style="{xaml:StaticResource BaseLabelLabel}" />
+
+    <Label x:Name="ErrorLabel" controls:Grid.Row="2"
+        IsVisible="False"
+        TextColor="{xaml:DynamicResource Danger}"
+        Style="{xaml:StaticResource BaseLabelLabel}"/>
+    
+    <ActivityIndicator 
+        x:Name="LoaderActivityIndicator"
+        IsVisible="False"
+        IsRunning="False"
+        HorizontalOptions="End"
+        VerticalOptions="Center"
+        WidthRequest="24"
+        HeightRequest="24"
+        Margin="0,0, 8, 0"
+        Color="{xaml:AppThemeBinding 
+            Light={xaml:StaticResource Primary600}, 
+            Dark={xaml:StaticResource Primary400}}"/>
+    
+    <Image
+        x:Name="ActionIconButton"
+        IsVisible="False"
+        HorizontalOptions="End"
+        VerticalOptions="Center"
+        WidthRequest="24"
+        HeightRequest="24"
+        Margin="0, 0, 8, 0">
+        <controls:Image.GestureRecognizers>
+            <controls:TapGestureRecognizer Tapped="OnActionIconTapped" />
+        </controls:Image.GestureRecognizers>
+    </Image>
+    
+</Grid>

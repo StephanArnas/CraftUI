@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<inputTextLayout:InputTextLayout 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:inputTextLayout="clr-namespace:CraftUI.Maui.Controls.InputTextLayout"
+    x:Class="CraftUI.Maui.Controls.Entry.CfEntry">
+    
+    <inputTextLayout:InputTextLayout.View>
+        <Entry x:Name="Element" />
+    </inputTextLayout:InputTextLayout.View>
+    
+</inputTextLayout:InputTextLayout>
