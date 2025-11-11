@@ -1,51 +1,44 @@
 using System.Collections;
+using System.Windows.Input;
 
 namespace CraftUI.Maui.Core.Controls.Picker;
 
 public class CfPicker : InputTextLayout.InputTextLayout
 {
-    public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(
-        nameof(ItemsSource),
-        typeof(IList),
-        typeof(CfPicker),
-        defaultValue: null,
-        propertyChanged: OnItemsSourceChanged);
+    public static readonly BindableProperty ItemsSourceProperty =
+        BindableProperty.Create(
+            nameof(ItemsSource),
+            typeof(IList),
+            typeof(CfPicker),
+            propertyChanged: OnItemsSourceChanged);
 
-    public static readonly BindableProperty SelectedIndexProperty = BindableProperty.Create(
-        nameof(SelectedIndex),
-        typeof(int),
-        typeof(CfPicker),
-        defaultValue: -1,
-        defaultBindingMode: BindingMode.TwoWay,
-        propertyChanged: OnSelectedIndexChanged);
+    public static readonly BindableProperty SelectedItemProperty =
+        BindableProperty.Create(
+            nameof(SelectedItem),
+            typeof(object),
+            typeof(CfPicker),
+            defaultValue: null,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: OnSelectedItemChanged);
 
-    public static readonly BindableProperty SelectedItemProperty = BindableProperty.Create(
-        nameof(SelectedItem),
-        typeof(object),
-        typeof(CfPicker),
-        defaultValue: null,
-        defaultBindingMode: BindingMode.TwoWay,
-        propertyChanged: OnSelectedItemChanged);
+    public static readonly BindableProperty ItemDisplayProperty =
+        BindableProperty.Create(
+            nameof(ItemDisplay),
+            typeof(string),
+            typeof(CfPicker),
+            propertyChanged: OnItemDisplayBindingChanged,
+            defaultBindingMode: BindingMode.OneWay);
 
-    public static readonly BindableProperty TitleProperty = BindableProperty.Create(
-        nameof(Title),
-        typeof(string),
-        typeof(CfPicker),
-        defaultValue: null,
-        propertyChanged: OnTitleChanged);
-
-    private readonly Microsoft.Maui.Controls.Picker _element;
+    public static readonly BindableProperty SelectionChangedCommandProperty =
+        BindableProperty.Create(
+            nameof(SelectionChangedCommand),
+            typeof(ICommand),
+            typeof(CfPicker));
 
     public IList ItemsSource
     {
         get => (IList)GetValue(ItemsSourceProperty);
         set => SetValue(ItemsSourceProperty, value);
-    }
-
-    public int SelectedIndex
-    {
-        get => (int)GetValue(SelectedIndexProperty);
-        set => SetValue(SelectedIndexProperty, value);
     }
 
     public object SelectedItem
@@ -54,11 +47,19 @@ public class CfPicker : InputTextLayout.InputTextLayout
         set => SetValue(SelectedItemProperty, value);
     }
 
-    public string Title
+    public string ItemDisplay
     {
-        get => (string)GetValue(TitleProperty);
-        set => SetValue(TitleProperty, value);
+        get => (string)GetValue(ItemDisplayProperty);
+        set => SetValue(ItemDisplayProperty, value);
     }
+
+    public ICommand? SelectionChangedCommand
+    {
+        get => (ICommand?)GetValue(SelectionChangedCommandProperty);
+        set => SetValue(SelectionChangedCommandProperty, value);
+    }
+
+    private readonly Microsoft.Maui.Controls.Picker _element;
 
     public CfPicker()
     {
@@ -70,63 +71,64 @@ public class CfPicker : InputTextLayout.InputTextLayout
             HorizontalOptions = LayoutOptions.Fill,
             MinimumHeightRequest = 40
         };
-        _element.SetDynamicResource(Microsoft.Maui.Controls.Picker.TextColorProperty, "Gray950");
-        
-        _element.SelectedIndexChanged += OnPickerSelectedIndexChanged;
 
-        var tapGesture = new TapGestureRecognizer();
-        tapGesture.Tapped += OnPickerTapped;
-        _element.GestureRecognizers.Add(tapGesture);
+        _element.SetDynamicResource(Microsoft.Maui.Controls.Picker.TextColorProperty, "Gray950");
+
+        var tap = new TapGestureRecognizer();
+        tap.Tapped += OnPickerTapped;
+        _element.GestureRecognizers.Add(tap);
 
         View = _element;
+
+        OnItemsSourceChanged();
+        OnSelectedItemChanged();
+        OnItemDisplayBindingChanged();
+
+        _element.SelectedIndexChanged += (_, __) =>
+        {
+            if (_element.SelectedItem != SelectedItem)
+            {
+                SelectedItem = _element.SelectedItem;
+            }
+
+            SelectionChangedCommand?.Execute(null);
+        };
     }
 
-    private static void OnItemsSourceChanged(BindableObject bindable, object oldValue, object newValue) =>
-        ((CfPicker)bindable).UpdateItemsSourceView();
+    private void OnPickerTapped(object? sender, EventArgs e)
+    {
+        if (_element.ItemsSource == null || !_element.ItemsSource.Cast<object>().Any())
+        {
+            return;
+        }
 
-    private static void OnSelectedIndexChanged(BindableObject bindable, object oldValue, object newValue) =>
-        ((CfPicker)bindable).UpdateSelectedIndexView();
+        _element.Unfocus();
+        _element.Focus();
+    }
 
-    private static void OnSelectedItemChanged(BindableObject bindable, object oldValue, object newValue) =>
-        ((CfPicker)bindable).UpdateSelectedItemView();
+    private static void OnItemsSourceChanged(BindableObject bindable, object oldValue, object newValue) => ((CfPicker)bindable).OnItemsSourceChanged();
 
-    private static void OnTitleChanged(BindableObject bindable, object oldValue, object newValue) =>
-        ((CfPicker)bindable).UpdateTitleView();
+    private static void OnSelectedItemChanged(BindableObject bindable, object oldValue, object newValue) => ((CfPicker)bindable).OnSelectedItemChanged();
 
-    private void UpdateItemsSourceView()
+    private static void OnItemDisplayBindingChanged(BindableObject bindable, object oldValue, object newValue) => ((CfPicker)bindable).OnItemDisplayBindingChanged();
+
+    private void OnItemsSourceChanged()
     {
         _element.ItemsSource = ItemsSource;
     }
 
-    private void UpdateSelectedIndexView()
+    private void OnSelectedItemChanged()
     {
-        if (_element.SelectedIndex != SelectedIndex)
-        {
-            _element.SelectedIndex = SelectedIndex;
-        }
-    }
-
-    private void UpdateSelectedItemView()
-    {
-        if (_element.SelectedItem != SelectedItem)
+        if (!Equals(_element.SelectedItem, SelectedItem))
         {
             _element.SelectedItem = SelectedItem;
         }
+
+        SelectionChangedCommand?.Execute(null);
     }
 
-    private void UpdateTitleView()
+    private void OnItemDisplayBindingChanged()
     {
-        _element.Title = Title;
-    }
-
-    private void OnPickerSelectedIndexChanged(object? sender, EventArgs e)
-    {
-        SelectedIndex = _element.SelectedIndex;
-        SelectedItem = _element.SelectedItem;
-    }
-
-    private void OnPickerTapped(object? sender, TappedEventArgs e)
-    {
-        _element.Focus();
+        _element.ItemDisplayBinding = !string.IsNullOrWhiteSpace(ItemDisplay) ? new Binding(ItemDisplay) : null;
     }
 }
