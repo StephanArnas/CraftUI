@@ -46,7 +46,6 @@
     <Color x:Key="Primary700">#4338CA</Color>
     <Color x:Key="Primary800">#3730A3</Color>
     <Color x:Key="Primary900">#312E81</Color>
-    <Color x:Key="Primary950">#1E1B4B</Color>
     
     <Color x:Key="Secondary50">#FAF5FF</Color>
     <Color x:Key="Secondary100">#F3E8FF</Color>

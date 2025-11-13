@@ -7,4 +7,6 @@
     
     <Color x:Key="TestColor">Red</Color>
     
+    
+    
 </ResourceDictionary>

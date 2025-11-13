@@ -25,7 +25,7 @@ public static class MauiProgram
         builder
             .UseMauiApp<App>()
             .UseMauiCraftUi()
-            .UseMauiCommunityToolkit(ConfigurePopup)
+            .UseMauiCommunityToolkit()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -110,26 +110,6 @@ public static class MauiProgram
             //handler.PlatformView.Layer.BorderWidth = 0;
             //handler.PlatformView.BorderStyle = UIKit.UITextBorderStyle.None;
 #endif
-        });
-    }
-
-    private static void ConfigurePopup(Options options)
-    {
-        options.SetPopupDefaults(new DefaultPopupSettings
-        {
-            CanBeDismissedByTappingOutsideOfPopup = true,
-            Margin = 0,
-            Padding = 0
-        });
-
-        options.SetPopupOptionsDefaults(new DefaultPopupOptionsSettings
-        {
-            CanBeDismissedByTappingOutsideOfPopup = true,
-            Shape = new RoundRectangle
-            {
-                CornerRadius = new CornerRadius(8),
-                StrokeThickness = 0
-            }
         });
     }
 }

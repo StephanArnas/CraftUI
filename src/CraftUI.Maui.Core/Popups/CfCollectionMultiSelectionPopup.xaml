@@ -8,13 +8,12 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:common="clr-namespace:CraftUI.Maui.Common"
     xmlns:popups="clr-namespace:CraftUI.Maui.Core.Popups"
-    xmlns:common1="clr-namespace:CraftUI.Maui.Core.Common">
+    xmlns:common="clr-namespace:CraftUI.Maui.Core.Common">
     
     <toolkit:Popup.Resources>
         <Style TargetType="Grid" x:Key="BottomPopupRootGrid">
-            <Setter Property="MinimumWidthRequest" Value="{x:Static common1:ScreenSize.WidthScreen}" />
+            <Setter Property="MinimumWidthRequest" Value="{x:Static common:ScreenSize.WidthScreen}" />
             <Setter Property="BackgroundColor" Value="{AppThemeBinding 
                 Light={StaticResource PageBackground}, 
                 Dark={StaticResource PageBackgroundDark}}" />

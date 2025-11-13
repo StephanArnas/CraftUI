@@ -1,7 +1,6 @@
 <ResourceDictionary 
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:button="clr-namespace:CraftUI.Maui.Core.Controls.Button;assembly=CraftUI.Maui.Core">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     
     <Style x:Key="BaseButton" TargetType="Button">
         <Setter Property="FontSize" Value="16" />
@@ -21,16 +20,5 @@
         <Setter Property="TextColor" Value="{StaticResource Primary}" />
         <Setter Property="BackgroundColor" Value="Transparent" />
     </Style>
-
-    <Style x:Key="FilledPrimaryCfButton" TargetType="button:CfButton">
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Surface}, Dark={StaticResource SurfaceDark}}" />
-        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
-    </Style>
-    
-    <Style x:Key="PlainPrimaryCfButton" TargetType="button:CfButton">
-        <Setter Property="TextColor" Value="{StaticResource Primary}" />
-        <Setter Property="BackgroundColor" Value="Transparent" />
-    </Style>
-
     
 </ResourceDictionary>

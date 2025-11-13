@@ -1,5 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
+using CommunityToolkit.Maui;
+using CraftUI.Maui.Core.Common;
+using CraftUI.Maui.Core.Common.Extensions;
 using CraftUI.Maui.Core.Controls.ProgressBars;
+using Microsoft.Maui.Controls.Shapes;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 using Microsoft.Maui.Handlers;
 
@@ -9,9 +13,10 @@ public static class DependencyInjection
 {
     public static MauiAppBuilder UseMauiCraftUi(this MauiAppBuilder builder)
     {
-        builder.UseSkiaSharp();
-
-        builder.ConfigureMauiHandlers(handlers =>
+        builder
+            .UseSkiaSharp()
+            .UseMauiCommunityToolkit(ConfigurePopup)
+            .ConfigureMauiHandlers(handlers =>
         {
             handlers.AddHandler<ProgressBar, CfProgressBarHandler>();
 
@@ -27,6 +32,26 @@ public static class DependencyInjection
         });
 
         return builder;
+    }
+
+    private static void ConfigurePopup(Options options)
+    {
+        options.SetPopupDefaults(new DefaultPopupSettings
+        {
+            CanBeDismissedByTappingOutsideOfPopup = true,
+            Margin = 0,
+            Padding = 0
+        });
+
+        options.SetPopupOptionsDefaults(new DefaultPopupOptionsSettings
+        {
+            CanBeDismissedByTappingOutsideOfPopup = true,
+            Shape = new RoundRectangle
+            {
+                CornerRadius = new CornerRadius(8),
+                StrokeThickness = 0
+            }
+        });
     }
 }
 
@@ -53,5 +78,55 @@ internal static class CraftUiResourceMerger
                 app.Resources.MergedDictionaries.Add(dict);
             }
         }
+        
+        EnsurePrimaryScale(app.Resources);
+    }
+    
+    private static void EnsurePrimaryScale(ResourceDictionary root)
+    {
+        if (!TryFindPrimaryBase(root, out var basePrimary))
+        {
+            basePrimary = Color.FromArgb("#47c599");
+        }
+        
+        var palette = TailwindColors.BuildPrimaryScale(basePrimary);
+
+        foreach (var kvp in palette)
+        {
+            // Ne surtout pas écraser ce qui existe déjà
+            if (!root.ContainsKey(kvp.Key))
+            {
+                root.Add(kvp.Key, kvp.Value);
+            }
+        }
+    }
+    
+    private static bool TryFindPrimaryBase(ResourceDictionary rd, out Color color)
+    {
+        // Recherche directe dans le dico racine
+        if (rd.TryGetColor("Primary", out color))
+        {
+            return true;
+        }
+        if (rd.TryGetColor("Primary500", out color))
+        {
+            return true;
+        }
+
+        // Recherche dans les MergedDictionaries (ordre de merge -> priorité naturelle)
+        foreach (var md in rd.MergedDictionaries)
+        {
+            if (md.TryGetColor("Primary", out color))
+            {
+                return true;
+            }
+            if (md.TryGetColor("Primary500", out color))
+            {
+                return true;
+            }
+        }
+
+        color = default!;
+        return false;
     }
 }

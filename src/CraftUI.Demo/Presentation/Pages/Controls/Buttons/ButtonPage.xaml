@@ -24,12 +24,16 @@
                     Text="Normal button" />
                 
                 <button:CfButton 
+                    Text="Normal button with radius"
+                    CornerRadius="22"/>
+                
+                <button:CfButton 
                     Text="Disabled button"
                     IsEnabled="False" />
                 
                 <button:CfButton 
-                    Style="{StaticResource PlainPrimaryCfButton}"
-                    Text="Plain button" />
+                    ButtonStyle="Outlined"
+                    Text="Outlined style" />
                 
             </VerticalStackLayout>
         </ScrollView>
